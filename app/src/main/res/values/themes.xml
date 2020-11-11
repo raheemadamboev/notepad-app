@@ -1,0 +1,40 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.Notepad" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/green</item>
+        <item name="colorPrimaryVariant">@color/green</item>
+        <item name="colorOnPrimary">@color/green</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/green</item>
+        <item name="colorSecondaryVariant">@color/green</item>
+        <item name="colorOnSecondary">@color/green</item>
+
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+        <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
+        <item name="layout_background">@color/super_light_white</item>
+        <item name="primary_text_color">@color/black</item>
+        <item name="button_text_color">@color/white</item>
+        <item name="card_color">@color/white</item>
+        <item name="ticked_card_color">@color/ticked</item>
+        <item name="primary_ripple_color">@color/green</item>
+        <item name="secondary_ripple_color">@color/black_ripple</item>
+
+        <item name="pf_lock_screen">@style/MyLockScreenStyle</item>
+        <item name="pf_next">@style/MyLockNextButtonStyle</item>
+    </style>
+
+    <!-- Lock screen background -->
+    <style name="MyLockScreenStyle">
+        <item name="android:background">?attr/colorPrimary</item>
+    </style>
+
+    <style name="MyLockNextButtonStyle">
+        <item name="android:textColor">#FFF</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:background">@color/transparent</item>
+        <item name="android:layout_margin">40dp</item>
+    </style>
+</resources>

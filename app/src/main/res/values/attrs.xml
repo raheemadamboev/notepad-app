@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- layout background color -->
+    <attr name="layout_background" format="reference" />
+
+    <!-- primary text color -->
+    <attr name="primary_text_color" format="reference" />
+
+    <!-- button text color -->
+    <attr name="button_text_color" format="reference" />
+
+    <!-- card color -->
+    <attr name="card_color" format="reference" />
+
+    <!-- ticked card color -->
+    <attr name="ticked_card_color" format="reference" />
+
+    <!-- card ripple color -->
+    <attr name="primary_ripple_color" format="reference" />
+
+    <!-- button ripple color -->
+    <attr name="secondary_ripple_color" format="reference" />
+</resources>

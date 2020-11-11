@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Eslatma</string>
+    <string name="raheem">Raheem</string>
+    <string name="version">1.0</string>
+
+    <!-- Main -->
+    <string name="deleted_successfully">Hamma eslatmalar muvaffaqiyatli o\'chirildi</string>
+    <string name="wanna_delete_selected">Tanlangan eslatmalarni o\'chirishga rozimisiz?</string>
+
+    <!-- Note -->
+    <string name="title">Sarlavha</string>
+    <string name="choose">Tanlang</string>
+    <string name="wanna_delete">Eslatmani o\'chirishni xohlaysizmi?</string>
+    <string name="wanna_delete_all">Hamma eslatmalarni o\'chirishni xohlaysizmi?</string>
+    <string name="sure">Ha</string>
+    <string name="cancel">Bekor qilish</string>
+
+    <!-- Main menu -->
+    <string name="delete_all">Hammasini o\'chirish</string>
+    <string name="settings">Sozlamalar</string>
+
+    <!-- Settings -->
+    <string name="pin_lock">PIN ni o\'zgartirish</string>
+    <string name="language">Til</string>
+    <string name="english">Ingliz</string>
+    <string name="russian">Rus</string>
+    <string name="uzbek">O\'zbek</string>
+    <string name="korean">Koreyscha</string>
+    <string name="uzbek_kiril">O\'zbek(Kiril)</string>
+    <string name="khorezm">Xorazm</string>
+    <string name="about_me">Men haqimda</string>
+    <string name="create_pin">PIN yaratish</string>
+    <string name="pin_next">Olg\'a</string>
+    <string name="pin_error">PIN yaratish davomida noma\'lum xatolik yuz berdi!</string>
+    <string name="pin_header">PIN</string>
+    <string name="wrong_pin">PIN to\'\g\'ri kelmadi</string>
+    <string name="wrong_fingerprint">Barmoq izi to\'g\'ri kelmadi</string>
+    <string name="suggestions">Takliflar</string>
+    <string name="share">Ulashish</string>
+    <string name="review">Baho berish</string>
+    <string name="improvement">Takomillashtirish</string>
+    <string name="share_app">Eslatma android dasturi orqali android telefoningizga eslatma yozish qalam va qog\'ozga yozgandek oson! Linkni bosing -> https://play.google.com/store/apps/details?id=xyz.teamgravity.notepad</string>
+    <string name="github">Github</string>
+</resources>

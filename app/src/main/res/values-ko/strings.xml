@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Notepad</string>
+    <string name="raheem">Raheem</string>
+    <string name="version">1.0</string>
+
+    <!-- Main -->
+    <string name="deleted_successfully">모든 메모가 성공적으로 삭제되었습니다.</string>
+    <string name="wanna_delete_selected">선택한 메모를 삭제 하시겠습니까?</string>
+
+    <!-- Note -->
+    <string name="title">표제</string>
+    <string name="choose">고르다</string>
+    <string name="wanna_delete">메모를 삭제 하시겠습니까?</string>
+    <string name="wanna_delete_all">모든 메모를 삭제 하시겠습니까?</string>
+    <string name="sure">확실한</string>
+    <string name="cancel">취소</string>
+
+    <!-- Main menu -->
+    <string name="delete_all">모두 삭제</string>
+    <string name="settings">설정</string>
+
+    <!-- Settings -->
+    <string name="pin_lock">PIN 변경</string>
+    <string name="language">영어</string>
+    <string name="english">영어</string>
+    <string name="russian">러시아어</string>
+    <string name="uzbek">우즈벡어</string>
+    <string name="korean">한국어</string>
+    <string name="uzbek_kiril">우즈벡어(Kiril)</string>
+    <string name="khorezm">코레 즘 언어</string>
+    <string name="about_me">나에 대해서</string>
+    <string name="create_pin">PIN 생성</string>
+    <string name="pin_next">다음</string>
+    <string name="pin_error">PIN 생성 중 알 수없는 오류가 발생했습니다!</string>
+    <string name="pin_header">PIN</string>
+    <string name="wrong_pin">PIN이 일치하지 않습니다.</string>
+    <string name="wrong_fingerprint">지문이 일치하지 않습니다</string>
+    <string name="suggestions">제안</string>
+    <string name="share">공유</string>
+    <string name="review">리뷰</string>
+    <string name="improvement">개량</string>
+    <string name="share_app">이제 펜으로 펜으로 노트를 쓸 때 안드로이드 폰에 쉽게 노트를 추가 할 수 있습니다! 링크 -> https://play.google.com/store/apps/details?id=xyz.teamgravity.notepad</string>
+    <string name="github">Github</string>
+</resources>

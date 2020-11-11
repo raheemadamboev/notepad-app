@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Notepad</string>
+    <string name="raheem">Raheem</string>
+    <string name="version">1.0</string>
+
+    <!-- Main -->
+    <string name="deleted_successfully">Malades ishing bitdi bratishka</string>
+    <string name="wanna_delete_selected">Tanlaganlaringni o\'chiramizmi?</string>
+
+    <!-- Note -->
+    <string name="title">Tema</string>
+    <string name="choose">Tanla davrimda</string>
+    <string name="wanna_delete">O\'chiramizmi bini?</string>
+    <string name="wanna_delete_all">Hammasini o\'chiramizmi naxxuy?</string>
+    <string name="sure">Ova</string>
+    <string name="cancel">Yo\'qay jilli</string>
+
+    <!-- Main menu -->
+    <string name="delete_all">Hammasini yo\'qatish</string>
+    <string name="settings">Nastroyka</string>
+
+    <!-- Settings -->
+    <string name="pin_lock">PIN ni o\'zgartirish</string>
+    <string name="language">Dil</string>
+    <string name="english">Shekspir</string>
+    <string name="russian">Pushkin</string>
+    <string name="uzbek">Toshkentcha</string>
+    <string name="korean">BTSni dili</string>
+    <string name="uzbek_kiril">Qarrilani o\'zbekchasi</string>
+    <string name="khorezm">Xorazm 90!</string>
+    <string name="about_me">Man bilan danishish</string>
+    <string name="create_pin">PIN ochish</string>
+    <string name="pin_next">Gettik</string>
+    <string name="pin_error">PIN yaratib durganda pizdes bir narsa bo\'ldi billimman navviligini!</string>
+    <string name="pin_header">PIN</string>
+    <string name="wrong_pin">PIN o\'xshamadi uka. Akangni tikishtirma</string>
+    <string name="wrong_fingerprint">Barmoq izingam o\'xshamadi chuvaq</string>
+    <string name="suggestions">Gurunglar</string>
+    <string name="share">Jo\'ralara yivarish</string>
+    <string name="review">Savob atish</string>
+    <string name="improvement">Rivojlantirish</string>
+    <string name="share_app">Prosta telefonni ishlatib bilsang hamdasa miyang ishlasa bilasan bi programma nichchallim garagligini! Linkni bos -> https://play.google.com/store/apps/details?id=xyz.teamgravity.notepad</string>
+    <string name="github">Github</string>
+</resources>

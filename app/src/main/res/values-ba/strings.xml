@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Eslatma</string>
+    <string name="raheem">Raheem</string>
+    <string name="version">1.0</string>
+
+    <!-- Main -->
+    <string name="deleted_successfully">Хамма эслатмалар муваффакиятли учирилди</string>
+    <string name="wanna_delete_selected">Танланган эслатмаларни учиришга розимисиз?</string>
+
+    <!-- Note -->
+    <string name="title">Сарлавха</string>
+    <string name="choose">Танланг</string>
+    <string name="wanna_delete">Эслатмани учиришни хохлайсизми?</string>
+    <string name="wanna_delete_all">Хамма эслатмаларни учиришни хохлайсизми?</string>
+    <string name="sure">Ха</string>
+    <string name="cancel">Бекор килиш</string>
+
+    <!-- Main menu -->
+    <string name="delete_all">Хаммасини учириш</string>
+    <string name="settings">Созламалар</string>
+
+    <!-- Settings -->
+    <string name="pin_lock">ПИН ни узгартириш</string>
+    <string name="language">Тил</string>
+    <string name="english">Инглиз</string>
+    <string name="russian">Рус</string>
+    <string name="uzbek">Узбек</string>
+    <string name="korean">Корейсча</string>
+    <string name="uzbek_kiril">Узбек(Кирил)</string>
+    <string name="khorezm">Хоразм</string>
+    <string name="about_me">Мэн хакимда</string>
+    <string name="create_pin">ПИН яратиш</string>
+    <string name="pin_next">Олга</string>
+    <string name="pin_error">ПИН яратиш давомида номалум хатолик юз бэрди!</string>
+    <string name="pin_header">ПИН</string>
+    <string name="wrong_pin">ПИН тугри кэлмади</string>
+    <string name="wrong_fingerprint">Бармок изи тугри келмади</string>
+    <string name="suggestions">Таклифлар</string>
+    <string name="share">Улашиш</string>
+    <string name="review">Бахо бериш</string>
+    <string name="improvement">Такомиллаштириш</string>
+    <string name="share_app">Эслатма андроид дастури оркали андроид тэлэфонингизга эслатма йозиш калам ва когозга йозгандэк осон! Линкни босинг -> https://play.google.com/store/apps/details?id=xyz.teamgravity.notepad</string>
+    <string name="github">Github</string>
+</resources>
