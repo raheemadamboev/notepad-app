@@ -9,8 +9,20 @@ Notepad is completely offline and ads-free. Also it is very light weight and fas
 
 <img src="https://i.imgur.com/F1Efe2e.jpg" alt="Italian Trulli" width="200" height="200">
 
-Features:
+**Features:**
+
 - Add, edit, delete, share notes
 - Lock with PIN and Fingerprint security your app
 - Multi-language support
 - Source code is available in Github
+
+**Key Points:**
+
+- Git
+- MVVM
+- Material Design
+- Threading
+- Room
+- Multi-language support
+- Custom views
+- R8 obfuscation
