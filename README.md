@@ -1,4 +1,4 @@
-# notepad-simple
+# notepad-app
 Simple notepad application
 
 <b>Notepad - Light, Simple, Fast</b>
