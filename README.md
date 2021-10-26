@@ -7,7 +7,9 @@ Simple notepad application
 
 Notepad is completely offline and ads-free. Also it is very light weight and fast as rocket. Its interface is so user-friendly and simple so even your granny can use it. Regarding for adding notes, it has never been straightforward like this.
 
-<img src="https://i.imgur.com/F1Efe2e.jpg" alt="Italian Trulli" width="200" height="200">
+**Screenshots:**
+
+<img src="https://github.com/raheemadamboev/notepad-app/blob/master/Notepad.jpg" alt="Italian Trulli" width="869" height="416">
 
 **Features:**
 
@@ -16,7 +18,7 @@ Notepad is completely offline and ads-free. Also it is very light weight and fas
 - Multi-language support
 - Source code is available in Github
 
-**Key Points:**
+**Tech stack:**
 
 - Git
 - MVVM
