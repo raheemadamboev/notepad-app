@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/layout_background"
-    tools:context=".activity.SettingsActivity">
+    tools:context=".deprecated.activity.SettingsActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/main_layout"
@@ -146,7 +146,7 @@
                             app:layout_constraintStart_toEndOf="@id/language_pic"
                             app:layout_constraintTop_toTopOf="parent" />
 
-                        <xyz.teamgravity.notepad.helper.MyRadioGroup
+                        <xyz.teamgravity.notepad.deprecated.helper.MyRadioGroup
                             android:id="@+id/radio_group"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -155,7 +155,7 @@
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/language_pic">
 
-                            <xyz.teamgravity.notepad.helper.LanguageRadioButton
+                            <xyz.teamgravity.notepad.deprecated.helper.LanguageRadioButton
                                 android:id="@+id/english"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -164,7 +164,7 @@
                                 app:valueText="@string/english"
                                 app:valueTextColor="?attr/primary_text_color" />
 
-                            <xyz.teamgravity.notepad.helper.LanguageRadioButton
+                            <xyz.teamgravity.notepad.deprecated.helper.LanguageRadioButton
                                 android:id="@+id/russian"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -174,7 +174,7 @@
                                 app:valueText="@string/russian"
                                 app:valueTextColor="?attr/primary_text_color" />
 
-                            <xyz.teamgravity.notepad.helper.LanguageRadioButton
+                            <xyz.teamgravity.notepad.deprecated.helper.LanguageRadioButton
                                 android:id="@+id/korean"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -184,7 +184,7 @@
                                 app:valueText="@string/korean"
                                 app:valueTextColor="?attr/primary_text_color" />
 
-                            <xyz.teamgravity.notepad.helper.LanguageRadioButton
+                            <xyz.teamgravity.notepad.deprecated.helper.LanguageRadioButton
                                 android:id="@+id/uzbek"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -194,7 +194,7 @@
                                 app:valueText="@string/uzbek"
                                 app:valueTextColor="?attr/primary_text_color" />
 
-                            <xyz.teamgravity.notepad.helper.LanguageRadioButton
+                            <xyz.teamgravity.notepad.deprecated.helper.LanguageRadioButton
                                 android:id="@+id/uzbek_kiril"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -204,7 +204,7 @@
                                 app:valueText="@string/uzbek_kiril"
                                 app:valueTextColor="?attr/primary_text_color" />
 
-                            <xyz.teamgravity.notepad.helper.LanguageRadioButton
+                            <xyz.teamgravity.notepad.deprecated.helper.LanguageRadioButton
                                 android:id="@+id/khorezm"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -213,7 +213,7 @@
                                 app:presetButtonImage="@drawable/ic_uzb"
                                 app:valueText="@string/khorezm"
                                 app:valueTextColor="?attr/primary_text_color" />
-                        </xyz.teamgravity.notepad.helper.MyRadioGroup>
+                        </xyz.teamgravity.notepad.deprecated.helper.MyRadioGroup>
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </com.google.android.material.card.MaterialCardView>
 
