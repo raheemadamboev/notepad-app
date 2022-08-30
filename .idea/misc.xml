@@ -6,6 +6,7 @@
         <entry key="app/src/main/res/drawable/background_android_10_button.xml" value="0.293" />
         <entry key="app/src/main/res/drawable/background_card.xml" value="0.293" />
         <entry key="app/src/main/res/drawable/background_ticked_card.xml" value="0.293" />
+        <entry key="app/src/main/res/layout/activity_about.xml" value="0.5520833333333334" />
         <entry key="app/src/main/res/menu/main_menu.xml" value="0.5520833333333334" />
         <entry key="app/src/main/res/xml/backup_rules.xml" value="0.5520833333333334" />
         <entry key="app/src/main/res/xml/data_extraction_rules.xml" value="0.5510416666666667" />
