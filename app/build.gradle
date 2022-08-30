@@ -9,12 +9,12 @@ plugins {
 }
 
 android {
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "xyz.teamgravity.notepad"
         minSdk 21
-        targetSdk 32
+        targetSdk 33
         versionCode 2
         versionName "1.1.0"
 
