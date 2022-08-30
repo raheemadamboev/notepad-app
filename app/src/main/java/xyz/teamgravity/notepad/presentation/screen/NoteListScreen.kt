@@ -39,9 +39,7 @@ fun NoteListScreen(
     Scaffold(
         topBar = {
             TopBar(
-                title = {
-                    TextPlain(id = R.string.app_name)
-                },
+                title = { TextPlain(id = R.string.app_name) },
                 actions = {
                     TopBarMoreMenu(
                         expanded = viewmodel.expanded,
@@ -90,7 +88,7 @@ fun NoteListScreen(
     ) { padding ->
         LazyVerticalGrid(
             contentPadding = padding,
-            columns = GridCells.Adaptive(100.dp),
+            columns = GridCells.Adaptive(150.dp),
             modifier = Modifier.fillMaxSize()
         ) {
             items(viewmodel.notes) { note ->
