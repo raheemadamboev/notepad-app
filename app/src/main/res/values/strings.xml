@@ -1,44 +1,25 @@
 <resources>
     <string name="app_name">Notepad</string>
-    <string name="raheem">Raheem</string>
-    <string name="version">1.0</string>
+    <string name="raheem" translatable="false">Raheem</string>
 
-    <!-- Main -->
-    <string name="deleted_successfully">All notes successfully deleted</string>
-    <string name="wanna_delete_selected">Do you want to delete selected notes?</string>
-
-    <!-- Note -->
-    <string name="title">Title</string>
-    <string name="choose">Choose</string>
-    <string name="wanna_delete">Do you want to delete the note?</string>
-    <string name="wanna_delete_all">Do you want to delete all notes?</string>
-    <string name="sure">Sure</string>
-    <string name="cancel">Cancel</string>
-
-    <!-- Main menu -->
-    <string name="delete_all">Delete all</string>
+    <!-- NoteList -->
+    <string name="delete_all_notes">Delete all notes</string>
     <string name="settings">Settings</string>
-
-    <!-- Settings -->
-    <string name="pin_lock">Change PIN</string>
-    <string name="language">Language</string>
-    <string name="english">English</string>
-    <string name="russian">Russian</string>
-    <string name="uzbek">Uzbek</string>
-    <string name="korean">Korean</string>
-    <string name="uzbek_kiril">Uzbek(Kiril)</string>
-    <string name="khorezm">Khorezm</string>
-    <string name="about_me">About me</string>
-    <string name="create_pin">Create PIN</string>
-    <string name="pin_next">Next</string>
-    <string name="pin_error">Unknown error occurred during creating PIN!</string>
-    <string name="pin_header">PIN</string>
-    <string name="wrong_pin">PIN does not match</string>
-    <string name="wrong_fingerprint">Fingerprint does not match</string>
-    <string name="suggestions">Suggestions</string>
+    <string name="support">Connect us</string>
     <string name="share">Share</string>
-    <string name="review">Review</string>
-    <string name="improvement">Improvement</string>
-    <string name="share_app">You can now easily add notes to your android phone as you write notes with pen to your pen! Link -> https://play.google.com/store/apps/details?id=xyz.teamgravity.notepad</string>
-    <string name="github">Github</string>
+    <string name="rate">Rate</string>
+    <string name="source_code">Source code</string>
+    <string name="simple_todo">Simple ToDo</string>
+    <string name="about_me">About me</string>
+    <string name="share_app">Simple and easy? Try Notepad -> %1$s</string>
+    <string name="choose">Choose</string>
+    <string name="improvement">Improvement for Notepad</string>
+    <string name="no">No</string>
+    <string name="yes">Yes</string>
+    <string name="confirm_deletion">Confirm deletion</string>
+    <string name="wanna_delete_all">Do you want to delete all notes?</string>
+
+    <!-- Content Descriptions -->
+    <string name="cd_more_vertical">More actions</string>
+    <string name="cd_add_note">Add note</string>
 </resources>
