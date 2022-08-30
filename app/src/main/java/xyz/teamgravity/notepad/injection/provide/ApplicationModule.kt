@@ -6,6 +6,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import timber.log.Timber
 import xyz.teamgravity.notepad.data.local.constant.NoteDatabaseConst
 import xyz.teamgravity.notepad.data.local.dao.NoteDao
 import xyz.teamgravity.notepad.data.local.database.NoteDatabase
@@ -30,4 +31,8 @@ object ApplicationModule {
     @Provides
     @Singleton
     fun provideNoteRepository(noteDao: NoteDao): NoteRepository = NoteRepository(noteDao)
+
+    @Provides
+    @Singleton
+    fun provideTimberDebugTree(): Timber.DebugTree = Timber.DebugTree()
 }
