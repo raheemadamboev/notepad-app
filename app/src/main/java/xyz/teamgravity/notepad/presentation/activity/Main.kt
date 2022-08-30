@@ -8,6 +8,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import dagger.hilt.android.AndroidEntryPoint
+import xyz.teamgravity.notepad.presentation.navigation.Navigation
 import xyz.teamgravity.notepad.presentation.theme.NotepadTheme
 
 @AndroidEntryPoint
@@ -21,7 +22,7 @@ class Main : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-
+                    Navigation()
                 }
             }
         }
