@@ -49,6 +49,7 @@ class NoteListViewModel @Inject constructor(
     }
 
     fun onDeleteAll() {
+        onDeleteAllDialogDismiss()
         viewModelScope.launch(NonCancellable) {
             repository.deleteAllNotes()
         }
