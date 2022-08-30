@@ -1,0 +1,44 @@
+package xyz.teamgravity.notepad.data.local.dao
+
+import androidx.room.*
+import kotlinx.coroutines.flow.Flow
+import xyz.teamgravity.notepad.data.local.constant.NoteDatabaseConst.TABLE_NOTE
+import xyz.teamgravity.notepad.data.local.entity.NoteEntity
+
+@Dao
+interface NoteDao {
+
+    ///////////////////////////////////////////////////////////////////////////
+    // INSERT
+    ///////////////////////////////////////////////////////////////////////////
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertNote(note: NoteEntity)
+
+    ///////////////////////////////////////////////////////////////////////////
+    // UPDATE
+    ///////////////////////////////////////////////////////////////////////////
+
+    @Update(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun updateNote(note: NoteEntity)
+
+    ///////////////////////////////////////////////////////////////////////////
+    // DELETE
+    ///////////////////////////////////////////////////////////////////////////
+
+    @Delete
+    suspend fun deleteNote(note: NoteEntity)
+
+    @Delete
+    suspend fun deleteNotes(notes: List<NoteEntity>)
+
+    @Query("DELETE FROM $TABLE_NOTE")
+    suspend fun deleteAllNotes()
+
+    ///////////////////////////////////////////////////////////////////////////
+    // GET
+    ///////////////////////////////////////////////////////////////////////////
+
+    @Query("SELECT * FROM $TABLE_NOTE ORDER BY editedTime DESC")
+    fun getAllNotes(): Flow<List<NoteEntity>>
+}
