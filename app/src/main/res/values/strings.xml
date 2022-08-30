@@ -19,7 +19,13 @@
     <string name="confirm_deletion">Confirm deletion</string>
     <string name="wanna_delete_all">Do you want to delete all notes?</string>
 
+    <!-- NoteAdd -->
+    <string name="title">Title</string>
+    <string name="note">Note</string>
+
     <!-- Content Descriptions -->
     <string name="cd_more_vertical">More actions</string>
     <string name="cd_add_note">Add note</string>
+    <string name="cd_back_button">Navigate back</string>
+    <string name="cd_done_button">Save note</string>
 </resources>
