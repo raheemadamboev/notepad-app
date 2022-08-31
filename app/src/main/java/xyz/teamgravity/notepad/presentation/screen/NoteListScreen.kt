@@ -43,36 +43,36 @@ fun NoteListScreen(
                 actions = {
                     TopBarMoreMenuNoteList(
                         expanded = viewmodel.expanded,
-                        onExpand = viewmodel::onMenuExpanded,
-                        onDismiss = viewmodel::onMenuCollapsed,
+                        onExpand = viewmodel::onMenuExpand,
+                        onDismiss = viewmodel::onMenuCollapse,
                         onDeleteAll = viewmodel::onDeleteAllDialogShow,
                         onSettings = {
                             navigator.navigate(SettingsScreenDestination)
-                            viewmodel.onMenuCollapsed()
+                            viewmodel.onMenuCollapse()
                         },
                         onSupport = {
                             navigator.navigate(SupportScreenDestination)
-                            viewmodel.onMenuCollapsed()
+                            viewmodel.onMenuCollapse()
                         },
                         onShare = {
                             Helper.shareApp(context)
-                            viewmodel.onMenuCollapsed()
+                            viewmodel.onMenuCollapse()
                         },
                         onRate = {
                             Helper.rateApp(context)
-                            viewmodel.onMenuCollapsed()
+                            viewmodel.onMenuCollapse()
                         },
                         onSourceCode = {
                             Helper.viewSourceCode(context)
-                            viewmodel.onMenuCollapsed()
+                            viewmodel.onMenuCollapse()
                         },
                         onTodo = {
                             Helper.viewToDoPage(context)
-                            viewmodel.onMenuCollapsed()
+                            viewmodel.onMenuCollapse()
                         },
                         onAbout = {
                             navigator.navigate(AboutScreenDestination)
-                            viewmodel.onMenuCollapsed()
+                            viewmodel.onMenuCollapse()
                         }
                     )
                 }

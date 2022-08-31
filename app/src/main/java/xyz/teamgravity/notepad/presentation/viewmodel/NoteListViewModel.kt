@@ -31,17 +31,17 @@ class NoteListViewModel @Inject constructor(
         observe()
     }
 
-    fun onMenuExpanded() {
+    fun onMenuExpand() {
         expanded = true
     }
 
-    fun onMenuCollapsed() {
+    fun onMenuCollapse() {
         expanded = false
     }
 
     fun onDeleteAllDialogShow() {
         deleteAllDialog = true
-        onMenuCollapsed()
+        onMenuCollapse()
     }
 
     fun onDeleteAllDialogDismiss() {
