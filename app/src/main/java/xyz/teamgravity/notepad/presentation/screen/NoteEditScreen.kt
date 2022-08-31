@@ -74,11 +74,13 @@ fun NoteEditScreen(
             )
         },
         floatingActionButton = {
-            NoteFloatingActionButton(
-                onClick = viewmodel::onUpdateNote,
-                icon = Icons.Default.Done,
-                contentDescription = R.string.cd_done_button
-            )
+            if (!viewmodel.autoSaver) {
+                NoteFloatingActionButton(
+                    onClick = viewmodel::onUpdateNote,
+                    icon = Icons.Default.Done,
+                    contentDescription = R.string.cd_done_button
+                )
+            }
         }
     ) { padding ->
         Box(

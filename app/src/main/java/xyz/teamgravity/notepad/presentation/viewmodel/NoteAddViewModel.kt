@@ -9,8 +9,11 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
+import xyz.teamgravity.notepad.core.util.AutoSaver
+import xyz.teamgravity.notepad.data.local.preferences.Preferences
 import xyz.teamgravity.notepad.data.model.NoteModel
 import xyz.teamgravity.notepad.data.repository.NoteRepository
 import javax.inject.Inject
@@ -18,7 +21,9 @@ import javax.inject.Inject
 @HiltViewModel
 class NoteAddViewModel @Inject constructor(
     private val handle: SavedStateHandle,
-    private val repository: NoteRepository
+    private val repository: NoteRepository,
+    private val preferences: Preferences,
+    private val saver: AutoSaver
 ) : ViewModel() {
 
     companion object {
@@ -37,6 +42,13 @@ class NoteAddViewModel @Inject constructor(
 
     var body: String by mutableStateOf(handle.get<String>(NOTE_BODY) ?: DEFAULT_NOTE_BODY)
         private set
+
+    var autoSaver: Boolean by mutableStateOf(Preferences.DEFAULT_AUTO_SAVE)
+        private set
+
+    init {
+        initializeAutoSaver()
+    }
 
     fun onTitleChange(value: String) {
         title = value
@@ -58,6 +70,29 @@ class NoteAddViewModel @Inject constructor(
             )
 
             _event.send(NoteAddEvent.NoteAdded)
+        }
+    }
+
+    private fun initializeAutoSaver() {
+        viewModelScope.launch {
+            autoSaver = preferences.autoSave.first()
+            if (autoSaver) {
+                saver.start(
+                    note = null,
+                    title = { title },
+                    body = { body }
+                )
+            }
+        }
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        if (autoSaver) {
+            saver.saveAndClose(
+                title = title,
+                body = body
+            )
         }
     }
 

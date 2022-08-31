@@ -18,9 +18,9 @@ import xyz.teamgravity.notepad.R
 import xyz.teamgravity.notepad.presentation.component.button.IconButtonPlain
 import xyz.teamgravity.notepad.presentation.component.button.NoteFloatingActionButton
 import xyz.teamgravity.notepad.presentation.component.text.TextPlain
+import xyz.teamgravity.notepad.presentation.component.textfield.NotepadTextField
 import xyz.teamgravity.notepad.presentation.component.topbar.TopBar
 import xyz.teamgravity.notepad.presentation.navigation.MainNavGraph
-import xyz.teamgravity.notepad.presentation.component.textfield.NotepadTextField
 import xyz.teamgravity.notepad.presentation.viewmodel.NoteAddViewModel
 
 @MainNavGraph
@@ -55,11 +55,13 @@ fun NoteAddScreen(
             )
         },
         floatingActionButton = {
-            NoteFloatingActionButton(
-                onClick = viewmodel::onSaveNote,
-                icon = Icons.Default.Done,
-                contentDescription = R.string.cd_add_note
-            )
+            if (!viewmodel.autoSaver) {
+                NoteFloatingActionButton(
+                    onClick = viewmodel::onSaveNote,
+                    icon = Icons.Default.Done,
+                    contentDescription = R.string.cd_add_note
+                )
+            }
         }
     ) { padding ->
         Box(

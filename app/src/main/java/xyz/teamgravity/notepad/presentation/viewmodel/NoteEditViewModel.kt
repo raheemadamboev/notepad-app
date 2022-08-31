@@ -9,8 +9,11 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
+import xyz.teamgravity.notepad.core.util.AutoSaver
+import xyz.teamgravity.notepad.data.local.preferences.Preferences
 import xyz.teamgravity.notepad.data.model.NoteModel
 import xyz.teamgravity.notepad.data.repository.NoteRepository
 import xyz.teamgravity.notepad.presentation.screen.destinations.NoteEditScreenDestination
@@ -21,6 +24,8 @@ import javax.inject.Inject
 class NoteEditViewModel @Inject constructor(
     private val handle: SavedStateHandle,
     private val repository: NoteRepository,
+    private val preferences: Preferences,
+    private val saver: AutoSaver,
 ) : ViewModel() {
 
     companion object {
@@ -53,8 +58,15 @@ class NoteEditViewModel @Inject constructor(
     var deleteDialog: Boolean by mutableStateOf(handle.get<Boolean>(DELETE_DIALOG) ?: DEFAULT_DELETE_DIALOG)
         private set
 
+    var autoSaver: Boolean by mutableStateOf(Preferences.DEFAULT_AUTO_SAVE)
+        private set
+
     val sharedNote: String
         get() = "$title\n\n$body"
+
+    init {
+        initializeAutoSaver()
+    }
 
     fun onTitleChange(value: String) {
         title = value
@@ -106,8 +118,32 @@ class NoteEditViewModel @Inject constructor(
             onDeleteDialogDismiss()
 
             repository.deleteNote(note)
+            saver.close()
 
             _event.send(NoteEditEvent.NoteUpdated)
+        }
+    }
+
+    private fun initializeAutoSaver() {
+        viewModelScope.launch {
+            autoSaver = preferences.autoSave.first()
+            if (autoSaver) {
+                saver.start(
+                    note = note,
+                    title = { title },
+                    body = { body }
+                )
+            }
+        }
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        if (autoSaver) {
+            saver.saveAndClose(
+                title = title,
+                body = body
+            )
         }
     }
 
