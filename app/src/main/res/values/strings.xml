@@ -4,7 +4,7 @@
 
     <!-- NoteList -->
     <string name="delete_all_notes">Delete all notes</string>
-    <string name="settings">Settings</string>
+    <string name="auto_save">Auto-save</string>
     <string name="support">Connect us</string>
     <string name="share">Share</string>
     <string name="rate">Rate</string>
@@ -33,9 +33,6 @@
     <string name="via_telegram">via Telegram</string>
     <string name="via_email">via Email</string>
     <string name="improvement">Improvement for Notepad</string>
-
-    <!-- Settings -->
-    <string name="auto_save_notes">Auto-save notes</string>
 
     <!-- Content Descriptions -->
     <string name="cd_more_vertical">More actions</string>
