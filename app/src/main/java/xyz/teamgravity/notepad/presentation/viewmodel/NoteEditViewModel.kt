@@ -53,6 +53,9 @@ class NoteEditViewModel @Inject constructor(
     var deleteDialog: Boolean by mutableStateOf(handle.get<Boolean>(DELETE_DIALOG) ?: DEFAULT_DELETE_DIALOG)
         private set
 
+    val sharedNote: String
+        get() = "$title\n\n$body"
+
     fun onTitleChange(value: String) {
         title = value
         handle[NOTE_TITLE] = value
@@ -63,12 +66,12 @@ class NoteEditViewModel @Inject constructor(
         handle[NOTE_BODY] = value
     }
 
-    fun onMenuExpanded() {
+    fun onMenuExpand() {
         menuExpanded = true
         handle[MENU_EXPANDED] = true
     }
 
-    fun onMenuCollapsed() {
+    fun onMenuCollapse() {
         menuExpanded = false
         handle[MENU_EXPANDED] = false
     }
@@ -76,7 +79,7 @@ class NoteEditViewModel @Inject constructor(
     fun onDeleteDialogShow() {
         deleteDialog = true
         handle[DELETE_DIALOG] = true
-        onMenuCollapsed()
+        onMenuCollapse()
     }
 
     fun onDeleteDialogDismiss() {
