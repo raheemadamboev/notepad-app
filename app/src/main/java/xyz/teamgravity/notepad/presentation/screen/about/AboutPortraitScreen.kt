@@ -3,6 +3,7 @@ package xyz.teamgravity.notepad.presentation.screen.about
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.MaterialTheme
@@ -61,12 +62,14 @@ fun AboutPortraitScreen(
                 painter = painterResource(id = R.drawable.icon),
                 contentDescription = stringResource(id = R.string.cd_app_icon),
                 contentScale = ContentScale.Crop,
-                modifier = Modifier.constrainAs(appI) {
-                    width = Dimension.value(180.dp)
-                    height = Dimension.value(180.dp)
-                    linkTo(start = parent.start, end = parent.end)
-                    linkTo(top = parent.top, bottom = parent.bottom, bias = 0.4F)
-                }
+                modifier = Modifier
+                    .constrainAs(appI) {
+                        width = Dimension.value(180.dp)
+                        height = Dimension.value(180.dp)
+                        linkTo(start = parent.start, end = parent.end)
+                        linkTo(top = parent.top, bottom = parent.bottom, bias = 0.4F)
+                    }
+                    .clip(RoundedCornerShape(30.dp))
             )
             Text(
                 text = stringResource(id = R.string.app_name),
