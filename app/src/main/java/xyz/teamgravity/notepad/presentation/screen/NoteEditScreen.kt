@@ -25,7 +25,7 @@ import xyz.teamgravity.notepad.presentation.component.text.TextPlain
 import xyz.teamgravity.notepad.presentation.component.topbar.TopBar
 import xyz.teamgravity.notepad.presentation.component.topbar.TopBarMoreMenuNoteEdit
 import xyz.teamgravity.notepad.presentation.navigation.MainNavGraph
-import xyz.teamgravity.notepad.presentation.textfield.NotepadTextField
+import xyz.teamgravity.notepad.presentation.component.textfield.NotepadTextField
 import xyz.teamgravity.notepad.presentation.viewmodel.NoteEditViewModel
 
 @MainNavGraph

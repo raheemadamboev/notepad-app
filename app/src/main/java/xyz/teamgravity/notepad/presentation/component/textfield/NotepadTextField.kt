@@ -1,4 +1,4 @@
-package xyz.teamgravity.notepad.presentation.textfield
+package xyz.teamgravity.notepad.presentation.component.textfield
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize

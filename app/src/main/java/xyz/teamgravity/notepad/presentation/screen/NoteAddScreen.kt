@@ -10,7 +10,6 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
@@ -21,7 +20,7 @@ import xyz.teamgravity.notepad.presentation.component.button.NoteFloatingActionB
 import xyz.teamgravity.notepad.presentation.component.text.TextPlain
 import xyz.teamgravity.notepad.presentation.component.topbar.TopBar
 import xyz.teamgravity.notepad.presentation.navigation.MainNavGraph
-import xyz.teamgravity.notepad.presentation.textfield.NotepadTextField
+import xyz.teamgravity.notepad.presentation.component.textfield.NotepadTextField
 import xyz.teamgravity.notepad.presentation.viewmodel.NoteAddViewModel
 
 @MainNavGraph
