@@ -4,7 +4,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
-import xyz.teamgravity.notepad.data.local.dao.NoteDao
+import xyz.teamgravity.notepad.data.local.note.dao.NoteDao
 import xyz.teamgravity.notepad.data.mapper.toEntity
 import xyz.teamgravity.notepad.data.mapper.toModel
 import xyz.teamgravity.notepad.data.model.NoteModel

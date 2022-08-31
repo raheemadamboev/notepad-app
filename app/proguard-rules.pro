@@ -23,6 +23,6 @@
 
 #noinspection ShrinkerUnresolvedReference
 
--keep class xyz.teamgravity.notepad.data.local.entity.** { *; }
+-keep class xyz.teamgravity.notepad.data.local.note.entity.** { *; }
 -keep class xyz.teamgravity.notepad.data.model.** { *; }
 -keep class xyz.teamgravity.notepad.presentation.screen.NoteEditScreenNavArgs { *; }

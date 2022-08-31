@@ -1,6 +1,6 @@
 package xyz.teamgravity.notepad.data.mapper
 
-import xyz.teamgravity.notepad.data.local.entity.NoteEntity
+import xyz.teamgravity.notepad.data.local.note.entity.NoteEntity
 import xyz.teamgravity.notepad.data.model.NoteModel
 import java.util.*
 

@@ -1,9 +1,9 @@
-package xyz.teamgravity.notepad.data.local.dao
+package xyz.teamgravity.notepad.data.local.note.dao
 
 import androidx.room.*
 import kotlinx.coroutines.flow.Flow
-import xyz.teamgravity.notepad.data.local.constant.NoteDatabaseConst.TABLE_NOTE
-import xyz.teamgravity.notepad.data.local.entity.NoteEntity
+import xyz.teamgravity.notepad.data.local.note.constant.NoteDatabaseConst.TABLE_NOTE
+import xyz.teamgravity.notepad.data.local.note.entity.NoteEntity
 
 @Dao
 interface NoteDao {

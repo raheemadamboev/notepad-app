@@ -1,8 +1,8 @@
-package xyz.teamgravity.notepad.data.local.entity
+package xyz.teamgravity.notepad.data.local.note.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import xyz.teamgravity.notepad.data.local.constant.NoteDatabaseConst
+import xyz.teamgravity.notepad.data.local.note.constant.NoteDatabaseConst
 
 @Entity(tableName = NoteDatabaseConst.TABLE_NOTE)
 data class NoteEntity(

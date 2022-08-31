@@ -7,9 +7,9 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import timber.log.Timber
-import xyz.teamgravity.notepad.data.local.constant.NoteDatabaseConst
-import xyz.teamgravity.notepad.data.local.dao.NoteDao
-import xyz.teamgravity.notepad.data.local.database.NoteDatabase
+import xyz.teamgravity.notepad.data.local.note.constant.NoteDatabaseConst
+import xyz.teamgravity.notepad.data.local.note.dao.NoteDao
+import xyz.teamgravity.notepad.data.local.note.database.NoteDatabase
 import xyz.teamgravity.notepad.data.repository.NoteRepository
 import javax.inject.Singleton
 

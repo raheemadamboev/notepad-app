@@ -1,4 +1,4 @@
-package xyz.teamgravity.notepad.data.local.constant
+package xyz.teamgravity.notepad.data.local.note.constant
 
 object NoteDatabaseConst {
 
