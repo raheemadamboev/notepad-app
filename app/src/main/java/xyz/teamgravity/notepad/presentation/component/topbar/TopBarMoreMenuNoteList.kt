@@ -1,6 +1,7 @@
 package xyz.teamgravity.notepad.presentation.component.topbar
 
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Done
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
@@ -15,8 +16,9 @@ fun TopBarMoreMenuNoteList(
     expanded: Boolean,
     onExpand: () -> Unit,
     onDismiss: () -> Unit,
+    autoSave: Boolean,
+    onAutoSave: () -> Unit,
     onDeleteAll: () -> Unit,
-    onSettings: () -> Unit,
     onSupport: () -> Unit,
     onShare: () -> Unit,
     onRate: () -> Unit,
@@ -34,22 +36,30 @@ fun TopBarMoreMenuNoteList(
         onDismissRequest = onDismiss
     ) {
         DropdownMenuItem(
+            text = { TextPlain(id = R.string.auto_save) },
+            onClick = onAutoSave,
+            trailingIcon = {
+                if (autoSave) {
+                    IconPlain(
+                        icon = Icons.Default.Done,
+                        contentDescription = R.string.auto_save
+                    )
+                }
+            },
+            leadingIcon = {
+                IconPlain(
+                    icon = R.drawable.ic_save,
+                    contentDescription = R.string.auto_save
+                )
+            }
+        )
+        DropdownMenuItem(
             text = { TextPlain(id = R.string.delete_all_notes) },
             onClick = onDeleteAll,
             leadingIcon = {
                 IconPlain(
                     icon = R.drawable.ic_delete,
                     contentDescription = R.string.delete_all_notes
-                )
-            }
-        )
-        DropdownMenuItem(
-            text = { TextPlain(id = R.string.settings) },
-            onClick = onSettings,
-            leadingIcon = {
-                IconPlain(
-                    icon = R.drawable.ic_settings,
-                    contentDescription = R.string.settings
                 )
             }
         )

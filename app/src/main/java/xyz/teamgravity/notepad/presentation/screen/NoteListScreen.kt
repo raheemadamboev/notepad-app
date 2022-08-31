@@ -23,7 +23,10 @@ import xyz.teamgravity.notepad.presentation.component.text.TextPlain
 import xyz.teamgravity.notepad.presentation.component.topbar.TopBar
 import xyz.teamgravity.notepad.presentation.component.topbar.TopBarMoreMenuNoteList
 import xyz.teamgravity.notepad.presentation.navigation.MainNavGraph
-import xyz.teamgravity.notepad.presentation.screen.destinations.*
+import xyz.teamgravity.notepad.presentation.screen.destinations.AboutScreenDestination
+import xyz.teamgravity.notepad.presentation.screen.destinations.NoteAddScreenDestination
+import xyz.teamgravity.notepad.presentation.screen.destinations.NoteEditScreenDestination
+import xyz.teamgravity.notepad.presentation.screen.destinations.SupportScreenDestination
 import xyz.teamgravity.notepad.presentation.viewmodel.NoteListViewModel
 
 @MainNavGraph(start = true)
@@ -45,11 +48,9 @@ fun NoteListScreen(
                         expanded = viewmodel.expanded,
                         onExpand = viewmodel::onMenuExpand,
                         onDismiss = viewmodel::onMenuCollapse,
+                        autoSave = viewmodel.autoSave,
+                        onAutoSave = viewmodel::onAutoSaveChange,
                         onDeleteAll = viewmodel::onDeleteAllDialogShow,
-                        onSettings = {
-                            navigator.navigate(SettingsScreenDestination)
-                            viewmodel.onMenuCollapse()
-                        },
                         onSupport = {
                             navigator.navigate(SupportScreenDestination)
                             viewmodel.onMenuCollapse()
