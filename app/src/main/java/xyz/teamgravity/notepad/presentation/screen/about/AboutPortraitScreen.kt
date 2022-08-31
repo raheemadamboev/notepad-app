@@ -69,7 +69,7 @@ fun AboutPortraitScreen(
                         linkTo(start = parent.start, end = parent.end)
                         linkTo(top = parent.top, bottom = parent.bottom, bias = 0.4F)
                     }
-                    .clip(RoundedCornerShape(30.dp))
+                    .clip(RoundedCornerShape(35.dp))
             )
             Text(
                 text = stringResource(id = R.string.app_name),

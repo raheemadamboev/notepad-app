@@ -71,7 +71,7 @@ fun AboutLandscapeScreen(
                         linkTo(start = parent.start, end = oneG)
                         linkTo(top = parent.top, bottom = parent.bottom)
                     }
-                    .clip(RoundedCornerShape(30.dp))
+                    .clip(RoundedCornerShape(35.dp))
             )
             Text(
                 text = stringResource(id = R.string.app_name),
