@@ -4,6 +4,7 @@ import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
@@ -24,7 +25,10 @@ fun NoteTextField(
         value = value,
         onValueChange = onValueChange,
         placeholder = { TextPlain(id = placeholder) },
-        colors = TextFieldDefaults.textFieldColors(containerColor = Color.Transparent),
+        colors = TextFieldDefaults.textFieldColors(
+            textColor = MaterialTheme.colorScheme.onBackground,
+            containerColor = Color.Transparent,
+        ),
         keyboardOptions = KeyboardOptions(capitalization = KeyboardCapitalization.Sentences),
         modifier = modifier
             .fillMaxWidth()
