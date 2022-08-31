@@ -23,9 +23,14 @@
     <string name="title">Title</string>
     <string name="note">Note</string>
 
+    <!-- NoteEdit -->
+    <string name="delete">Delete</string>
+    <string name="wanna_delete_note">Do you want to delete the note?</string>
+
     <!-- Content Descriptions -->
     <string name="cd_more_vertical">More actions</string>
     <string name="cd_add_note">Add note</string>
     <string name="cd_back_button">Navigate back</string>
     <string name="cd_done_button">Save note</string>
+    <string name="cd_delete_button">Delete note</string>
 </resources>
