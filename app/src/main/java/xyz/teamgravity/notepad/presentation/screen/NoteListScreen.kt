@@ -1,14 +1,10 @@
 package xyz.teamgravity.notepad.presentation.screen
 
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -19,6 +15,7 @@ import xyz.teamgravity.notepad.core.util.Helper
 import xyz.teamgravity.notepad.presentation.component.button.NoteFloatingActionButton
 import xyz.teamgravity.notepad.presentation.component.card.CardNote
 import xyz.teamgravity.notepad.presentation.component.dialog.NoteAlertDialog
+import xyz.teamgravity.notepad.presentation.component.misc.StaggeredVerticalGrid
 import xyz.teamgravity.notepad.presentation.component.text.TextPlain
 import xyz.teamgravity.notepad.presentation.component.topbar.TopBar
 import xyz.teamgravity.notepad.presentation.component.topbar.TopBarMoreMenuNoteList
@@ -87,16 +84,16 @@ fun NoteListScreen(
             )
         }
     ) { padding ->
-        LazyVerticalGrid(
-            contentPadding = padding,
-            columns = GridCells.Adaptive(150.dp),
-            modifier = Modifier.fillMaxSize()
-        ) {
-            items(viewmodel.notes) { note ->
-                CardNote(
-                    note = note,
-                    onClick = { navigator.navigate(NoteEditScreenDestination(note = it)) }
-                )
+        LazyColumn(contentPadding = padding) {
+            item {
+                StaggeredVerticalGrid(maxColumnWidth = 200.dp) {
+                    viewmodel.notes.forEach { note ->
+                        CardNote(
+                            note = note,
+                            onClick = { navigator.navigate(NoteEditScreenDestination(note = it)) }
+                        )
+                    }
+                }
             }
         }
         if (viewmodel.deleteAllDialog) {
