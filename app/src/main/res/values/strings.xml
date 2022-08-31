@@ -13,7 +13,6 @@
     <string name="about_me">About me</string>
     <string name="share_app">Simple and easy? Try Notepad -> %1$s</string>
     <string name="choose">Choose</string>
-    <string name="improvement">Improvement for Notepad</string>
     <string name="no">No</string>
     <string name="yes">Yes</string>
     <string name="confirm_deletion">Confirm deletion</string>
@@ -27,6 +26,14 @@
     <string name="delete">Delete</string>
     <string name="wanna_delete_note">Do you want to delete the note?</string>
 
+    <!-- Support -->
+    <string name="need_help">Need help</string>
+    <string name="connect_us">Connect us</string>
+    <string name="connect_us_body">Let us know if you face a problem or you have a suggestion to improve the application. We care about our users!</string>
+    <string name="via_telegram">via Telegram</string>
+    <string name="via_email">via Email</string>
+    <string name="improvement">Improvement for Notepad</string>
+
     <!-- Content Descriptions -->
     <string name="cd_more_vertical">More actions</string>
     <string name="cd_add_note">Add note</string>
@@ -35,4 +42,7 @@
     <string name="cd_delete_button">Delete note</string>
     <string name="cd_app_icon">App icon</string>
     <string name="cd_company_logo">Company logo</string>
+    <string name="cd_user_support">User support</string>
+    <string name="cd_via_telegram">Connect us via Telegram</string>
+    <string name="cd_via_email">Connect us via Email</string>
 </resources>
