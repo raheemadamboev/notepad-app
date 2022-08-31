@@ -33,4 +33,6 @@
     <string name="cd_back_button">Navigate back</string>
     <string name="cd_done_button">Save note</string>
     <string name="cd_delete_button">Delete note</string>
+    <string name="cd_app_icon">App icon</string>
+    <string name="cd_company_logo">Company logo</string>
 </resources>
