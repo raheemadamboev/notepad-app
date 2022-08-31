@@ -1,8 +1,11 @@
 package xyz.teamgravity.notepad.presentation.component.card
 
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
-import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -11,14 +14,20 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import xyz.teamgravity.notepad.core.extension.format
 import xyz.teamgravity.notepad.data.model.NoteModel
+import xyz.teamgravity.notepad.presentation.theme.Grey40
 
 @Composable
 fun CardNote(
     note: NoteModel,
     onClick: (note: NoteModel) -> Unit
 ) {
-    Card(
+    OutlinedCard(
         onClick = { onClick(note) },
+        colors = CardDefaults.outlinedCardColors(
+            containerColor = MaterialTheme.colorScheme.background,
+            contentColor = MaterialTheme.colorScheme.onBackground
+        ),
+        border = BorderStroke(if (isSystemInDarkTheme()) 0.5.dp else 1.dp, Grey40),
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 6.dp, vertical = 2.dp)
@@ -26,7 +35,7 @@ fun CardNote(
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(10.dp)
+                .padding(vertical = 20.dp, horizontal = 10.dp)
         ) {
             Text(
                 text = note.title,
