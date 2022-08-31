@@ -34,6 +34,9 @@
     <string name="via_email">via Email</string>
     <string name="improvement">Improvement for Notepad</string>
 
+    <!-- Settings -->
+    <string name="auto_save_notes">Auto-save notes</string>
+
     <!-- Content Descriptions -->
     <string name="cd_more_vertical">More actions</string>
     <string name="cd_add_note">Add note</string>
