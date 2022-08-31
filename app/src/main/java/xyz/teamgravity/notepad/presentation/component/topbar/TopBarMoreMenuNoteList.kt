@@ -11,7 +11,7 @@ import xyz.teamgravity.notepad.presentation.component.image.IconPlain
 import xyz.teamgravity.notepad.presentation.component.text.TextPlain
 
 @Composable
-fun TopBarMoreMenu(
+fun TopBarMoreMenuNoteList(
     expanded: Boolean,
     onExpand: () -> Unit,
     onDismiss: () -> Unit,
