@@ -93,4 +93,16 @@ object Helper {
             )
         }
     }
+
+    /**
+     * Shares note as a text
+     */
+    fun shareNote(context: Context, note: String) {
+        Intent().apply {
+            action = Intent.ACTION_SEND
+            type = "text/plain"
+            putExtra(Intent.EXTRA_TEXT, note)
+            context.startActivity(Intent.createChooser(this, context.getString(R.string.choose)))
+        }
+    }
 }
