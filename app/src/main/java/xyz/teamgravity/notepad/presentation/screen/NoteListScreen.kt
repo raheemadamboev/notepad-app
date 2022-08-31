@@ -21,7 +21,7 @@ import xyz.teamgravity.notepad.presentation.component.card.CardNote
 import xyz.teamgravity.notepad.presentation.component.dialog.NoteAlertDialog
 import xyz.teamgravity.notepad.presentation.component.text.TextPlain
 import xyz.teamgravity.notepad.presentation.component.topbar.TopBar
-import xyz.teamgravity.notepad.presentation.component.topbar.TopBarMoreMenu
+import xyz.teamgravity.notepad.presentation.component.topbar.TopBarMoreMenuNoteList
 import xyz.teamgravity.notepad.presentation.navigation.MainNavGraph
 import xyz.teamgravity.notepad.presentation.screen.destinations.*
 import xyz.teamgravity.notepad.presentation.viewmodel.NoteListViewModel
@@ -41,7 +41,7 @@ fun NoteListScreen(
             TopBar(
                 title = { TextPlain(id = R.string.app_name) },
                 actions = {
-                    TopBarMoreMenu(
+                    TopBarMoreMenuNoteList(
                         expanded = viewmodel.expanded,
                         onExpand = viewmodel::onMenuExpanded,
                         onDismiss = viewmodel::onMenuCollapsed,
