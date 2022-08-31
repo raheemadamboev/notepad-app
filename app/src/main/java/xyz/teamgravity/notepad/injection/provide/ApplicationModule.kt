@@ -10,6 +10,7 @@ import timber.log.Timber
 import xyz.teamgravity.notepad.data.local.note.constant.NoteDatabaseConst
 import xyz.teamgravity.notepad.data.local.note.dao.NoteDao
 import xyz.teamgravity.notepad.data.local.note.database.NoteDatabase
+import xyz.teamgravity.notepad.data.local.preferences.Preferences
 import xyz.teamgravity.notepad.data.repository.NoteRepository
 import javax.inject.Singleton
 
@@ -35,4 +36,8 @@ object ApplicationModule {
     @Provides
     @Singleton
     fun provideTimberDebugTree(): Timber.DebugTree = Timber.DebugTree()
+
+    @Provides
+    @Singleton
+    fun providePreferences(application: Application): Preferences = Preferences(application)
 }
