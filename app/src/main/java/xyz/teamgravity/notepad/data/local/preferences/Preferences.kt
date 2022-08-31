@@ -28,7 +28,7 @@ class Preferences(context: Context) {
          * Auto-save enabled
          */
         private val AUTO_SAVE = booleanPreferencesKey("autoSave")
-        private const val DEFAULT_AUTO_SAVE = false
+        const val DEFAULT_AUTO_SAVE = false
     }
 
     private val store = context.dataStore
