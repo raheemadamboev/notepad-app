@@ -19,9 +19,8 @@ fun StaggeredVerticalGrid(
     ) { measurables, constraints ->
         val placeableXY: MutableMap<Placeable, Pair<Int, Int>> = mutableMapOf()
 
-        check(constraints.hasBoundedWidth) {
-            "Unbounded width not supported"
-        }
+        check(constraints.hasBoundedWidth) { "Unbounded width not supported" }
+
         val columns = ceil(constraints.maxWidth / maxColumnWidth.toPx()).toInt()
         val columnWidth = constraints.maxWidth / columns
         val itemConstraints = constraints.copy(maxWidth = columnWidth)
