@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.ArrowBackIos
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -44,7 +45,7 @@ fun AboutPortraitScreen(
                 navigationIcon = {
                     IconButtonPlain(
                         onClick = onBackButtonClick,
-                        icon = Icons.Default.ArrowBack,
+                        icon = Icons.Default.ArrowBackIos,
                         contentDescription = R.string.cd_back_button
                     )
                 }
