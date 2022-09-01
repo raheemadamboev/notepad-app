@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <declare-styleable name="LanguageRadioButton">
-        <attr name="valueText" format="string" />
-        <attr name="presetButtonImage" format="reference" />
-        <attr name="valueTextColor" format="color" />
-        <attr name="pressedTextColor" format="color" />
-    </declare-styleable>
-</resources>

@@ -22,4 +22,6 @@
 -printmapping mapping.txt
 
 #noinspection ShrinkerUnresolvedReference
--keep class com.beautycoder.pflockscreen.** { *; }
+
+-keep class xyz.teamgravity.notepad.data.local.note.entity.** { *; }
+-keep class xyz.teamgravity.notepad.data.model.** { *; }
