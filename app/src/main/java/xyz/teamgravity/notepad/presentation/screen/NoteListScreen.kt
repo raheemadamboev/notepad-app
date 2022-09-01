@@ -42,7 +42,7 @@ fun NoteListScreen(
                 title = { TextPlain(id = R.string.app_name) },
                 actions = {
                     TopBarMoreMenuNoteList(
-                        expanded = viewmodel.expanded,
+                        expanded = viewmodel.menuExpanded,
                         onExpand = viewmodel::onMenuExpand,
                         onDismiss = viewmodel::onMenuCollapse,
                         autoSave = viewmodel.autoSave,
