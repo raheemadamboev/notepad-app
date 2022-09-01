@@ -44,12 +44,6 @@ class NoteRepository(
         }
     }
 
-    suspend fun deleteNotes(notes: List<NoteModel>) {
-        withContext(Dispatchers.IO) {
-            dao.deleteNotes(notes.map { it.toEntity() })
-        }
-    }
-
     suspend fun deleteAllNotes() {
         withContext(Dispatchers.IO) {
             dao.deleteAllNotes()
