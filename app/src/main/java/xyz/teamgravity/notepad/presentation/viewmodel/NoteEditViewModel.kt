@@ -115,7 +115,7 @@ class NoteEditViewModel @Inject constructor(
             onDeleteDialogDismiss()
 
             repository.deleteNote(args.note)
-            saver.close()
+            if (autoSaver) saver.close()
 
             _event.send(NoteEditEvent.NoteUpdated)
         }
