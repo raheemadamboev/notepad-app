@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Notepad</string>
-    <string name="raheem" translatable="false">Raheem</string>
 
     <!-- NoteList -->
     <string name="delete_all_notes">Delete all notes</string>
