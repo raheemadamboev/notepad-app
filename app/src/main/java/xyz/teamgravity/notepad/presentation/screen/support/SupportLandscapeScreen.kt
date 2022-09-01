@@ -4,6 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.ArrowBackIos
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -47,7 +48,7 @@ fun SupportLandscapeScreen(
         ) {
             IconButtonPlain(
                 onClick = onBackButtonClick,
-                icon = Icons.Default.ArrowBack,
+                icon = Icons.Default.ArrowBackIos,
                 contentDescription = R.string.cd_back_button,
                 tint = White
             )

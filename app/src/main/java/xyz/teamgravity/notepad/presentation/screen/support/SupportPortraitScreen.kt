@@ -7,7 +7,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.ArrowBackIos
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -54,7 +54,7 @@ fun SupportPortraitScreen(
         )
         IconButtonPlain(
             onClick = onBackButtonClick,
-            icon = Icons.Default.ArrowBack,
+            icon = Icons.Default.ArrowBackIos,
             contentDescription = R.string.cd_back_button,
             tint = White,
             modifier = Modifier.constrainAs(backB) {
@@ -96,6 +96,7 @@ fun SupportPortraitScreen(
         ) {
             Text(
                 text = stringResource(id = R.string.connect_us),
+                textAlign = TextAlign.Center,
                 fontSize = 24.sp,
                 fontWeight = FontWeight.Bold,
             )
