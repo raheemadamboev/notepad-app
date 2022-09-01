@@ -18,12 +18,14 @@ class AutoSaver(
     private var job: Job? = null
 
     private var closed = false
-    private var note: NoteModel? = null
+
+    private var _note: NoteModel? = null
+    private val note get() = _note!!
 
     fun start(note: NoteModel?, title: () -> String, body: () -> String) {
         if (closed || job != null) return
         job = scope.launch {
-            this@AutoSaver.note = note
+            this@AutoSaver._note = note
             while (isActive) {
                 delay(DELAY)
                 saveNote(
@@ -42,22 +44,23 @@ class AutoSaver(
     }
 
     private suspend fun saveNote(title: String, body: String) {
-        if (!closed && (note?.body != body || note?.title != title)) {
-            if (note == null) {
-                note = NoteModel(
-                    title = title,
-                    body = body
-                )
-                val id = repository.insertNote(note!!)
-                note = note!!.copy(id = id)
-            } else {
-                note = note!!.copy(
-                    title = title,
-                    body = body,
-                    edited = Date()
-                )
-                repository.updateNote(note!!)
-            }
+        if (closed) return
+        if (_note?.body == body && _note?.title == title) return
+
+        if (_note == null) {
+            _note = NoteModel(
+                title = title,
+                body = body
+            )
+            val id = repository.insertNote(note)
+            _note = note.copy(id = id)
+        } else {
+            _note = note.copy(
+                title = title,
+                body = body,
+                edited = Date()
+            )
+            repository.updateNote(note)
         }
     }
 
