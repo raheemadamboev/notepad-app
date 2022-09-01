@@ -80,6 +80,18 @@ android {
             }
         }
     }
+
+    signingConfigs {
+        release {
+            Properties properties = new Properties()
+            properties.load(project.rootProject.file("local.properties").newDataInputStream())
+
+            storeFile file(properties.getProperty("storeFile", ""))
+            storePassword properties.getProperty("storePassword", "")
+            keyAlias properties.getProperty("keyAlias", "")
+            keyPassword properties.getProperty("keyPassword", "")
+        }
+    }
 }
 
 dependencies {
