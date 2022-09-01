@@ -14,7 +14,7 @@ object NoteDatabaseConst {
 
     /**
      * Table note
-     * Entity -> [xyz.teamgravity.notepad.data.local.entity.NoteEntity]
+     * Entity -> [xyz.teamgravity.notepad.data.local.note.entity.NoteEntity]
      * Model -> [xyz.teamgravity.notepad.data.model.NoteModel]
      */
     const val TABLE_NOTE = "note_table"
