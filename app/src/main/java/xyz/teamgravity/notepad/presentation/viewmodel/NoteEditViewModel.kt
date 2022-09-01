@@ -14,7 +14,6 @@ import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import xyz.teamgravity.notepad.core.util.AutoSaver
 import xyz.teamgravity.notepad.data.local.preferences.Preferences
-import xyz.teamgravity.notepad.data.model.NoteModel
 import xyz.teamgravity.notepad.data.repository.NoteRepository
 import xyz.teamgravity.notepad.presentation.screen.destinations.NoteEditScreenDestination
 import java.util.*
@@ -29,7 +28,6 @@ class NoteEditViewModel @Inject constructor(
 ) : ViewModel() {
 
     companion object {
-        private const val NOTE = "note"
         private const val NOTE_TITLE = "note_title"
         private const val NOTE_BODY = "note_body"
 
@@ -41,15 +39,14 @@ class NoteEditViewModel @Inject constructor(
     }
 
     private val args = NoteEditScreenDestination.argsFrom(handle)
-    private val note: NoteModel = handle.get<NoteModel>(NOTE) ?: args.note
 
     private val _event = Channel<NoteEditEvent>()
     val event: Flow<NoteEditEvent> = _event.receiveAsFlow()
 
-    var title: String by mutableStateOf(handle.get<String>(NOTE_TITLE) ?: note.title)
+    var title: String by mutableStateOf(handle.get<String>(NOTE_TITLE) ?: args.note.title)
         private set
 
-    var body: String by mutableStateOf(handle.get<String>(NOTE_BODY) ?: note.body)
+    var body: String by mutableStateOf(handle.get<String>(NOTE_BODY) ?: args.note.body)
         private set
 
     var menuExpanded: Boolean by mutableStateOf(handle.get<Boolean>(MENU_EXPANDED) ?: DEFAULT_MENU_EXPANDED)
@@ -102,7 +99,7 @@ class NoteEditViewModel @Inject constructor(
     fun onUpdateNote() {
         viewModelScope.launch {
             repository.updateNote(
-                note.copy(
+                args.note.copy(
                     title = title,
                     body = body,
                     edited = Date()
@@ -117,7 +114,7 @@ class NoteEditViewModel @Inject constructor(
         viewModelScope.launch {
             onDeleteDialogDismiss()
 
-            repository.deleteNote(note)
+            repository.deleteNote(args.note)
             saver.close()
 
             _event.send(NoteEditEvent.NoteUpdated)
@@ -129,7 +126,7 @@ class NoteEditViewModel @Inject constructor(
             autoSaver = preferences.autoSave.first()
             if (autoSaver) {
                 saver.start(
-                    note = note,
+                    note = args.note,
                     title = { title },
                     body = { body }
                 )
