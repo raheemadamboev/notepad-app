@@ -133,12 +133,12 @@ dependencies {
     implementation "androidx.room:room-ktx:2.4.3"
     kapt "androidx.room:room-compiler:2.4.3"
 
+    // datastore preferences
+    implementation "androidx.datastore:datastore-preferences:1.0.0"
+
     // compose destinations
     implementation 'io.github.raamcosta.compose-destinations:core:1.7.16-beta'
     ksp 'io.github.raamcosta.compose-destinations:ksp:1.7.16-beta'
-
-    // datastore preferences
-    implementation "androidx.datastore:datastore-preferences:1.0.0"
 
     // timber
     implementation 'com.jakewharton.timber:timber:5.0.1'
