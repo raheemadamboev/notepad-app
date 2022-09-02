@@ -6,7 +6,7 @@ import java.util.*
 
 @Parcelize
 data class NoteModel(
-    val id: Long = 0,
+    val id: Long? = null,
     val title: String,
     val body: String,
     val created: Date = Date(),
