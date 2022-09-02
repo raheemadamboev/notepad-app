@@ -6,7 +6,7 @@ import java.util.*
 
 fun NoteEntity.toModel(): NoteModel {
     return NoteModel(
-        id = _id!!,
+        id = _id,
         title = title,
         body = body,
         created = Date(createdTime),
