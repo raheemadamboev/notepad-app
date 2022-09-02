@@ -72,7 +72,7 @@ private val LightColorScheme = lightColorScheme(
 @Composable
 fun NotepadTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    dynamicColor: Boolean = true,
+    dynamicColor: Boolean = false,
     content: @Composable () -> Unit,
 ) {
     val colorScheme = when {
