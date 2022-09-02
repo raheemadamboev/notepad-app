@@ -8,7 +8,7 @@ import xyz.teamgravity.notepad.data.local.note.constant.NoteDatabaseConst
 data class NoteEntity(
 
     @PrimaryKey(autoGenerate = true)
-    val _id: Long,
+    val _id: Long?,
 
     val title: String,
     val body: String,
