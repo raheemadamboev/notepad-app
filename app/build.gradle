@@ -33,6 +33,12 @@ android {
             debugSymbolLevel 'FULL'
         }
 
+        bundle {
+            language {
+                enableSplit = false
+            }
+        }
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary true
@@ -131,7 +137,7 @@ dependencies {
     kapt 'com.google.dagger:hilt-compiler:2.43.2'
 
     // firebase
-    implementation platform('com.google.firebase:firebase-bom:30.3.2')
+    implementation platform('com.google.firebase:firebase-bom:30.4.1')
     implementation 'com.google.firebase:firebase-analytics'
     implementation 'com.google.firebase:firebase-crashlytics'
     implementation 'com.google.firebase:firebase-messaging'
@@ -149,8 +155,8 @@ dependencies {
     implementation "androidx.datastore:datastore-preferences:1.0.0"
 
     // compose destinations
-    implementation 'io.github.raamcosta.compose-destinations:core:1.7.16-beta'
-    ksp 'io.github.raamcosta.compose-destinations:ksp:1.7.16-beta'
+    implementation 'io.github.raamcosta.compose-destinations:core:1.7.19-beta'
+    ksp 'io.github.raamcosta.compose-destinations:ksp:1.7.19-beta'
 
     // timber
     implementation 'com.jakewharton.timber:timber:5.0.1'
