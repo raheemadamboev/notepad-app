@@ -64,10 +64,6 @@ fun NoteListScreen(
                             Helper.viewSourceCode(context)
                             viewmodel.onMenuCollapse()
                         },
-                        onTodo = {
-                            Helper.viewToDoPage(context)
-                            viewmodel.onMenuCollapse()
-                        },
                         onAbout = {
                             navigator.navigate(AboutScreenDestination)
                             viewmodel.onMenuCollapse()
