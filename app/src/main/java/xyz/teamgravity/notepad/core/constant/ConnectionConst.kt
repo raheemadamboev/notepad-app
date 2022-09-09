@@ -13,11 +13,6 @@ object ConnectionConst {
     const val SUPPORT_MAIL = "raheemideadev@gmail.com"
 
     /**
-     * To-Do package name
-     */
-    const val TODO_PACKAGE_NAME = "xyz.teamgravity.todo"
-
-    /**
      * Gravity developer page
      */
     const val GRAVITY = "dev?id=5173702047357476752"

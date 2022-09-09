@@ -66,22 +66,6 @@ object Helper {
     }
 
     /**
-     * Navigates the user to To-Do Play Store page
-     */
-    fun viewToDoPage(context: Context) {
-        try {
-            context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=${ConnectionConst.TODO_PACKAGE_NAME}")))
-        } catch (e: ActivityNotFoundException) {
-            context.startActivity(
-                Intent(
-                    Intent.ACTION_VIEW,
-                    Uri.parse("${ConnectionConst.PLAY_STORE_DETAIL_PAGE}${ConnectionConst.TODO_PACKAGE_NAME}")
-                )
-            )
-        }
-    }
-
-    /**
      * Navigates the user to Gravity Play Store page
      */
     fun viewGravityPage(context: Context) {

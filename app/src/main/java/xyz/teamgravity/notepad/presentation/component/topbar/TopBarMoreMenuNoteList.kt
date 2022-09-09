@@ -23,7 +23,6 @@ fun TopBarMoreMenuNoteList(
     onShare: () -> Unit,
     onRate: () -> Unit,
     onSourceCode: () -> Unit,
-    onTodo: () -> Unit,
     onAbout: () -> Unit
 ) {
     IconButtonPlain(
@@ -100,16 +99,6 @@ fun TopBarMoreMenuNoteList(
                 IconPlain(
                     icon = R.drawable.ic_github,
                     contentDescription = R.string.source_code
-                )
-            }
-        )
-        DropdownMenuItem(
-            text = { TextPlain(id = R.string.simple_todo) },
-            onClick = onTodo,
-            leadingIcon = {
-                IconPlain(
-                    icon = R.drawable.ic_todo,
-                    contentDescription = R.string.simple_todo
                 )
             }
         )
