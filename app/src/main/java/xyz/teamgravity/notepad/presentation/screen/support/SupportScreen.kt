@@ -1,10 +1,10 @@
 package xyz.teamgravity.notepad.presentation.screen.support
 
+import android.content.res.Configuration
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.platform.LocalConfiguration
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
-import xyz.teamgravity.notepad.presentation.component.misc.WindowInfo
-import xyz.teamgravity.notepad.presentation.component.misc.rememberWindowInfo
 import xyz.teamgravity.notepad.presentation.navigation.MainNavGraph
 
 @MainNavGraph
@@ -13,8 +13,8 @@ import xyz.teamgravity.notepad.presentation.navigation.MainNavGraph
 fun SupportScreen(
     navigator: DestinationsNavigator,
 ) {
-    when (rememberWindowInfo().screenWidthInfo) {
-        WindowInfo.WindowType.Compact -> SupportPortraitScreen(onBackButtonClick = navigator::popBackStack)
+    when (LocalConfiguration.current.orientation) {
+        Configuration.ORIENTATION_PORTRAIT -> SupportPortraitScreen(onBackButtonClick = navigator::popBackStack)
         else -> SupportLandscapeScreen(onBackButtonClick = navigator::popBackStack)
     }
 }
