@@ -1,7 +1,6 @@
 package xyz.teamgravity.notepad.data.local.preferences
 
 import android.content.Context
-import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
@@ -14,7 +13,6 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 import java.io.IOException
 
-val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = xyz.teamgravity.notepad.data.local.preferences.Preferences.PREFS)
 
 class Preferences(context: Context) {
 
@@ -31,7 +29,8 @@ class Preferences(context: Context) {
         const val DEFAULT_AUTO_SAVE = false
     }
 
-    private val store = context.dataStore
+    private val Context.store by preferencesDataStore(name = PREFS)
+    private val store = context.store
 
     ///////////////////////////////////////////////////////////////////////////
     // UPDATE
@@ -48,7 +47,7 @@ class Preferences(context: Context) {
     ///////////////////////////////////////////////////////////////////////////
 
     val autoSave: Flow<Boolean> = store.data
-        .catch { handleIOException(it) }
+        .catch { emit(handleIOException(it)) }
         .map { it[AUTO_SAVE] ?: DEFAULT_AUTO_SAVE }
 
     ///////////////////////////////////////////////////////////////////////////
