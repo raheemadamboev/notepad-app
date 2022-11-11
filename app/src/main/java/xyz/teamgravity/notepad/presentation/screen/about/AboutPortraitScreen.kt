@@ -1,7 +1,6 @@
 package xyz.teamgravity.notepad.presentation.screen.about
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -14,7 +13,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -25,7 +23,6 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import xyz.teamgravity.notepad.BuildConfig
 import xyz.teamgravity.notepad.R
-import xyz.teamgravity.notepad.core.util.Helper
 import xyz.teamgravity.notepad.presentation.component.button.IconButtonPlain
 import xyz.teamgravity.notepad.presentation.component.text.TextPlain
 import xyz.teamgravity.notepad.presentation.component.topbar.TopBar
@@ -34,9 +31,6 @@ import xyz.teamgravity.notepad.presentation.component.topbar.TopBar
 fun AboutPortraitScreen(
     onBackButtonClick: () -> Unit,
 ) {
-
-    val context = LocalContext.current
-
     Scaffold(
         topBar = {
             TopBar(
@@ -94,7 +88,6 @@ fun AboutPortraitScreen(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 modifier = Modifier
                     .clip(MaterialTheme.shapes.extraLarge)
-                    .clickable { Helper.viewGravityPage(context) }
                     .padding(horizontal = 10.dp, vertical = 5.dp)
                     .constrainAs(companyC) {
                         linkTo(start = parent.start, end = parent.end)
