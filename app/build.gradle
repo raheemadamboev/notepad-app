@@ -11,6 +11,7 @@ plugins {
 
 android {
     compileSdk 33
+    namespace 'xyz.teamgravity.notepad'
 
     defaultConfig {
         applicationId "xyz.teamgravity.notepad"
