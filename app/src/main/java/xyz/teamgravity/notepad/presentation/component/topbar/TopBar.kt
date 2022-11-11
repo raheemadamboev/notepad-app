@@ -2,7 +2,7 @@ package xyz.teamgravity.notepad.presentation.component.topbar
 
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.SmallTopAppBar
+import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 
@@ -12,7 +12,7 @@ fun TopBar(
     navigationIcon: @Composable () -> Unit = {},
     actions: @Composable RowScope.() -> Unit = {},
 ) {
-    SmallTopAppBar(
+    TopAppBar(
         title = title,
         navigationIcon = navigationIcon,
         actions = actions,
