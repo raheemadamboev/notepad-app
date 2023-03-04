@@ -1,10 +1,16 @@
 package xyz.teamgravity.notepad.presentation.screen
 
-import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
+import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
+import androidx.compose.foundation.lazy.staggeredgrid.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -15,7 +21,6 @@ import xyz.teamgravity.notepad.core.util.Helper
 import xyz.teamgravity.notepad.presentation.component.button.NoteFloatingActionButton
 import xyz.teamgravity.notepad.presentation.component.card.CardNote
 import xyz.teamgravity.notepad.presentation.component.dialog.NoteAlertDialog
-import xyz.teamgravity.notepad.presentation.component.misc.StaggeredVerticalGrid
 import xyz.teamgravity.notepad.presentation.component.text.TextPlain
 import xyz.teamgravity.notepad.presentation.component.topbar.TopBar
 import xyz.teamgravity.notepad.presentation.component.topbar.TopBarMoreMenuNoteList
@@ -80,16 +85,23 @@ fun NoteListScreen(
             )
         }
     ) { padding ->
-        LazyColumn(contentPadding = padding) {
-            item {
-                StaggeredVerticalGrid(maxColumnWidth = 200.dp) {
-                    viewmodel.notes.forEach { note ->
-                        CardNote(
-                            note = note,
-                            onClick = { navigator.navigate(NoteEditScreenDestination(note = it)) }
-                        )
-                    }
-                }
+        LazyVerticalStaggeredGrid(
+            columns = StaggeredGridCells.Adaptive(150.dp),
+            contentPadding = padding,
+            horizontalArrangement = Arrangement.spacedBy(10.dp),
+            verticalArrangement = Arrangement.spacedBy(10.dp),
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(start = 10.dp, top = 10.dp, end = 10.dp)
+        ) {
+            items(
+                items = viewmodel.notes,
+                key = { note -> note.id!! }
+            ) { note ->
+                CardNote(
+                    note = note,
+                    onClick = { navigator.navigate(NoteEditScreenDestination(note = it)) }
+                )
             }
         }
         if (viewmodel.deleteAllDialogShown) {
