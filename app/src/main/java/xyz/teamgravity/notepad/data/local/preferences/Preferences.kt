@@ -18,12 +18,12 @@ class Preferences(context: Context) {
 
     companion object {
         /**
-         *  Preferences name
+         *  Preferences name.
          */
         const val PREFS = "prefs"
 
         /**
-         * Auto-save enabled
+         * Auto-save enabled.
          */
         private val AUTO_SAVE = booleanPreferencesKey("autoSave")
         const val DEFAULT_AUTO_SAVE = false
