@@ -26,7 +26,8 @@ fun NoteTextField(
         onValueChange = onValueChange,
         placeholder = { TextPlain(id = placeholder) },
         colors = TextFieldDefaults.textFieldColors(
-            textColor = MaterialTheme.colorScheme.onBackground,
+            unfocusedTextColor = MaterialTheme.colorScheme.onBackground,
+            focusedTextColor = MaterialTheme.colorScheme.onBackground,
             containerColor = Color.Transparent,
         ),
         keyboardOptions = KeyboardOptions(capitalization = KeyboardCapitalization.Sentences),
