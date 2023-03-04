@@ -34,8 +34,8 @@ class NoteEditViewModel @Inject constructor(
         private const val MENU_EXPANDED = "menu_expanded"
         private const val DEFAULT_MENU_EXPANDED = false
 
-        private const val DELETE_DIALOG = "delete_dialog"
-        private const val DEFAULT_DELETE_DIALOG = false
+        private const val DELETE_DIALOG_SHOWN = "delete_dialog_shown"
+        private const val DEFAULT_DELETE_DIALOG_SHOWN = false
     }
 
     private val args = NoteEditScreenDestination.argsFrom(handle)
@@ -52,10 +52,10 @@ class NoteEditViewModel @Inject constructor(
     var menuExpanded: Boolean by mutableStateOf(handle.get<Boolean>(MENU_EXPANDED) ?: DEFAULT_MENU_EXPANDED)
         private set
 
-    var deleteDialog: Boolean by mutableStateOf(handle.get<Boolean>(DELETE_DIALOG) ?: DEFAULT_DELETE_DIALOG)
+    var deleteDialogShown: Boolean by mutableStateOf(handle.get<Boolean>(DELETE_DIALOG_SHOWN) ?: DEFAULT_DELETE_DIALOG_SHOWN)
         private set
 
-    var autoSaver: Boolean by mutableStateOf(Preferences.DEFAULT_AUTO_SAVE)
+    var autoSave: Boolean by mutableStateOf(Preferences.DEFAULT_AUTO_SAVE)
         private set
 
     val sharedNote: String
@@ -64,6 +64,23 @@ class NoteEditViewModel @Inject constructor(
     init {
         initializeAutoSaver()
     }
+
+    private fun initializeAutoSaver() {
+        viewModelScope.launch {
+            autoSave = preferences.autoSave.first()
+            if (autoSave) {
+                saver.start(
+                    note = args.note,
+                    title = { title },
+                    body = { body }
+                )
+            }
+        }
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
+    // API
+    ///////////////////////////////////////////////////////////////////////////
 
     fun onTitleChange(value: String) {
         title = value
@@ -86,14 +103,14 @@ class NoteEditViewModel @Inject constructor(
     }
 
     fun onDeleteDialogShow() {
-        deleteDialog = true
-        handle[DELETE_DIALOG] = true
+        deleteDialogShown = true
+        handle[DELETE_DIALOG_SHOWN] = true
         onMenuCollapse()
     }
 
     fun onDeleteDialogDismiss() {
-        deleteDialog = false
-        handle[DELETE_DIALOG] = false
+        deleteDialogShown = false
+        handle[DELETE_DIALOG_SHOWN] = false
     }
 
     fun onUpdateNote() {
@@ -115,34 +132,25 @@ class NoteEditViewModel @Inject constructor(
             onDeleteDialogDismiss()
 
             repository.deleteNote(args.note)
-            if (autoSaver) saver.close()
+            if (autoSave) saver.close()
 
             _event.send(NoteEditEvent.NoteUpdated)
         }
     }
 
-    private fun initializeAutoSaver() {
-        viewModelScope.launch {
-            autoSaver = preferences.autoSave.first()
-            if (autoSaver) {
-                saver.start(
-                    note = args.note,
-                    title = { title },
-                    body = { body }
-                )
-            }
-        }
-    }
-
     override fun onCleared() {
         super.onCleared()
-        if (autoSaver) {
+        if (autoSave) {
             saver.saveAndClose(
                 title = title,
                 body = body
             )
         }
     }
+
+    ///////////////////////////////////////////////////////////////////////////
+    // MISC
+    ///////////////////////////////////////////////////////////////////////////
 
     sealed class NoteEditEvent {
         object NoteUpdated : NoteEditEvent()

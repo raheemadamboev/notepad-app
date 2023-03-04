@@ -74,7 +74,7 @@ fun NoteEditScreen(
             )
         },
         floatingActionButton = {
-            if (!viewmodel.autoSaver) {
+            if (!viewmodel.autoSave) {
                 NoteFloatingActionButton(
                     onClick = viewmodel::onUpdateNote,
                     icon = Icons.Default.Done,
@@ -95,7 +95,7 @@ fun NoteEditScreen(
                 onBodyChange = viewmodel::onBodyChange
             )
         }
-        if (viewmodel.deleteDialog) {
+        if (viewmodel.deleteDialogShown) {
             NoteAlertDialog(
                 title = R.string.confirm_deletion,
                 message = R.string.wanna_delete_note,

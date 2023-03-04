@@ -92,7 +92,7 @@ fun NoteListScreen(
                 }
             }
         }
-        if (viewmodel.deleteAllDialog) {
+        if (viewmodel.deleteAllDialogShown) {
             NoteAlertDialog(
                 title = R.string.confirm_deletion,
                 message = R.string.wanna_delete_all,

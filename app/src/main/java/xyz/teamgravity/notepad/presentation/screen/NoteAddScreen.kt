@@ -55,7 +55,7 @@ fun NoteAddScreen(
             )
         },
         floatingActionButton = {
-            if (!viewmodel.autoSaver) {
+            if (!viewmodel.autoSave) {
                 NoteFloatingActionButton(
                     onClick = viewmodel::onSaveNote,
                     icon = Icons.Default.Done,
