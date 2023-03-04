@@ -5,6 +5,7 @@
     <!-- NoteList -->
     <string name="delete_all_notes">Delete all notes</string>
     <string name="auto_save">Auto-save</string>
+    <string name="pin_lock">PIN lock</string>
     <string name="support">Connect us</string>
     <string name="share">Share</string>
     <string name="rate">Rate</string>
@@ -32,6 +33,15 @@
     <string name="via_telegram">via Telegram</string>
     <string name="via_email">via Email</string>
     <string name="improvement">Improvement for Notepad</string>
+
+    <!-- PinLock -->
+    <string name="protect_with_pin_lock">Protect with PIN lock</string>
+    <string name="change_pin_lock">Change PIN lock</string>
+    <string name="enter_your_pin">Enter your PIN</string>
+    <string name="create_new_pin">Create new PIN</string>
+    <string name="pin_lock_warning">Please, remember your PIN carefully! If you forget your PIN, you won\'t be able to access your notes.</string>
+    <string name="got_it">Got it</string>
+    <string name="warning">Warning</string>
 
     <!-- Content Descriptions -->
     <string name="cd_more_vertical">More actions</string>

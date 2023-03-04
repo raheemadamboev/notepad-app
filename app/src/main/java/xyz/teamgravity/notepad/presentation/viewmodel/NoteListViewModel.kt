@@ -13,6 +13,7 @@ import kotlinx.coroutines.launch
 import xyz.teamgravity.notepad.data.local.preferences.Preferences
 import xyz.teamgravity.notepad.data.model.NoteModel
 import xyz.teamgravity.notepad.data.repository.NoteRepository
+import xyz.teamgravity.pin_lock_compose.PinManager
 import javax.inject.Inject
 
 @HiltViewModel
@@ -30,6 +31,9 @@ class NoteListViewModel @Inject constructor(
         private const val DEFAULT_DELETE_ALL_DIALOG_SHOWN = false
     }
 
+    var pinLockShown: Boolean by mutableStateOf(false)
+        private set
+
     var notes: List<NoteModel> by mutableStateOf(emptyList())
         private set
 
@@ -43,7 +47,12 @@ class NoteListViewModel @Inject constructor(
         private set
 
     init {
+        checkPinLock()
         observe()
+    }
+
+    private fun checkPinLock() {
+        pinLockShown = PinManager.pinExists()
     }
 
     private fun observe() {
@@ -70,6 +79,10 @@ class NoteListViewModel @Inject constructor(
     ///////////////////////////////////////////////////////////////////////////
     // API
     ///////////////////////////////////////////////////////////////////////////
+
+    fun onPinCorrect() {
+        pinLockShown = false
+    }
 
     fun onAutoSaveChange() {
         onMenuCollapse()

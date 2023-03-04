@@ -163,7 +163,7 @@ dependencies {
     implementation 'com.jakewharton.timber:timber:5.0.1'
 
     // pin lock compose
-    implementation 'com.github.raheemadamboev:pin-lock-compose:1.0'
+    implementation 'com.github.raheemadamboev:pin-lock-compose:1.0.1'
 }
 
 allprojects {

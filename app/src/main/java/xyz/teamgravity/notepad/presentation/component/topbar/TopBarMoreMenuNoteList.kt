@@ -18,6 +18,7 @@ fun TopBarMoreMenuNoteList(
     onDismiss: () -> Unit,
     autoSave: Boolean,
     onAutoSave: () -> Unit,
+    onPinLock: () -> Unit,
     onDeleteAll: () -> Unit,
     onSupport: () -> Unit,
     onShare: () -> Unit,
@@ -49,6 +50,16 @@ fun TopBarMoreMenuNoteList(
                 IconPlain(
                     icon = R.drawable.ic_save,
                     contentDescription = R.string.auto_save
+                )
+            }
+        )
+        DropdownMenuItem(
+            text = { TextPlain(id = R.string.pin_lock) },
+            onClick = onPinLock,
+            leadingIcon = {
+                IconPlain(
+                    icon = R.drawable.ic_lock,
+                    contentDescription = R.string.pin_lock
                 )
             }
         )
