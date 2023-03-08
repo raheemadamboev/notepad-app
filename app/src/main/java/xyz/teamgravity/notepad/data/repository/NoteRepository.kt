@@ -19,7 +19,7 @@ class NoteRepository(
 
     suspend fun insertNote(note: NoteModel): Long {
         return withContext(Dispatchers.IO) {
-            dao.insertNote(note.toEntity())
+            return@withContext dao.insertNote(note.toEntity())
         }
     }
 
