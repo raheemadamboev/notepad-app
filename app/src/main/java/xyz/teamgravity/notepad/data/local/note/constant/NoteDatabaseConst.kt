@@ -3,17 +3,17 @@ package xyz.teamgravity.notepad.data.local.note.constant
 object NoteDatabaseConst {
 
     /**
-     * Database name
+     * Database name.
      */
     const val NAME = "notepad_database"
 
     /**
-     * Database version
+     * Database version.
      */
     const val VERSION = 1
 
     /**
-     * Table note
+     * Table note.
      * Entity -> [xyz.teamgravity.notepad.data.local.note.entity.NoteEntity]
      * Model -> [xyz.teamgravity.notepad.data.model.NoteModel]
      */

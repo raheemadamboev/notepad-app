@@ -5,6 +5,7 @@
     <!-- NoteList -->
     <string name="delete_all_notes">Удалить все заметки</string>
     <string name="auto_save">Автосохранение</string>
+    <string name="pin_lock">PIN защита</string>
     <string name="support">Подключите нас</string>
     <string name="share">Поделиться</string>
     <string name="rate">Оценивать</string>
@@ -32,6 +33,15 @@
     <string name="via_telegram">через Telegram</string>
     <string name="via_email">через Email</string>
     <string name="improvement">Улучшение для Notepad</string>
+
+    <!-- PinLock -->
+    <string name="protect_with_pin_lock">Защитить с PIN lock</string>
+    <string name="change_pin_lock">Поменять PIN lock</string>
+    <string name="enter_your_pin">Введите ваш PIN</string>
+    <string name="create_new_pin">Создайте новый PIN</string>
+    <string name="pin_lock_warning">Пожалуйста, запомните ваш PIN! Если вы забудете ваш PIN, вы не сможете получить доступ к своим заметкам.</string>
+    <string name="got_it">Понятно</string>
+    <string name="warning">Предупреждение</string>
 
     <!-- Content Descriptions -->
     <string name="cd_more_vertical">Дополнительные действия</string>

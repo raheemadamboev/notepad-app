@@ -6,7 +6,7 @@ plugins {
     id 'dagger.hilt.android.plugin'
     id 'com.google.gms.google-services'
     id 'com.google.firebase.crashlytics'
-    id 'com.google.devtools.ksp' version '1.7.0-1.0.6'
+    id 'com.google.devtools.ksp' version '1.8.10-1.0.9'
 }
 
 android {
@@ -17,8 +17,8 @@ android {
         applicationId "xyz.teamgravity.notepad"
         minSdk 21
         targetSdk 33
-        versionCode 10
-        versionName "1.1.7"
+        versionCode 11
+        versionName "1.1.8"
 
         javaCompileOptions {
             annotationProcessorOptions {
@@ -71,7 +71,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion "1.2.0"
+        kotlinCompilerExtensionVersion "1.4.2"
     }
 
     packagingOptions {
@@ -107,10 +107,10 @@ dependencies {
     implementation 'androidx.core:core-ktx:1.9.0'
 
     // compose ui
-    implementation "androidx.compose.ui:ui:1.4.0-alpha01"
+    implementation "androidx.compose.ui:ui:1.4.0-beta02"
 
     // compose preview
-    implementation "androidx.compose.ui:ui-tooling-preview:1.4.0-alpha01"
+    implementation "androidx.compose.ui:ui-tooling-preview:1.4.0-beta02"
 
     // compose activity
     implementation 'androidx.activity:activity-compose:1.6.1'
@@ -122,23 +122,23 @@ dependencies {
     implementation 'androidx.hilt:hilt-navigation-compose:1.0.0'
 
     // compose material3
-    implementation 'androidx.compose.material3:material3:1.1.0-alpha01'
+    implementation 'androidx.compose.material3:material3:1.1.0-alpha07'
 
     // compose constraint layout
     implementation 'androidx.constraintlayout:constraintlayout-compose:1.0.1'
 
     // compose icons
-    implementation "androidx.compose.material:material-icons-extended:1.4.0-alpha02"
+    implementation "androidx.compose.material:material-icons-extended:1.4.0-beta02"
 
     // lifecycle
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.5.1'
 
     // hilt
-    implementation 'com.google.dagger:hilt-android:2.44'
-    kapt 'com.google.dagger:hilt-compiler:2.44'
+    implementation 'com.google.dagger:hilt-android:2.45'
+    kapt 'com.google.dagger:hilt-compiler:2.45'
 
     // firebase
-    implementation platform('com.google.firebase:firebase-bom:31.0.2')
+    implementation platform('com.google.firebase:firebase-bom:31.2.3')
     implementation 'com.google.firebase:firebase-analytics'
     implementation 'com.google.firebase:firebase-crashlytics'
     implementation 'com.google.firebase:firebase-messaging'
@@ -148,26 +148,30 @@ dependencies {
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
 
     // room
-    implementation "androidx.room:room-runtime:2.4.3"
-    implementation "androidx.room:room-ktx:2.4.3"
-    kapt "androidx.room:room-compiler:2.4.3"
+    implementation "androidx.room:room-runtime:2.5.0"
+    implementation "androidx.room:room-ktx:2.5.0"
+    kapt "androidx.room:room-compiler:2.5.0"
 
     // datastore preferences
     implementation "androidx.datastore:datastore-preferences:1.0.0"
 
     // compose destinations
-    implementation 'io.github.raamcosta.compose-destinations:core:1.7.25-beta'
-    ksp 'io.github.raamcosta.compose-destinations:ksp:1.7.25-beta'
+    implementation 'io.github.raamcosta.compose-destinations:core:1.8.35-beta'
+    ksp 'io.github.raamcosta.compose-destinations:ksp:1.8.35-beta'
 
     // timber
     implementation 'com.jakewharton.timber:timber:5.0.1'
+
+    // pin lock compose
+    implementation 'com.github.raheemadamboev:pin-lock-compose:1.0.1'
 }
 
 allprojects {
     tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
         kotlinOptions {
             freeCompilerArgs += [
-                    "-opt-in=androidx.compose.material3.ExperimentalMaterial3Api"
+                    "-opt-in=androidx.compose.material3.ExperimentalMaterial3Api",
+                    "-opt-in=androidx.compose.foundation.ExperimentalFoundationApi"
             ]
         }
     }

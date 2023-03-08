@@ -28,9 +28,7 @@ fun CardNote(
             contentColor = MaterialTheme.colorScheme.onBackground
         ),
         border = BorderStroke(if (isSystemInDarkTheme()) 0.5.dp else 1.dp, Grey40),
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 6.dp, vertical = 2.dp)
+        modifier = Modifier.fillMaxWidth()
     ) {
         Column(
             modifier = Modifier

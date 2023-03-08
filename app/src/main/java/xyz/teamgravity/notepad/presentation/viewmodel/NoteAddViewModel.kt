@@ -43,12 +43,29 @@ class NoteAddViewModel @Inject constructor(
     var body: String by mutableStateOf(handle.get<String>(NOTE_BODY) ?: DEFAULT_NOTE_BODY)
         private set
 
-    var autoSaver: Boolean by mutableStateOf(Preferences.DEFAULT_AUTO_SAVE)
+    var autoSave: Boolean by mutableStateOf(Preferences.DEFAULT_AUTO_SAVE)
         private set
 
     init {
         initializeAutoSaver()
     }
+
+    private fun initializeAutoSaver() {
+        viewModelScope.launch {
+            autoSave = preferences.autoSave.first()
+            if (autoSave) {
+                saver.start(
+                    note = null,
+                    title = { title },
+                    body = { body }
+                )
+            }
+        }
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
+    // API
+    ///////////////////////////////////////////////////////////////////////////
 
     fun onTitleChange(value: String) {
         title = value
@@ -73,22 +90,9 @@ class NoteAddViewModel @Inject constructor(
         }
     }
 
-    private fun initializeAutoSaver() {
-        viewModelScope.launch {
-            autoSaver = preferences.autoSave.first()
-            if (autoSaver) {
-                saver.start(
-                    note = null,
-                    title = { title },
-                    body = { body }
-                )
-            }
-        }
-    }
-
     override fun onCleared() {
         super.onCleared()
-        if (autoSaver) {
+        if (autoSave) {
             saver.saveAndClose(
                 title = title,
                 body = body
@@ -96,7 +100,11 @@ class NoteAddViewModel @Inject constructor(
         }
     }
 
-    sealed class NoteAddEvent {
-        object NoteAdded : NoteAddEvent()
+    ///////////////////////////////////////////////////////////////////////////
+    // MISC
+    ///////////////////////////////////////////////////////////////////////////
+
+    enum class NoteAddEvent {
+        NoteAdded
     }
 }

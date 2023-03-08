@@ -10,7 +10,7 @@ import xyz.teamgravity.notepad.core.constant.ConnectionConst
 object Helper {
 
     /**
-     * Shares the app text with other apps
+     * Shares the app text with other apps.
      */
     fun shareApp(context: Context) {
         Intent().apply {
@@ -22,14 +22,14 @@ object Helper {
     }
 
     /**
-     * Returns the share app text
+     * Returns the share app text.
      */
     private fun shareAppText(context: Context): String {
         return context.getString(R.string.share_app, "${ConnectionConst.PLAY_STORE_DETAIL_PAGE}${context.packageName}")
     }
 
     /**
-     * Navigates the user to rate the app
+     * Navigates the user to rate the app.
      */
     fun rateApp(context: Context) {
         val appPackageName = context.packageName
@@ -41,21 +41,21 @@ object Helper {
     }
 
     /**
-     * Navigates the user to show source code on Github
+     * Navigates the user to show source code on Github.
      */
     fun viewSourceCode(context: Context) {
         context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(ConnectionConst.GITHUB_SOURCE_CODE)))
     }
 
     /**
-     * Navigates the user to connect us via Telegram
+     * Navigates the user to connect us via Telegram.
      */
     fun connectViaTelegram(context: Context) {
         context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(ConnectionConst.SUPPORT_TELEGRAM)))
     }
 
     /**
-     * Navigates the user to connect us via Email
+     * Navigates the user to connect us via Email.
      */
     fun connectViaEmail(context: Context) {
         Intent().apply {
@@ -66,7 +66,7 @@ object Helper {
     }
 
     /**
-     * Shares note as a text
+     * Shares note as a text.
      */
     fun shareNote(context: Context, note: String) {
         Intent().apply {

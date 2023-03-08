@@ -22,27 +22,6 @@ class AutoSaver(
     private var _note: NoteModel? = null
     private val note get() = _note!!
 
-    fun start(note: NoteModel?, title: () -> String, body: () -> String) {
-        if (closed || job != null) return
-        job = scope.launch {
-            this@AutoSaver._note = note
-            while (isActive) {
-                delay(DELAY)
-                saveNote(
-                    title = title(),
-                    body = body()
-                )
-            }
-        }
-    }
-
-    fun saveAndClose(title: String, body: String) {
-        scope.launch {
-            saveNote(title = title, body = body)
-            close()
-        }
-    }
-
     private suspend fun saveNote(title: String, body: String) {
         if (closed) return
         if (_note?.body == body && _note?.title == title) return
@@ -61,6 +40,31 @@ class AutoSaver(
                 edited = Date()
             )
             repository.updateNote(note)
+        }
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
+    // API
+    ///////////////////////////////////////////////////////////////////////////
+
+    fun start(note: NoteModel?, title: () -> String, body: () -> String) {
+        if (closed || job != null) return
+        job = scope.launch {
+            this@AutoSaver._note = note
+            while (isActive) {
+                delay(DELAY)
+                saveNote(
+                    title = title(),
+                    body = body()
+                )
+            }
+        }
+    }
+
+    fun saveAndClose(title: String, body: String) {
+        scope.launch {
+            saveNote(title = title, body = body)
+            close()
         }
     }
 

@@ -5,7 +5,6 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 import xyz.teamgravity.notepad.data.local.note.dao.NoteDao
-import xyz.teamgravity.notepad.data.local.note.entity.NoteEntity
 import xyz.teamgravity.notepad.data.mapper.toEntity
 import xyz.teamgravity.notepad.data.mapper.toModel
 import xyz.teamgravity.notepad.data.model.NoteModel
@@ -20,7 +19,7 @@ class NoteRepository(
 
     suspend fun insertNote(note: NoteModel): Long {
         return withContext(Dispatchers.IO) {
-            dao.insertNote(note.toEntity())
+            return@withContext dao.insertNote(note.toEntity())
         }
     }
 
@@ -55,6 +54,6 @@ class NoteRepository(
     ///////////////////////////////////////////////////////////////////////////
 
     fun getAllNotes(): Flow<List<NoteModel>> {
-        return dao.getAllNotes().map { entities -> entities.map { it.toModel() } }
+        return dao.getAllNotes().map { entities -> entities.map { entity -> entity.toModel() } }
     }
 }

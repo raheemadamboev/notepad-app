@@ -13,17 +13,16 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 import java.io.IOException
 
-
 class Preferences(context: Context) {
 
     companion object {
         /**
-         *  Preferences name
+         *  Preferences name.
          */
         const val PREFS = "prefs"
 
         /**
-         * Auto-save enabled
+         * Auto-save enabled.
          */
         private val AUTO_SAVE = booleanPreferencesKey("autoSave")
         const val DEFAULT_AUTO_SAVE = false

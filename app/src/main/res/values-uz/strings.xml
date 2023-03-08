@@ -5,6 +5,7 @@
     <!-- NoteList -->
     <string name="delete_all_notes">Hammasini o\'chirish</string>
     <string name="auto_save">Avtomatik-saqlash</string>
+    <string name="pin_lock">PIN himoya</string>
     <string name="support">Yordam</string>
     <string name="share">Ulashish</string>
     <string name="rate">Baho berish</string>
@@ -32,6 +33,15 @@
     <string name="via_telegram">Telegram orqali</string>
     <string name="via_email">Email orqali</string>
     <string name="improvement">Eslatma uchun fikr</string>
+
+    <!-- PinLock -->
+    <string name="protect_with_pin_lock">PIN bilan himoyalash</string>
+    <string name="change_pin_lock">PIN kodni o\'zgartirish</string>
+    <string name="enter_your_pin">PIN kodingizni kiriting</string>
+    <string name="create_new_pin">Yangi PIN kod yaratish</string>
+    <string name="pin_lock_warning">Iltimos, PIN kodingizni ehtiyotkorlik bilan esingizda saqlang! Agarda PIN kodingizni unutsangiz, eslatmalaringizdan foydalana olmaysiz.</string>
+    <string name="got_it">Tushundim</string>
+    <string name="warning">Diqqat</string>
 
     <!-- Content Descriptions -->
     <string name="cd_more_vertical">Ko\'proq amallar</string>
