@@ -40,6 +40,7 @@ You can download the release app on Google Play Store:
 - [Firebase](https://firebase.google.com/): tracks analytics and crashes using the Firebase services.
 - [Compose Destinations](https://composedestinations.rafaelcosta.xyz/): a type-safe navigation for composables.
 - [Timber](https://github.com/JakeWharton/timber): a logger with a small, extensible API.
+- [PinLock](https://github.com/raheemadamboev/pin-lock-compose): light PinLock library for Jetpack Compose.
 
 # Architecture
 
