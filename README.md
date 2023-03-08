@@ -64,6 +64,7 @@ Notepad is completely offline and ad-free. Also, it is very lightweight and fast
 - Add, edit and delete notes.
 - Share notes.
 - Auto-save.
+- Pin lock.
 - Delete all notes at once, delete selected note.
 - Beautiful animations and indicators.
 - Dark/Light theme support.
