@@ -131,8 +131,8 @@ class NoteEditViewModel @Inject constructor(
         viewModelScope.launch {
             onDeleteDialogDismiss()
 
-            repository.deleteNote(args.note)
             if (autoSave) saver.close()
+            repository.deleteNote(args.note)
 
             _event.send(NoteEditEvent.NoteUpdated)
         }
@@ -152,7 +152,7 @@ class NoteEditViewModel @Inject constructor(
     // MISC
     ///////////////////////////////////////////////////////////////////////////
 
-    sealed class NoteEditEvent {
-        object NoteUpdated : NoteEditEvent()
+    enum class NoteEditEvent {
+        NoteUpdated
     }
 }

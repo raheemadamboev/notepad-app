@@ -104,7 +104,7 @@ class NoteAddViewModel @Inject constructor(
     // MISC
     ///////////////////////////////////////////////////////////////////////////
 
-    sealed class NoteAddEvent {
-        object NoteAdded : NoteAddEvent()
+    enum class NoteAddEvent {
+        NoteAdded
     }
 }
