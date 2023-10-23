@@ -22,7 +22,7 @@ You can download the release app on Google Play Store:
   <img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" width="200"/>
 </a>
 
-🎉 _More than 50 000 downloads and overall 4.4 star rating. 1500 - 2000 daily active users according to Google Analytics._
+🎉 _More than 50 000 downloads and overall 4.7 star rating. 1500 - 2000 daily active users according to Google Analytics._
 
 # Tech stack
 
