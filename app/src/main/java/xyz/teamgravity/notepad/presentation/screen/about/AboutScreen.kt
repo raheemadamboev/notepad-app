@@ -10,10 +10,11 @@ import xyz.teamgravity.notepad.presentation.navigation.MainNavGraph
 @Destination<MainNavGraph>
 @Composable
 fun AboutScreen(
-    navigator: DestinationsNavigator,
+    navigator: DestinationsNavigator
 ) {
-    when (LocalConfiguration.current.orientation) {
-        Configuration.ORIENTATION_PORTRAIT -> AboutPortraitScreen(onBackButtonClick = navigator::popBackStack)
-        else -> AboutLandscapeScreen(onBackButtonClick = navigator::popBackStack)
+    val configuration = LocalConfiguration.current
+    when (configuration.orientation) {
+        Configuration.ORIENTATION_LANDSCAPE -> AboutLandscapeScreen(onBackButtonClick = navigator::navigateUp)
+        else -> AboutPortraitScreen(onBackButtonClick = navigator::navigateUp)
     }
 }

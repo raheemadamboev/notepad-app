@@ -12,8 +12,9 @@ import xyz.teamgravity.notepad.presentation.navigation.MainNavGraph
 fun SupportScreen(
     navigator: DestinationsNavigator,
 ) {
-    when (LocalConfiguration.current.orientation) {
-        Configuration.ORIENTATION_PORTRAIT -> SupportPortraitScreen(onBackButtonClick = navigator::popBackStack)
-        else -> SupportLandscapeScreen(onBackButtonClick = navigator::popBackStack)
+    val configuration = LocalConfiguration.current
+    when (configuration.orientation) {
+        Configuration.ORIENTATION_LANDSCAPE -> SupportLandscapeScreen(onBackButtonClick = navigator::navigateUp)
+        else -> SupportPortraitScreen(onBackButtonClick = navigator::navigateUp)
     }
 }
