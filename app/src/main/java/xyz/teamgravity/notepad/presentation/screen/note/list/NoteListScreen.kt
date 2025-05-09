@@ -1,4 +1,4 @@
-package xyz.teamgravity.notepad.presentation.screen
+package xyz.teamgravity.notepad.presentation.screen.note.list
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.fillMaxSize
@@ -26,11 +26,8 @@ import xyz.teamgravity.notepad.presentation.component.text.TextPlain
 import xyz.teamgravity.notepad.presentation.component.topbar.TopBar
 import xyz.teamgravity.notepad.presentation.component.topbar.TopBarMoreMenuNoteList
 import xyz.teamgravity.notepad.presentation.navigation.MainNavGraph
-import xyz.teamgravity.notepad.presentation.screen.destinations.*
-import xyz.teamgravity.notepad.presentation.viewmodel.NoteListViewModel
 
-@MainNavGraph(start = true)
-@Destination
+@Destination<MainNavGraph>(start = true)
 @Composable
 fun NoteListScreen(
     navigator: DestinationsNavigator,

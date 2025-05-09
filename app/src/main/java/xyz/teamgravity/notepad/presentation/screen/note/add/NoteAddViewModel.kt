@@ -1,4 +1,4 @@
-package xyz.teamgravity.notepad.presentation.viewmodel
+package xyz.teamgravity.notepad.presentation.screen.note.add
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -14,52 +14,37 @@ import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import xyz.teamgravity.notepad.core.util.AutoSaver
 import xyz.teamgravity.notepad.data.local.preferences.Preferences
+import xyz.teamgravity.notepad.data.model.NoteModel
 import xyz.teamgravity.notepad.data.repository.NoteRepository
-import xyz.teamgravity.notepad.presentation.screen.destinations.NoteEditScreenDestination
-import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
-class NoteEditViewModel @Inject constructor(
+class NoteAddViewModel @Inject constructor(
     private val handle: SavedStateHandle,
     private val repository: NoteRepository,
     private val preferences: Preferences,
-    private val saver: AutoSaver,
+    private val saver: AutoSaver
 ) : ViewModel() {
 
     companion object {
         private const val NOTE_TITLE = "note_title"
+        private const val DEFAULT_NOTE_TITLE = ""
+
         private const val NOTE_BODY = "note_body"
-
-        private const val MENU_EXPANDED = "menu_expanded"
-        private const val DEFAULT_MENU_EXPANDED = false
-
-        private const val DELETE_DIALOG_SHOWN = "delete_dialog_shown"
-        private const val DEFAULT_DELETE_DIALOG_SHOWN = false
+        private const val DEFAULT_NOTE_BODY = ""
     }
 
-    private val args = NoteEditScreenDestination.argsFrom(handle)
+    private val _event = Channel<NoteAddEvent>()
+    val event: Flow<NoteAddEvent> = _event.receiveAsFlow()
 
-    private val _event = Channel<NoteEditEvent>()
-    val event: Flow<NoteEditEvent> = _event.receiveAsFlow()
-
-    var title: String by mutableStateOf(handle.get<String>(NOTE_TITLE) ?: args.note.title)
+    var title: String by mutableStateOf(handle.get<String>(NOTE_TITLE) ?: DEFAULT_NOTE_TITLE)
         private set
 
-    var body: String by mutableStateOf(handle.get<String>(NOTE_BODY) ?: args.note.body)
-        private set
-
-    var menuExpanded: Boolean by mutableStateOf(handle.get<Boolean>(MENU_EXPANDED) ?: DEFAULT_MENU_EXPANDED)
-        private set
-
-    var deleteDialogShown: Boolean by mutableStateOf(handle.get<Boolean>(DELETE_DIALOG_SHOWN) ?: DEFAULT_DELETE_DIALOG_SHOWN)
+    var body: String by mutableStateOf(handle.get<String>(NOTE_BODY) ?: DEFAULT_NOTE_BODY)
         private set
 
     var autoSave: Boolean by mutableStateOf(Preferences.DEFAULT_AUTO_SAVE)
         private set
-
-    val sharedNote: String
-        get() = "$title\n\n$body"
 
     init {
         initializeAutoSaver()
@@ -70,7 +55,7 @@ class NoteEditViewModel @Inject constructor(
             autoSave = preferences.autoSave.first()
             if (autoSave) {
                 saver.start(
-                    note = args.note,
+                    note = null,
                     title = { title },
                     body = { body }
                 )
@@ -92,49 +77,16 @@ class NoteEditViewModel @Inject constructor(
         handle[NOTE_BODY] = value
     }
 
-    fun onMenuExpand() {
-        menuExpanded = true
-        handle[MENU_EXPANDED] = true
-    }
-
-    fun onMenuCollapse() {
-        menuExpanded = false
-        handle[MENU_EXPANDED] = false
-    }
-
-    fun onDeleteDialogShow() {
-        deleteDialogShown = true
-        handle[DELETE_DIALOG_SHOWN] = true
-        onMenuCollapse()
-    }
-
-    fun onDeleteDialogDismiss() {
-        deleteDialogShown = false
-        handle[DELETE_DIALOG_SHOWN] = false
-    }
-
-    fun onUpdateNote() {
+    fun onSaveNote() {
         viewModelScope.launch {
-            repository.updateNote(
-                args.note.copy(
+            repository.insertNote(
+                NoteModel(
                     title = title,
                     body = body,
-                    edited = Date()
                 )
             )
 
-            _event.send(NoteEditEvent.NoteUpdated)
-        }
-    }
-
-    fun onDeleteNote() {
-        viewModelScope.launch {
-            onDeleteDialogDismiss()
-
-            if (autoSave) saver.close()
-            repository.deleteNote(args.note)
-
-            _event.send(NoteEditEvent.NoteUpdated)
+            _event.send(NoteAddEvent.NoteAdded)
         }
     }
 
@@ -152,7 +104,7 @@ class NoteEditViewModel @Inject constructor(
     // MISC
     ///////////////////////////////////////////////////////////////////////////
 
-    enum class NoteEditEvent {
-        NoteUpdated
+    enum class NoteAddEvent {
+        NoteAdded
     }
 }

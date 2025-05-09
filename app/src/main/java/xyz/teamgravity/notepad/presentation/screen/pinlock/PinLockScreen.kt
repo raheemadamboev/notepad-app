@@ -7,8 +7,7 @@ import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import xyz.teamgravity.notepad.presentation.navigation.MainNavGraph
 
-@MainNavGraph
-@Destination
+@Destination<MainNavGraph>
 @Composable
 fun PinLockScreen(
     navigator: DestinationsNavigator,

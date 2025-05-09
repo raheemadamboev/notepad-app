@@ -1,4 +1,4 @@
-package xyz.teamgravity.notepad.presentation.viewmodel
+package xyz.teamgravity.notepad.presentation.screen.note.list
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
