@@ -8,7 +8,7 @@ enum class AppPreferencesKey(
     override val encrypted: Boolean
 ) : PreferencesKey {
     AutoSave(
-        key = "xyz.teamgravity.notepad.autoSave",
+        key = "xyz.teamgravity.notepad.AutoSave",
         default = false,
         encrypted = false
     );

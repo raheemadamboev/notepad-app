@@ -2,11 +2,15 @@ package xyz.teamgravity.notepad.data.mapper
 
 import xyz.teamgravity.notepad.data.local.note.entity.NoteEntity
 import xyz.teamgravity.notepad.data.model.NoteModel
-import java.util.*
+import java.util.Date
+
+///////////////////////////////////////////////////////////////////////////
+// Model
+///////////////////////////////////////////////////////////////////////////
 
 fun NoteEntity.toModel(): NoteModel {
     return NoteModel(
-        id = _id,
+        id = id,
         title = title,
         body = body,
         created = Date(createdTime),
@@ -14,9 +18,13 @@ fun NoteEntity.toModel(): NoteModel {
     )
 }
 
+///////////////////////////////////////////////////////////////////////////
+// Entity
+///////////////////////////////////////////////////////////////////////////
+
 fun NoteModel.toEntity(): NoteEntity {
     return NoteEntity(
-        _id = id,
+        id = id,
         title = title,
         body = body,
         createdTime = created.time,
