@@ -17,7 +17,7 @@ import xyz.teamgravity.notepad.core.util.AutoSaver
 import xyz.teamgravity.notepad.data.local.preferences.AppPreferences
 import xyz.teamgravity.notepad.data.local.preferences.AppPreferencesKey
 import xyz.teamgravity.notepad.data.repository.NoteRepository
-import java.util.Date
+import java.time.LocalDateTime
 import javax.inject.Inject
 
 @HiltViewModel
@@ -120,7 +120,7 @@ class NoteEditViewModel @Inject constructor(
                 args.note.copy(
                     title = title,
                     body = body,
-                    edited = Date()
+                    edited = LocalDateTime.now()
                 )
             )
 

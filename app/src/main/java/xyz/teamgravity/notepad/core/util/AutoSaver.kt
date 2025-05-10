@@ -1,10 +1,17 @@
 package xyz.teamgravity.notepad.core.util
 
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.isActive
+import kotlinx.coroutines.launch
 import xyz.teamgravity.notepad.data.model.NoteModel
 import xyz.teamgravity.notepad.data.repository.NoteRepository
 import java.io.Closeable
-import java.util.*
+import java.time.LocalDateTime
 
 class AutoSaver(
     private val repository: NoteRepository,
@@ -37,7 +44,7 @@ class AutoSaver(
             _note = note.copy(
                 title = title,
                 body = body,
-                edited = Date()
+                edited = LocalDateTime.now()
             )
             repository.updateNote(note)
         }
