@@ -21,6 +21,7 @@ import com.ramcosta.composedestinations.generated.destinations.NoteEditScreenDes
 import com.ramcosta.composedestinations.generated.destinations.PinLockScreenDestination
 import com.ramcosta.composedestinations.generated.destinations.SupportScreenDestination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+import xyz.teamgravity.coresdkandroid.connect.ConnectUtil
 import xyz.teamgravity.notepad.R
 import xyz.teamgravity.notepad.core.util.Helper
 import xyz.teamgravity.notepad.presentation.component.button.NoteFloatingActionButton
@@ -68,7 +69,7 @@ fun NoteListScreen(
                                 viewmodel.onMenuCollapse()
                             },
                             onRate = {
-                                Helper.rateApp(context)
+                                ConnectUtil.viewAppPlayStorePage(context)
                                 viewmodel.onMenuCollapse()
                             },
                             onSourceCode = {
