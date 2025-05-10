@@ -12,8 +12,9 @@ import xyz.teamgravity.notepad.presentation.navigation.MainNavGraph
 fun PinLockScreen(
     navigator: DestinationsNavigator,
 ) {
-    when (LocalConfiguration.current.orientation) {
-        Configuration.ORIENTATION_PORTRAIT -> PinLockPortraitScreen(onBackButtonClick = navigator::popBackStack)
-        else -> PinLockLandscapeScreen(onBackButtonClick = navigator::popBackStack)
+    val configuration = LocalConfiguration.current
+    when (configuration.orientation) {
+        Configuration.ORIENTATION_LANDSCAPE -> PinLockLandscapeScreen(onBackButtonClick = navigator::navigateUp)
+        else -> PinLockPortraitScreen(onBackButtonClick = navigator::navigateUp)
     }
 }

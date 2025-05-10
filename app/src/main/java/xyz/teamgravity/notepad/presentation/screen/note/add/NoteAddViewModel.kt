@@ -13,7 +13,8 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import xyz.teamgravity.notepad.core.util.AutoSaver
-import xyz.teamgravity.notepad.data.local.preferences.Preferences
+import xyz.teamgravity.notepad.data.local.preferences.AppPreferences
+import xyz.teamgravity.notepad.data.local.preferences.AppPreferencesKey
 import xyz.teamgravity.notepad.data.model.NoteModel
 import xyz.teamgravity.notepad.data.repository.NoteRepository
 import javax.inject.Inject
@@ -22,7 +23,7 @@ import javax.inject.Inject
 class NoteAddViewModel @Inject constructor(
     private val handle: SavedStateHandle,
     private val repository: NoteRepository,
-    private val preferences: Preferences,
+    private val preferences: AppPreferences,
     private val saver: AutoSaver
 ) : ViewModel() {
 
@@ -43,7 +44,7 @@ class NoteAddViewModel @Inject constructor(
     var body: String by mutableStateOf(handle.get<String>(NOTE_BODY) ?: DEFAULT_NOTE_BODY)
         private set
 
-    var autoSave: Boolean by mutableStateOf(Preferences.DEFAULT_AUTO_SAVE)
+    var autoSave: Boolean by mutableStateOf(AppPreferencesKey.AutoSave.default as Boolean)
         private set
 
     init {
@@ -52,7 +53,7 @@ class NoteAddViewModel @Inject constructor(
 
     private fun initializeAutoSaver() {
         viewModelScope.launch {
-            autoSave = preferences.autoSave.first()
+            autoSave = preferences.getAutoSave().first()
             if (autoSave) {
                 saver.start(
                     note = null,

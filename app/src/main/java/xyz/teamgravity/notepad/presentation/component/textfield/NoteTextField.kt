@@ -25,10 +25,13 @@ fun NoteTextField(
         value = value,
         onValueChange = onValueChange,
         placeholder = { TextPlain(id = placeholder) },
-        colors = TextFieldDefaults.textFieldColors(
+        colors = TextFieldDefaults.colors(
             unfocusedTextColor = MaterialTheme.colorScheme.onBackground,
             focusedTextColor = MaterialTheme.colorScheme.onBackground,
-            containerColor = Color.Transparent,
+            focusedContainerColor = Color.Transparent,
+            unfocusedContainerColor = Color.Transparent,
+            disabledContainerColor = Color.Transparent,
+            errorContainerColor = Color.Transparent
         ),
         keyboardOptions = KeyboardOptions(capitalization = KeyboardCapitalization.Sentences),
         modifier = modifier

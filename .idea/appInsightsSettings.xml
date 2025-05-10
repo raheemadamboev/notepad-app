@@ -22,10 +22,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="xyz.teamgravity.notepad.debug" />
+                  <option name="mobileSdkAppId" value="1:157402004940:android:19711edc69505c1f0f3169" />
+                  <option name="projectId" value="notepad-gravity" />
+                  <option name="projectNumber" value="157402004940" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />

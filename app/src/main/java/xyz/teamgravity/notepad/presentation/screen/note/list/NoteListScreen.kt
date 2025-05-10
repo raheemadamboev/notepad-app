@@ -15,6 +15,11 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.generated.destinations.AboutScreenDestination
+import com.ramcosta.composedestinations.generated.destinations.NoteAddScreenDestination
+import com.ramcosta.composedestinations.generated.destinations.NoteEditScreenDestination
+import com.ramcosta.composedestinations.generated.destinations.PinLockScreenDestination
+import com.ramcosta.composedestinations.generated.destinations.SupportScreenDestination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import xyz.teamgravity.notepad.R
 import xyz.teamgravity.notepad.core.util.Helper
@@ -90,7 +95,7 @@ fun NoteListScreen(
                 columns = StaggeredGridCells.Adaptive(150.dp),
                 contentPadding = padding,
                 horizontalArrangement = Arrangement.spacedBy(10.dp),
-                verticalArrangement = Arrangement.spacedBy(10.dp),
+                verticalItemSpacing = 10.dp,
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(start = 10.dp, top = 10.dp, end = 10.dp)

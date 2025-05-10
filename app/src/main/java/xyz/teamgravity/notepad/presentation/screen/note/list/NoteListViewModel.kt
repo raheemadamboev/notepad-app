@@ -10,7 +10,8 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import xyz.teamgravity.notepad.data.local.preferences.Preferences
+import xyz.teamgravity.notepad.data.local.preferences.AppPreferences
+import xyz.teamgravity.notepad.data.local.preferences.AppPreferencesKey
 import xyz.teamgravity.notepad.data.model.NoteModel
 import xyz.teamgravity.notepad.data.repository.NoteRepository
 import xyz.teamgravity.pin_lock_compose.PinManager
@@ -20,7 +21,7 @@ import javax.inject.Inject
 class NoteListViewModel @Inject constructor(
     private val handle: SavedStateHandle,
     private val repository: NoteRepository,
-    private val preferences: Preferences,
+    private val preferences: AppPreferences,
 ) : ViewModel() {
 
     companion object {
@@ -37,7 +38,7 @@ class NoteListViewModel @Inject constructor(
     var notes: List<NoteModel> by mutableStateOf(emptyList())
         private set
 
-    var autoSave: Boolean by mutableStateOf(Preferences.DEFAULT_AUTO_SAVE)
+    var autoSave: Boolean by mutableStateOf(AppPreferencesKey.AutoSave.default as Boolean)
         private set
 
     var menuExpanded: Boolean by mutableStateOf(handle.get<Boolean>(MENU_EXPANDED) ?: DEFAULT_MENU_EXPANDED)
@@ -70,7 +71,7 @@ class NoteListViewModel @Inject constructor(
 
     private fun observeAutoSave() {
         viewModelScope.launch {
-            preferences.autoSave.collectLatest { autoSave ->
+            preferences.getAutoSave().collectLatest { autoSave ->
                 this@NoteListViewModel.autoSave = autoSave
             }
         }
@@ -87,7 +88,7 @@ class NoteListViewModel @Inject constructor(
     fun onAutoSaveChange() {
         onMenuCollapse()
         viewModelScope.launch(NonCancellable) {
-            preferences.updateAutoSave(!autoSave)
+            preferences.upsertAutoSave(!autoSave)
         }
     }
 

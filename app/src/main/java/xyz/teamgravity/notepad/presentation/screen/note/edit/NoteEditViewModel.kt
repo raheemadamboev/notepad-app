@@ -6,6 +6,7 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.ramcosta.composedestinations.generated.destinations.NoteEditScreenDestination
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
@@ -13,16 +14,17 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import xyz.teamgravity.notepad.core.util.AutoSaver
-import xyz.teamgravity.notepad.data.local.preferences.Preferences
+import xyz.teamgravity.notepad.data.local.preferences.AppPreferences
+import xyz.teamgravity.notepad.data.local.preferences.AppPreferencesKey
 import xyz.teamgravity.notepad.data.repository.NoteRepository
-import java.util.*
+import java.util.Date
 import javax.inject.Inject
 
 @HiltViewModel
 class NoteEditViewModel @Inject constructor(
     private val handle: SavedStateHandle,
     private val repository: NoteRepository,
-    private val preferences: Preferences,
+    private val preferences: AppPreferences,
     private val saver: AutoSaver,
 ) : ViewModel() {
 
@@ -54,7 +56,7 @@ class NoteEditViewModel @Inject constructor(
     var deleteDialogShown: Boolean by mutableStateOf(handle.get<Boolean>(DELETE_DIALOG_SHOWN) ?: DEFAULT_DELETE_DIALOG_SHOWN)
         private set
 
-    var autoSave: Boolean by mutableStateOf(Preferences.DEFAULT_AUTO_SAVE)
+    var autoSave: Boolean by mutableStateOf(AppPreferencesKey.AutoSave.default as Boolean)
         private set
 
     val sharedNote: String
@@ -66,7 +68,7 @@ class NoteEditViewModel @Inject constructor(
 
     private fun initializeAutoSaver() {
         viewModelScope.launch {
-            autoSave = preferences.autoSave.first()
+            autoSave = preferences.getAutoSave().first()
             if (autoSave) {
                 saver.start(
                     note = args.note,
