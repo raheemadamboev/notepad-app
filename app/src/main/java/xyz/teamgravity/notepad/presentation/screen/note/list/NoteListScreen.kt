@@ -107,7 +107,7 @@ fun NoteListScreen(
                 ) { note ->
                     CardNote(
                         note = note,
-                        onClick = { navigator.navigate(NoteEditScreenDestination(note = it)) }
+                        onClick = { navigator.navigate(NoteEditScreenDestination(id = it.id!!)) }
                     )
                 }
             }

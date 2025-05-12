@@ -17,15 +17,14 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import kotlinx.coroutines.flow.collectLatest
 import xyz.teamgravity.notepad.R
 import xyz.teamgravity.notepad.core.util.Helper
-import xyz.teamgravity.notepad.data.model.NoteModel
 import xyz.teamgravity.notepad.presentation.component.button.IconButtonPlain
 import xyz.teamgravity.notepad.presentation.component.button.NoteFloatingActionButton
 import xyz.teamgravity.notepad.presentation.component.dialog.NoteAlertDialog
 import xyz.teamgravity.notepad.presentation.component.text.TextPlain
+import xyz.teamgravity.notepad.presentation.component.textfield.NotepadTextField
 import xyz.teamgravity.notepad.presentation.component.topbar.TopBar
 import xyz.teamgravity.notepad.presentation.component.topbar.TopBarMoreMenuNoteEdit
 import xyz.teamgravity.notepad.presentation.navigation.MainNavGraph
-import xyz.teamgravity.notepad.presentation.component.textfield.NotepadTextField
 
 @Destination<MainNavGraph>(navArgs = NoteEditScreenArgs::class)
 @Composable
@@ -105,5 +104,5 @@ fun NoteEditScreen(
 }
 
 data class NoteEditScreenArgs(
-    val note: NoteModel
+    val id: Long
 )

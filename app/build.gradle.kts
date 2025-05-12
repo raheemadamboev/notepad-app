@@ -2,7 +2,6 @@ plugins {
     alias(libs.plugins.android)
     alias(libs.plugins.kotlin)
     alias(libs.plugins.compose)
-    alias(libs.plugins.parcelize)
     alias(libs.plugins.ksp)
     alias(libs.plugins.gms)
     alias(libs.plugins.crashlytics)

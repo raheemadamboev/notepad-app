@@ -10,50 +10,50 @@ import com.ramcosta.composedestinations.generated.destinations.NoteEditScreenDes
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.receiveAsFlow
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import xyz.teamgravity.notepad.core.util.AutoSaver
 import xyz.teamgravity.notepad.data.local.preferences.AppPreferences
 import xyz.teamgravity.notepad.data.local.preferences.AppPreferencesKey
+import xyz.teamgravity.notepad.data.model.NoteModel
 import xyz.teamgravity.notepad.data.repository.NoteRepository
 import java.time.LocalDateTime
 import javax.inject.Inject
 
 @HiltViewModel
 class NoteEditViewModel @Inject constructor(
-    private val handle: SavedStateHandle,
     private val repository: NoteRepository,
     private val preferences: AppPreferences,
     private val saver: AutoSaver,
+    handle: SavedStateHandle
 ) : ViewModel() {
 
-    companion object {
-        private const val NOTE_TITLE = "note_title"
-        private const val NOTE_BODY = "note_body"
-
-        private const val MENU_EXPANDED = "menu_expanded"
-        private const val DEFAULT_MENU_EXPANDED = false
-
-        private const val DELETE_DIALOG_SHOWN = "delete_dialog_shown"
-        private const val DEFAULT_DELETE_DIALOG_SHOWN = false
-    }
-
     private val args = NoteEditScreenDestination.argsFrom(handle)
+
+    private val note: StateFlow<NoteModel?> = repository.getNote(args.id).stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.Eagerly,
+        initialValue = null
+    )
 
     private val _event = Channel<NoteEditEvent>()
     val event: Flow<NoteEditEvent> = _event.receiveAsFlow()
 
-    var title: String by mutableStateOf(handle.get<String>(NOTE_TITLE) ?: args.note.title)
+    var title: String by mutableStateOf("")
         private set
 
-    var body: String by mutableStateOf(handle.get<String>(NOTE_BODY) ?: args.note.body)
+    var body: String by mutableStateOf("")
         private set
 
-    var menuExpanded: Boolean by mutableStateOf(handle.get<Boolean>(MENU_EXPANDED) ?: DEFAULT_MENU_EXPANDED)
+    var menuExpanded: Boolean by mutableStateOf(false)
         private set
 
-    var deleteDialogShown: Boolean by mutableStateOf(handle.get<Boolean>(DELETE_DIALOG_SHOWN) ?: DEFAULT_DELETE_DIALOG_SHOWN)
+    var deleteDialogShown: Boolean by mutableStateOf(false)
         private set
 
     var autoSave: Boolean by mutableStateOf(AppPreferencesKey.AutoSave.default as Boolean)
@@ -63,18 +63,37 @@ class NoteEditViewModel @Inject constructor(
         get() = "$title\n\n$body"
 
     init {
-        initializeAutoSaver()
+        observe()
     }
 
-    private fun initializeAutoSaver() {
+    private fun observe() {
+        observeNote()
+    }
+
+    private fun handleNote(note: NoteModel?) {
+        if (note == null) return
+        title = note.title
+        body = note.body
+        initializeAutoSaver(note)
+    }
+
+    private fun initializeAutoSaver(note: NoteModel) {
         viewModelScope.launch {
             autoSave = preferences.getAutoSave().first()
             if (autoSave) {
                 saver.start(
-                    note = args.note,
+                    note = note,
                     title = { title },
                     body = { body }
                 )
+            }
+        }
+    }
+
+    private fun observeNote() {
+        viewModelScope.launch {
+            note.collectLatest { note ->
+                handleNote(note)
             }
         }
     }
@@ -85,39 +104,34 @@ class NoteEditViewModel @Inject constructor(
 
     fun onTitleChange(value: String) {
         title = value
-        handle[NOTE_TITLE] = value
     }
 
     fun onBodyChange(value: String) {
         body = value
-        handle[NOTE_BODY] = value
     }
 
     fun onMenuExpand() {
         menuExpanded = true
-        handle[MENU_EXPANDED] = true
     }
 
     fun onMenuCollapse() {
         menuExpanded = false
-        handle[MENU_EXPANDED] = false
     }
 
     fun onDeleteDialogShow() {
         deleteDialogShown = true
-        handle[DELETE_DIALOG_SHOWN] = true
         onMenuCollapse()
     }
 
     fun onDeleteDialogDismiss() {
         deleteDialogShown = false
-        handle[DELETE_DIALOG_SHOWN] = false
     }
 
     fun onUpdateNote() {
+        val note = note.value ?: return
         viewModelScope.launch {
             repository.updateNote(
-                args.note.copy(
+                note.copy(
                     title = title,
                     body = body,
                     edited = LocalDateTime.now()
@@ -129,11 +143,12 @@ class NoteEditViewModel @Inject constructor(
     }
 
     fun onDeleteNote() {
+        val note = note.value ?: return
         viewModelScope.launch {
             onDeleteDialogDismiss()
 
             if (autoSave) saver.close()
-            repository.deleteNote(args.note)
+            repository.deleteNote(note)
 
             _event.send(NoteEditEvent.NoteUpdated)
         }
@@ -154,6 +169,6 @@ class NoteEditViewModel @Inject constructor(
     ///////////////////////////////////////////////////////////////////////////
 
     enum class NoteEditEvent {
-        NoteUpdated
+        NoteUpdated;
     }
 }

@@ -56,4 +56,8 @@ class NoteRepository(
     fun getAllNotes(): Flow<List<NoteModel>> {
         return dao.getAllNotes().map { entities -> entities.map { entity -> entity.toModel() } }
     }
+
+    fun getNote(id: Long): Flow<NoteModel?> {
+        return dao.getNote(id).map { entity -> entity?.toModel() }
+    }
 }
