@@ -15,16 +15,21 @@ import xyz.teamgravity.notepad.presentation.theme.NotepadTheme
 @AndroidEntryPoint
 class Main : ComponentActivity() {
 
+    companion object {
+        const val EXTRA_SHORTCUT_ID = "Main_extraShortcutId"
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen()
         super.onCreate(savedInstanceState)
+        val intent = intent
         setContent {
             NotepadTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Navigation()
+                    Navigation(intent)
                 }
             }
         }

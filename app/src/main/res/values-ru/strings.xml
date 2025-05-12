@@ -54,4 +54,9 @@
     <string name="cd_user_support">Поддержка пользователей</string>
     <string name="cd_via_telegram">Подключайтесь к нам через Telegram</string>
     <string name="cd_via_email">Подключайтесь к нам через Email</string>
+
+    <!-- Shortcut -->
+    <string name="shortcut_add_note_short_label">Добавить заметку</string>
+    <string name="shortcut_add_note_long_label">Быстро добавьте заметку, нажав на действия</string>
+    <string name="shortcut_add_note_disabled_message">Быстрое добавление заметок на данный момент отключено</string>
 </resources>
