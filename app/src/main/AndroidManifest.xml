@@ -11,13 +11,12 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Notepad"
+        android:theme="@style/Theme.Starting"
         tools:targetApi="31">
 
         <activity
             android:name=".presentation.activity.Main"
             android:exported="true"
-            android:theme="@style/Theme.Notepad"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
