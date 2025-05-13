@@ -5,15 +5,19 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
 import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
-import androidx.compose.foundation.lazy.staggeredgrid.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.paging.compose.collectAsLazyPagingItems
+import androidx.paging.compose.itemContentType
+import androidx.paging.compose.itemKey
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.generated.destinations.AboutScreenDestination
 import com.ramcosta.composedestinations.generated.destinations.NoteAddScreenDestination
@@ -39,6 +43,8 @@ fun NoteListScreen(
     viewmodel: NoteListViewModel = hiltViewModel()
 ) {
     val context = LocalContext.current
+    val notes = viewmodel.notes.collectAsLazyPagingItems()
+    val autoSave by viewmodel.autoSave.collectAsStateWithLifecycle()
 
     Scaffold(
         topBar = {
@@ -53,7 +59,7 @@ fun NoteListScreen(
                         expanded = viewmodel.menuExpanded,
                         onExpand = viewmodel::onMenuExpand,
                         onDismiss = viewmodel::onMenuCollapse,
-                        autoSave = viewmodel.autoSave,
+                        autoSave = autoSave,
                         onAutoSave = viewmodel::onAutoSaveChange,
                         onPinLock = {
                             navigator.navigate(PinLockScreenDestination)
@@ -108,15 +114,23 @@ fun NoteListScreen(
                 )
         ) {
             items(
-                items = viewmodel.notes,
-                key = { note -> note.id!! }
-            ) { note ->
-                CardNote(
-                    note = note,
-                    onClick = {
-                        navigator.navigate(NoteEditScreenDestination(id = it.id!!))
+                count = notes.itemCount,
+                key = notes.itemKey(
+                    key = { note ->
+                        note.id!!
                     }
-                )
+                ),
+                contentType = notes.itemContentType()
+            ) { index ->
+                val note = notes[index]
+                if (note != null) {
+                    CardNote(
+                        note = note,
+                        onClick = {
+                            navigator.navigate(NoteEditScreenDestination(id = it.id!!))
+                        }
+                    )
+                }
             }
         }
         if (viewmodel.deleteAllShown) {

@@ -1,6 +1,7 @@
 package xyz.teamgravity.notepad.injection.provide
 
 import android.app.Application
+import androidx.paging.PagingConfig
 import androidx.room.Room
 import dagger.Module
 import dagger.Provides
@@ -9,6 +10,7 @@ import dagger.hilt.components.SingletonComponent
 import timber.log.Timber
 import xyz.teamgravity.coresdkandroid.crypto.CryptoManager
 import xyz.teamgravity.coresdkandroid.preferences.Preferences
+import xyz.teamgravity.notepad.core.constant.PagingConst
 import xyz.teamgravity.notepad.data.local.note.constant.NoteDatabaseConst
 import xyz.teamgravity.notepad.data.local.note.dao.NoteDao
 import xyz.teamgravity.notepad.data.local.note.database.NoteDatabase
@@ -34,7 +36,22 @@ object ApplicationModule {
 
     @Provides
     @Singleton
-    fun provideNoteRepository(noteDao: NoteDao): NoteRepository = NoteRepository(noteDao)
+    fun providePagingConfig(): PagingConfig = PagingConfig(
+        pageSize = PagingConst.PAGE_SIZE,
+        prefetchDistance = PagingConst.PREFETCH_DISTANCE,
+        maxSize = PagingConst.MAX_SIZE,
+        enablePlaceholders = PagingConst.ENABLE_PLACEHOLDERS
+    )
+
+    @Provides
+    @Singleton
+    fun provideNoteRepository(
+        noteDao: NoteDao,
+        pagingConfig: PagingConfig
+    ): NoteRepository = NoteRepository(
+        dao = noteDao,
+        config = pagingConfig
+    )
 
     @Provides
     @Singleton

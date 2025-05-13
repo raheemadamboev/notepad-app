@@ -1,5 +1,6 @@
 package xyz.teamgravity.notepad.data.local.note.dao
 
+import androidx.paging.PagingSource
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
@@ -42,7 +43,7 @@ interface NoteDao {
     ///////////////////////////////////////////////////////////////////////////
 
     @Query("SELECT * FROM $TABLE_NOTE ORDER BY editedTime DESC")
-    fun getAllNotes(): Flow<List<NoteEntity>>
+    fun getAllNotes(): PagingSource<Int, NoteEntity>
 
     @Query("SELECT * FROM $TABLE_NOTE WHERE :id = _id LIMIT 1")
     fun getNote(id: Long): Flow<NoteEntity?>
