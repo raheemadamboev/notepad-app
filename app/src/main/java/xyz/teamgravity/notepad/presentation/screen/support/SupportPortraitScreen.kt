@@ -40,7 +40,7 @@ import xyz.teamgravity.notepad.presentation.theme.White
 
 @Composable
 fun SupportPortraitScreen(
-    onBackButtonClick: () -> Unit,
+    onBackButtonClick: () -> Unit
 ) {
     val context = LocalContext.current
 

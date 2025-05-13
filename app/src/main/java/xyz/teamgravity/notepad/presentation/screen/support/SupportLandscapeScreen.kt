@@ -34,7 +34,7 @@ import xyz.teamgravity.notepad.presentation.theme.White
 
 @Composable
 fun SupportLandscapeScreen(
-    onBackButtonClick: () -> Unit,
+    onBackButtonClick: () -> Unit
 ) {
     val context = LocalContext.current
 

@@ -1,6 +1,10 @@
 package xyz.teamgravity.notepad.presentation.component.pinlock
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Switch
@@ -16,7 +20,7 @@ import xyz.teamgravity.notepad.R
 fun EnablePinLockCard(
     pinLockEnabled: Boolean,
     onPinLockEnabledChange: () -> Unit,
-    modifier: Modifier,
+    modifier: Modifier
 ) {
     ElevatedCard(
         onClick = onPinLockEnabledChange,
@@ -33,12 +37,14 @@ fun EnablePinLockCard(
                 text = stringResource(id = R.string.protect_with_pin_lock),
                 modifier = Modifier.weight(1F)
             )
-            Spacer(modifier = Modifier.width(16.dp))
+            Spacer(
+                modifier = Modifier.width(16.dp)
+            )
             Switch(
                 checked = pinLockEnabled,
                 onCheckedChange = {
                     onPinLockEnabledChange()
-                },
+                }
             )
         }
     }

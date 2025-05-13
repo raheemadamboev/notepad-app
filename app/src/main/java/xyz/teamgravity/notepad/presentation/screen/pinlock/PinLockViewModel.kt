@@ -18,19 +18,19 @@ class PinLockViewModel @Inject constructor(
     var pinLockEnabled: Boolean by mutableStateOf(PinManager.pinExists())
         private set
 
-    var pinLockDialogShown: Boolean by mutableStateOf(false)
+    var pinLockWarningShown: Boolean by mutableStateOf(false)
         private set
 
     private fun changePinLockState(state: PinLockState) {
         pinLockState = state
     }
 
-    private fun showPinLockDialog() {
-        pinLockDialogShown = true
+    private fun showPinLockWarning() {
+        pinLockWarningShown = true
     }
 
-    private fun hidePinLockDialog() {
-        pinLockDialogShown = false
+    private fun hidePinLockWarning() {
+        pinLockWarningShown = false
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -39,20 +39,20 @@ class PinLockViewModel @Inject constructor(
 
     fun onPinLockEnabledChange() {
         pinLockEnabled = PinManager.pinExists()
-        if (pinLockEnabled) changePinLockState(PinLockState.Remove) else showPinLockDialog()
+        if (pinLockEnabled) changePinLockState(PinLockState.Remove) else showPinLockWarning()
     }
 
     fun onPinLockChange() {
         if (pinLockEnabled) changePinLockState(PinLockState.Change)
     }
 
-    fun onPinLockDialogConfirm() {
-        hidePinLockDialog()
+    fun onPinLockWarningConfirm() {
+        hidePinLockWarning()
         changePinLockState(PinLockState.Create)
     }
 
-    fun onPinLockDialogDismiss() {
-        hidePinLockDialog()
+    fun onPinLockWarningDismiss() {
+        hidePinLockWarning()
     }
 
     fun onPinLockCorrect() {
@@ -62,7 +62,7 @@ class PinLockViewModel @Inject constructor(
     }
 
     ///////////////////////////////////////////////////////////////////////////
-    // MISC
+    // Misc
     ///////////////////////////////////////////////////////////////////////////
 
     enum class PinLockState {

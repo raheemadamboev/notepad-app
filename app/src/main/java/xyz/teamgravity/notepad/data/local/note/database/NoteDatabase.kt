@@ -7,8 +7,8 @@ import xyz.teamgravity.notepad.data.local.note.dao.NoteDao
 import xyz.teamgravity.notepad.data.local.note.entity.NoteEntity
 
 @Database(
-    version = NoteDatabaseConst.VERSION,
-    entities = [NoteEntity::class]
+    entities = [NoteEntity::class],
+    version = NoteDatabaseConst.VERSION
 )
 abstract class NoteDatabase : RoomDatabase() {
 

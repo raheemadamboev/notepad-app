@@ -10,7 +10,7 @@ import xyz.teamgravity.notepad.presentation.navigation.MainNavGraph
 @Destination<MainNavGraph>
 @Composable
 fun PinLockScreen(
-    navigator: DestinationsNavigator,
+    navigator: DestinationsNavigator
 ) {
     val configuration = LocalConfiguration.current
     when (configuration.orientation) {

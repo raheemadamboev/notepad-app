@@ -28,7 +28,11 @@ fun TopBarMoreMenuNoteEdit(
         onDismissRequest = onDismiss
     ) {
         DropdownMenuItem(
-            text = { TextPlain(id = R.string.delete) },
+            text = {
+                TextPlain(
+                    id = R.string.delete
+                )
+            },
             onClick = onDelete,
             leadingIcon = {
                 IconPlain(
@@ -38,7 +42,11 @@ fun TopBarMoreMenuNoteEdit(
             }
         )
         DropdownMenuItem(
-            text = { TextPlain(id = R.string.share) },
+            text = {
+                TextPlain(
+                    id = R.string.share
+                )
+            },
             onClick = onShare,
             leadingIcon = {
                 IconPlain(

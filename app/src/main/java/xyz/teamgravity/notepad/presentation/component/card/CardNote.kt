@@ -4,6 +4,7 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -26,18 +27,26 @@ fun CardNote(
     onClick: (note: NoteModel) -> Unit
 ) {
     OutlinedCard(
-        onClick = { onClick(note) },
+        onClick = {
+            onClick(note)
+        },
         colors = CardDefaults.outlinedCardColors(
             containerColor = MaterialTheme.colorScheme.background,
             contentColor = MaterialTheme.colorScheme.onBackground
         ),
-        border = BorderStroke(if (isSystemInDarkTheme()) 0.5.dp else 1.dp, Grey40),
+        border = BorderStroke(
+            width = if (isSystemInDarkTheme()) 0.5.dp else 1.dp,
+            color = Grey40
+        ),
         modifier = Modifier.fillMaxWidth()
     ) {
         Column(
             modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = 20.dp, horizontal = 10.dp)
+                .fillMaxSize()
+                .padding(
+                    vertical = 20.dp,
+                    horizontal = 10.dp
+                )
         ) {
             Text(
                 text = note.title,
@@ -46,14 +55,18 @@ fun CardNote(
                 style = MaterialTheme.typography.titleMedium,
                 fontWeight = FontWeight.Bold
             )
-            Spacer(modifier = Modifier.height(5.dp))
+            Spacer(
+                modifier = Modifier.height(5.dp)
+            )
             Text(
                 text = note.body,
                 maxLines = 5,
                 overflow = TextOverflow.Ellipsis,
                 style = MaterialTheme.typography.bodyMedium
             )
-            Spacer(modifier = Modifier.height(10.dp))
+            Spacer(
+                modifier = Modifier.height(10.dp)
+            )
             Text(
                 text = note.edited.format(),
                 style = MaterialTheme.typography.labelMedium

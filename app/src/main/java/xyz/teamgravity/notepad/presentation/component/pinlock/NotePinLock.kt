@@ -23,6 +23,6 @@ fun NotePinLock(
         color = MaterialTheme.colorScheme.primary,
         onPinCorrect = onPinCorrect,
         onPinIncorrect = {},
-        onPinCreated = onPinCorrect,
+        onPinCreated = onPinCorrect
     )
 }

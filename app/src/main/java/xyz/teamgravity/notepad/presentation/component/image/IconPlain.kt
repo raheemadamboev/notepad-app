@@ -14,7 +14,7 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun IconPlain(
     @DrawableRes icon: Int,
-    @StringRes contentDescription: Int,
+    @StringRes contentDescription: Int
 ) {
     Icon(
         painter = painterResource(id = icon),
@@ -26,7 +26,7 @@ fun IconPlain(
 @Composable
 fun IconPlain(
     icon: ImageVector,
-    @StringRes contentDescription: Int,
+    @StringRes contentDescription: Int
 ) {
     Icon(
         imageVector = icon,

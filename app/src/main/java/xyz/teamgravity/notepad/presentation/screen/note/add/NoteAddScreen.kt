@@ -1,19 +1,16 @@
 package xyz.teamgravity.notepad.presentation.screen.note.add
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBackIos
+import androidx.compose.material.icons.automirrored.filled.ArrowBackIos
 import androidx.compose.material.icons.filled.Done
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
-import kotlinx.coroutines.flow.collectLatest
+import xyz.teamgravity.coresdkcompose.observe.ObserveEvent
 import xyz.teamgravity.notepad.R
 import xyz.teamgravity.notepad.presentation.component.button.IconButtonPlain
 import xyz.teamgravity.notepad.presentation.component.button.NoteFloatingActionButton
@@ -26,27 +23,31 @@ import xyz.teamgravity.notepad.presentation.navigation.MainNavGraph
 @Composable
 fun NoteAddScreen(
     navigator: DestinationsNavigator,
-    viewmodel: NoteAddViewModel = hiltViewModel(),
+    viewmodel: NoteAddViewModel = hiltViewModel()
 ) {
-
-    LaunchedEffect(key1 = viewmodel.event) {
-        viewmodel.event.collectLatest { event ->
+    ObserveEvent(
+        flow = viewmodel.event,
+        onEvent = { event ->
             when (event) {
                 NoteAddViewModel.NoteAddEvent.NoteAdded -> {
                     navigator.popBackStack()
                 }
             }
         }
-    }
+    )
 
     Scaffold(
         topBar = {
             TopBar(
-                title = { TextPlain(id = R.string.app_name) },
+                title = {
+                    TextPlain(
+                        id = R.string.app_name
+                    )
+                },
                 navigationIcon = {
                     IconButtonPlain(
-                        onClick = navigator::popBackStack,
-                        icon = Icons.Default.ArrowBackIos,
+                        onClick = navigator::navigateUp,
+                        icon = Icons.AutoMirrored.Filled.ArrowBackIos,
                         contentDescription = R.string.cd_back_button
                     )
                 }
@@ -62,17 +63,12 @@ fun NoteAddScreen(
             }
         }
     ) { padding ->
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(padding)
-        ) {
-            NotepadTextField(
-                title = viewmodel.title,
-                onTitleChange = viewmodel::onTitleChange,
-                body = viewmodel.body,
-                onBodyChange = viewmodel::onBodyChange
-            )
-        }
+        NotepadTextField(
+            title = viewmodel.title,
+            onTitleChange = viewmodel::onTitleChange,
+            body = viewmodel.body,
+            onBodyChange = viewmodel::onBodyChange,
+            modifier = Modifier.padding(padding)
+        )
     }
 }

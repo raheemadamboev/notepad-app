@@ -33,7 +33,7 @@ class NoteEditViewModel @Inject constructor(
     handle: SavedStateHandle
 ) : ViewModel() {
 
-    private val args = NoteEditScreenDestination.argsFrom(handle)
+    private val args: NoteEditScreenArgs = NoteEditScreenDestination.argsFrom(handle)
 
     private val note: StateFlow<NoteModel?> = repository.getNote(args.id).stateIn(
         scope = viewModelScope,
@@ -53,7 +53,7 @@ class NoteEditViewModel @Inject constructor(
     var menuExpanded: Boolean by mutableStateOf(false)
         private set
 
-    var deleteDialogShown: Boolean by mutableStateOf(false)
+    var deleteShown: Boolean by mutableStateOf(false)
         private set
 
     var autoSave: Boolean by mutableStateOf(AppPreferencesKey.AutoSave.default as Boolean)
@@ -118,13 +118,13 @@ class NoteEditViewModel @Inject constructor(
         menuExpanded = false
     }
 
-    fun onDeleteDialogShow() {
-        deleteDialogShown = true
+    fun onDeleteShow() {
+        deleteShown = true
         onMenuCollapse()
     }
 
-    fun onDeleteDialogDismiss() {
-        deleteDialogShown = false
+    fun onDeleteDismiss() {
+        deleteShown = false
     }
 
     fun onUpdateNote() {
@@ -145,7 +145,7 @@ class NoteEditViewModel @Inject constructor(
     fun onDeleteNote() {
         val note = note.value ?: return
         viewModelScope.launch {
-            onDeleteDialogDismiss()
+            onDeleteDismiss()
 
             if (autoSave) saver.close()
             repository.deleteNote(note)
@@ -165,7 +165,7 @@ class NoteEditViewModel @Inject constructor(
     }
 
     ///////////////////////////////////////////////////////////////////////////
-    // MISC
+    // Misc
     ///////////////////////////////////////////////////////////////////////////
 
     enum class NoteEditEvent {

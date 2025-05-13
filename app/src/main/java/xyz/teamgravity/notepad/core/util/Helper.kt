@@ -30,6 +30,20 @@ object Helper {
     }
 
     /**
+     * Shares note as a text.
+     */
+    fun shareNote(
+        context: Context,
+        note: String
+    ) {
+        ConnectUtil.shareText(
+            context = context,
+            text = note,
+            chooserTitle = context.getString(R.string.choose)
+        )
+    }
+
+    /**
      * Navigates the user to show source code on Github.
      */
     fun viewSourceCode(context: Context) {
@@ -51,20 +65,6 @@ object Helper {
             context = context,
             email = ConnectionConst.SUPPORT_MAIL,
             subject = context.getString(R.string.improvement),
-            chooserTitle = context.getString(R.string.choose)
-        )
-    }
-
-    /**
-     * Shares note as a text.
-     */
-    fun shareNote(
-        context: Context,
-        note: String
-    ) {
-        ConnectUtil.shareText(
-            context = context,
-            text = note,
             chooserTitle = context.getString(R.string.choose)
         )
     }

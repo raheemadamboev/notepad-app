@@ -6,6 +6,9 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.persistentListOf
+import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -19,13 +22,13 @@ import javax.inject.Inject
 @HiltViewModel
 class NoteListViewModel @Inject constructor(
     private val repository: NoteRepository,
-    private val preferences: AppPreferences,
+    private val preferences: AppPreferences
 ) : ViewModel() {
 
     var pinLockShown: Boolean by mutableStateOf(false)
         private set
 
-    var notes: List<NoteModel> by mutableStateOf(emptyList())
+    var notes: ImmutableList<NoteModel> by mutableStateOf(persistentListOf())
         private set
 
     var autoSave: Boolean by mutableStateOf(AppPreferencesKey.AutoSave.default as Boolean)
@@ -34,7 +37,7 @@ class NoteListViewModel @Inject constructor(
     var menuExpanded: Boolean by mutableStateOf(false)
         private set
 
-    var deleteAllDialogShown: Boolean by mutableStateOf(false)
+    var deleteAllShown: Boolean by mutableStateOf(false)
         private set
 
     init {
@@ -54,7 +57,7 @@ class NoteListViewModel @Inject constructor(
     private fun observeNotes() {
         viewModelScope.launch {
             repository.getAllNotes().collectLatest { notes ->
-                this@NoteListViewModel.notes = notes
+                this@NoteListViewModel.notes = notes.toImmutableList()
             }
         }
     }
@@ -90,17 +93,17 @@ class NoteListViewModel @Inject constructor(
         menuExpanded = false
     }
 
-    fun onDeleteAllDialogShow() {
-        deleteAllDialogShown = true
+    fun onDeleteAllShow() {
+        deleteAllShown = true
         onMenuCollapse()
     }
 
-    fun onDeleteAllDialogDismiss() {
-        deleteAllDialogShown = false
+    fun onDeleteAllDismiss() {
+        deleteAllShown = false
     }
 
     fun onDeleteAll() {
-        onDeleteAllDialogDismiss()
+        onDeleteAllDismiss()
         viewModelScope.launch(NonCancellable) {
             repository.deleteAllNotes()
         }

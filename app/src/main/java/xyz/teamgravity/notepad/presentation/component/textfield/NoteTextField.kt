@@ -19,12 +19,16 @@ fun NoteTextField(
     value: String,
     onValueChange: (value: String) -> Unit,
     @StringRes placeholder: Int,
-    modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier
 ) {
     TextField(
         value = value,
         onValueChange = onValueChange,
-        placeholder = { TextPlain(id = placeholder) },
+        placeholder = {
+            TextPlain(
+                id = placeholder
+            )
+        },
         colors = TextFieldDefaults.colors(
             unfocusedTextColor = MaterialTheme.colorScheme.onBackground,
             focusedTextColor = MaterialTheme.colorScheme.onBackground,
@@ -33,9 +37,15 @@ fun NoteTextField(
             disabledContainerColor = Color.Transparent,
             errorContainerColor = Color.Transparent
         ),
-        keyboardOptions = KeyboardOptions(capitalization = KeyboardCapitalization.Sentences),
+        keyboardOptions = KeyboardOptions(
+            capitalization = KeyboardCapitalization.Sentences
+        ),
         modifier = modifier
             .fillMaxWidth()
-            .padding(top = 8.dp, start = 8.dp, end = 8.dp),
+            .padding(
+                top = 8.dp,
+                start = 8.dp,
+                end = 8.dp
+            )
     )
 }

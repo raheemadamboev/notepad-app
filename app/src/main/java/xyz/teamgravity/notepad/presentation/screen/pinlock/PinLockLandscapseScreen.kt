@@ -1,9 +1,17 @@
 package xyz.teamgravity.notepad.presentation.screen.pinlock
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBackIos
+import androidx.compose.material.icons.automirrored.filled.ArrowBackIos
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -14,7 +22,11 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import xyz.teamgravity.notepad.R
 import xyz.teamgravity.notepad.presentation.component.button.IconButtonPlain
-import xyz.teamgravity.notepad.presentation.component.pinlock.*
+import xyz.teamgravity.notepad.presentation.component.pinlock.ChangePinLockCard
+import xyz.teamgravity.notepad.presentation.component.pinlock.EnablePinLockCard
+import xyz.teamgravity.notepad.presentation.component.pinlock.NoteChangePinLock
+import xyz.teamgravity.notepad.presentation.component.pinlock.NotePinLock
+import xyz.teamgravity.notepad.presentation.component.pinlock.PinLockDialog
 import xyz.teamgravity.notepad.presentation.component.text.TextPlain
 import xyz.teamgravity.notepad.presentation.component.topbar.TopBar
 
@@ -28,11 +40,15 @@ fun PinLockLandscapeScreen(
             Scaffold(
                 topBar = {
                     TopBar(
-                        title = { TextPlain(id = R.string.pin_lock) },
+                        title = {
+                            TextPlain(
+                                id = R.string.pin_lock
+                            )
+                        },
                         navigationIcon = {
                             IconButtonPlain(
                                 onClick = onBackButtonClick,
-                                icon = Icons.Default.ArrowBackIos,
+                                icon = Icons.AutoMirrored.Filled.ArrowBackIos,
                                 contentDescription = R.string.cd_back_button
                             )
                         }
@@ -55,7 +71,9 @@ fun PinLockLandscapeScreen(
                             onPinLockEnabledChange = viewmodel::onPinLockEnabledChange,
                             modifier = Modifier.padding(start = 16.dp)
                         )
-                        Spacer(modifier = Modifier.height(20.dp))
+                        Spacer(
+                            modifier = Modifier.height(20.dp)
+                        )
                         ChangePinLockCard(
                             onClick = viewmodel::onPinLockChange,
                             modifier = Modifier.padding(start = 16.dp)
@@ -73,20 +91,26 @@ fun PinLockLandscapeScreen(
                         )
                     }
                 }
-                if (viewmodel.pinLockDialogShown) {
+                if (viewmodel.pinLockWarningShown) {
                     PinLockDialog(
-                        onConfirm = viewmodel::onPinLockDialogConfirm,
-                        onDismiss = viewmodel::onPinLockDialogDismiss
+                        onConfirm = viewmodel::onPinLockWarningConfirm,
+                        onDismiss = viewmodel::onPinLockWarningDismiss
                     )
                 }
             }
         }
+
         PinLockViewModel.PinLockState.Change -> {
-            NoteChangePinLock(onPinChanged = viewmodel::onPinLockCorrect)
+            NoteChangePinLock(
+                onPinChanged = viewmodel::onPinLockCorrect
+            )
         }
+
         PinLockViewModel.PinLockState.Create,
         PinLockViewModel.PinLockState.Remove -> {
-            NotePinLock(onPinCorrect = viewmodel::onPinLockCorrect)
+            NotePinLock(
+                onPinCorrect = viewmodel::onPinLockCorrect
+            )
         }
     }
 }

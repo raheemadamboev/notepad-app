@@ -39,15 +39,21 @@ fun NoteListScreen(
     navigator: DestinationsNavigator,
     viewmodel: NoteListViewModel = hiltViewModel()
 ) {
-    if (viewmodel.pinLockShown) {
-        NotePinLock(onPinCorrect = viewmodel::onPinCorrect)
-    } else {
-        val context = LocalContext.current
+    val context = LocalContext.current
 
+    if (viewmodel.pinLockShown) {
+        NotePinLock(
+            onPinCorrect = viewmodel::onPinCorrect
+        )
+    } else {
         Scaffold(
             topBar = {
                 TopBar(
-                    title = { TextPlain(id = R.string.app_name) },
+                    title = {
+                        TextPlain(
+                            id = R.string.app_name
+                        )
+                    },
                     actions = {
                         TopBarMoreMenuNoteList(
                             expanded = viewmodel.menuExpanded,
@@ -59,7 +65,7 @@ fun NoteListScreen(
                                 navigator.navigate(PinLockScreenDestination)
                                 viewmodel.onMenuCollapse()
                             },
-                            onDeleteAll = viewmodel::onDeleteAllDialogShow,
+                            onDeleteAll = viewmodel::onDeleteAllShow,
                             onSupport = {
                                 navigator.navigate(SupportScreenDestination)
                                 viewmodel.onMenuCollapse()
@@ -86,7 +92,9 @@ fun NoteListScreen(
             },
             floatingActionButton = {
                 NoteFloatingActionButton(
-                    onClick = { navigator.navigate(NoteAddScreenDestination) },
+                    onClick = {
+                        navigator.navigate(NoteAddScreenDestination)
+                    },
                     icon = Icons.Default.Add,
                     contentDescription = R.string.cd_add_note
                 )
@@ -99,7 +107,11 @@ fun NoteListScreen(
                 verticalItemSpacing = 10.dp,
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(start = 10.dp, top = 10.dp, end = 10.dp)
+                    .padding(
+                        start = 10.dp,
+                        top = 10.dp,
+                        end = 10.dp
+                    )
             ) {
                 items(
                     items = viewmodel.notes,
@@ -107,15 +119,17 @@ fun NoteListScreen(
                 ) { note ->
                     CardNote(
                         note = note,
-                        onClick = { navigator.navigate(NoteEditScreenDestination(id = it.id!!)) }
+                        onClick = {
+                            navigator.navigate(NoteEditScreenDestination(id = it.id!!))
+                        }
                     )
                 }
             }
-            if (viewmodel.deleteAllDialogShown) {
+            if (viewmodel.deleteAllShown) {
                 NoteAlertDialog(
                     title = R.string.confirm_deletion,
                     message = R.string.wanna_delete_all,
-                    onDismiss = viewmodel::onDeleteAllDialogDismiss,
+                    onDismiss = viewmodel::onDeleteAllDismiss,
                     onConfirm = viewmodel::onDeleteAll
                 )
             }

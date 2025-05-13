@@ -22,10 +22,11 @@ object ApplicationModule {
 
     @Provides
     @Singleton
-    fun provideNoteDatabase(application: Application): NoteDatabase =
-        Room.databaseBuilder(application, NoteDatabase::class.java, NoteDatabaseConst.NAME)
-            .addMigrations()
-            .build()
+    fun provideNoteDatabase(application: Application): NoteDatabase = Room.databaseBuilder(
+        context = application,
+        klass = NoteDatabase::class.java,
+        name = NoteDatabaseConst.NAME
+    ).addMigrations().build()
 
     @Provides
     @Singleton

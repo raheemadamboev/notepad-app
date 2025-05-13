@@ -21,7 +21,7 @@ fun NoteFloatingActionButton(
     ) {
         Icon(
             imageVector = icon,
-            contentDescription = stringResource(id = contentDescription),
+            contentDescription = stringResource(id = contentDescription)
         )
     }
 }

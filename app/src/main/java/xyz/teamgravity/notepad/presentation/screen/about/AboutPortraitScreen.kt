@@ -2,7 +2,17 @@ package xyz.teamgravity.notepad.presentation.screen.about
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.safeDrawing
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBackIos
@@ -30,7 +40,7 @@ import xyz.teamgravity.notepad.presentation.component.topbar.TopBar
 
 @Composable
 fun AboutPortraitScreen(
-    onBackButtonClick: () -> Unit,
+    onBackButtonClick: () -> Unit
 ) {
     val context = LocalContext.current
 

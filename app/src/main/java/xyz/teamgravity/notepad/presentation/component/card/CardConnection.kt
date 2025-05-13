@@ -3,7 +3,11 @@ package xyz.teamgravity.notepad.presentation.component.card
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.Icon
@@ -28,7 +32,7 @@ fun CardConnection(
     @StringRes title: Int,
     @StringRes contentDescription: Int,
     fillMaxSize: Boolean,
-    modifier: Modifier,
+    modifier: Modifier
 ) {
     ElevatedCard(
         onClick = onClick,
@@ -37,10 +41,9 @@ fun CardConnection(
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
-            modifier = run {
-                val rowModifier = if (fillMaxSize) Modifier.fillMaxSize() else Modifier
-                rowModifier.padding(16.dp)
-            }
+            modifier = Modifier
+                .then(if (fillMaxSize) Modifier.fillMaxSize() else Modifier)
+                .padding(16.dp)
         ) {
             Box(
                 contentAlignment = Alignment.Center,

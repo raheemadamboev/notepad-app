@@ -17,19 +17,31 @@ fun NoteAlertDialog(
     AlertDialog(
         onDismissRequest = onDismiss,
         title = {
-            TextPlain(id = title)
+            TextPlain(
+                id = title
+            )
         },
         text = {
-            TextPlain(id = message)
+            TextPlain(
+                id = message
+            )
         },
         dismissButton = {
-            TextButton(onClick = onDismiss) {
-                TextPlain(id = R.string.no)
+            TextButton(
+                onClick = onDismiss
+            ) {
+                TextPlain(
+                    id = R.string.no
+                )
             }
         },
         confirmButton = {
-            TextButton(onClick = onConfirm) {
-                TextPlain(id = R.string.yes)
+            TextButton(
+                onClick = onConfirm
+            ) {
+                TextPlain(
+                    id = R.string.yes
+                )
             }
         }
     )
