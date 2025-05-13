@@ -16,7 +16,6 @@ import xyz.teamgravity.notepad.data.local.preferences.AppPreferences
 import xyz.teamgravity.notepad.data.local.preferences.AppPreferencesKey
 import xyz.teamgravity.notepad.data.model.NoteModel
 import xyz.teamgravity.notepad.data.repository.NoteRepository
-import xyz.teamgravity.pin_lock_compose.PinManager
 import javax.inject.Inject
 
 @HiltViewModel
@@ -24,9 +23,6 @@ class NoteListViewModel @Inject constructor(
     private val repository: NoteRepository,
     private val preferences: AppPreferences
 ) : ViewModel() {
-
-    var pinLockShown: Boolean by mutableStateOf(false)
-        private set
 
     var notes: ImmutableList<NoteModel> by mutableStateOf(persistentListOf())
         private set
@@ -41,12 +37,7 @@ class NoteListViewModel @Inject constructor(
         private set
 
     init {
-        checkPinLock()
         observe()
-    }
-
-    private fun checkPinLock() {
-        pinLockShown = PinManager.pinExists()
     }
 
     private fun observe() {
@@ -73,10 +64,6 @@ class NoteListViewModel @Inject constructor(
     ///////////////////////////////////////////////////////////////////////////
     // API
     ///////////////////////////////////////////////////////////////////////////
-
-    fun onPinCorrect() {
-        pinLockShown = false
-    }
 
     fun onAutoSaveChange() {
         onMenuCollapse()
