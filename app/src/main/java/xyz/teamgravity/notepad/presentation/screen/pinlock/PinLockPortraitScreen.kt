@@ -64,14 +64,16 @@ fun PinLockPortraitScreen(
                             end = 10.dp
                         )
                     )
-                    ChangePinLockCard(
-                        onClick = viewmodel::onPinLockChange,
-                        modifier = Modifier.padding(
-                            start = 10.dp,
-                            top = 10.dp,
-                            end = 10.dp
+                    if (viewmodel.pinLockEnabled) {
+                        ChangePinLockCard(
+                            onClick = viewmodel::onPinLockChange,
+                            modifier = Modifier.padding(
+                                start = 10.dp,
+                                top = 10.dp,
+                                end = 10.dp
+                            )
                         )
-                    )
+                    }
                     Box(
                         contentAlignment = Alignment.Center,
                         modifier = Modifier.fillMaxSize()

@@ -71,13 +71,15 @@ fun PinLockLandscapeScreen(
                             onPinLockEnabledChange = viewmodel::onPinLockEnabledChange,
                             modifier = Modifier.padding(start = 16.dp)
                         )
-                        Spacer(
-                            modifier = Modifier.height(20.dp)
-                        )
-                        ChangePinLockCard(
-                            onClick = viewmodel::onPinLockChange,
-                            modifier = Modifier.padding(start = 16.dp)
-                        )
+                        if (viewmodel.pinLockEnabled) {
+                            Spacer(
+                                modifier = Modifier.height(20.dp)
+                            )
+                            ChangePinLockCard(
+                                onClick = viewmodel::onPinLockChange,
+                                modifier = Modifier.padding(start = 16.dp)
+                            )
+                        }
                     }
                     Box(
                         contentAlignment = Alignment.Center,
