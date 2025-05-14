@@ -1,5 +1,6 @@
 package xyz.teamgravity.notepad.presentation.screen.note.list
 
+import android.app.Activity
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.IntentSenderRequest
 import androidx.compose.runtime.getValue
@@ -12,23 +13,28 @@ import androidx.paging.cachedIn
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
+import timber.log.Timber
+import xyz.teamgravity.coresdkandroid.review.ReviewManager
 import xyz.teamgravity.coresdkandroid.update.UpdateManager
 import xyz.teamgravity.notepad.data.local.preferences.AppPreferences
 import xyz.teamgravity.notepad.data.local.preferences.AppPreferencesKey
 import xyz.teamgravity.notepad.data.model.NoteModel
 import xyz.teamgravity.notepad.data.repository.NoteRepository
 import javax.inject.Inject
+import kotlin.time.Duration.Companion.seconds
 
 @HiltViewModel
 class NoteListViewModel @Inject constructor(
     private val repository: NoteRepository,
     private val preferences: AppPreferences,
+    private val review: ReviewManager,
     private val update: UpdateManager
 ) : ViewModel() {
 
@@ -41,6 +47,9 @@ class NoteListViewModel @Inject constructor(
     )
 
     var menuExpanded: Boolean by mutableStateOf(false)
+        private set
+
+    var reviewShown: Boolean by mutableStateOf(false)
         private set
 
     var updateAvailableType: UpdateManager.Type by mutableStateOf(UpdateManager.Type.None)
@@ -57,10 +66,25 @@ class NoteListViewModel @Inject constructor(
 
     init {
         observe()
+        monitor()
     }
 
     private fun observe() {
+        observeReviewEvent()
         observeUpdateEvent()
+    }
+
+    private fun monitor() {
+        review.monitor()
+    }
+
+    private suspend fun handleReviewEvent(event: ReviewManager.ReviewEvent) {
+        when (event) {
+            ReviewManager.ReviewEvent.Eligible -> {
+                delay(1.seconds)
+                reviewShown = true
+            }
+        }
     }
 
     private suspend fun handleUpdateEvent(event: UpdateManager.UpdateEvent) {
@@ -79,6 +103,14 @@ class NoteListViewModel @Inject constructor(
         }
     }
 
+    private fun observeReviewEvent() {
+        viewModelScope.launch {
+            review.event.collect { event ->
+                handleReviewEvent(event)
+            }
+        }
+    }
+
     private fun observeUpdateEvent() {
         viewModelScope.launch {
             update.event.collect { event ->
@@ -90,6 +122,33 @@ class NoteListViewModel @Inject constructor(
     ///////////////////////////////////////////////////////////////////////////
     // API
     ///////////////////////////////////////////////////////////////////////////
+
+    fun onReviewDismiss() {
+        reviewShown = false
+    }
+
+    fun onReviewDeny() {
+        review.deny()
+    }
+
+    fun onReviewLater() {
+        review.remindLater()
+    }
+
+    fun onReviewConfirm() {
+        viewModelScope.launch {
+            _event.send(NoteListEvent.Review)
+        }
+    }
+
+    fun onReview(activity: Activity?) {
+        if (activity == null) {
+            Timber.e("onReview(): activity is null! Aborted the operation.")
+            return
+        }
+
+        review.review(activity)
+    }
 
     fun onUpdateCheck() {
         update.monitor()
@@ -153,6 +212,7 @@ class NoteListViewModel @Inject constructor(
     ///////////////////////////////////////////////////////////////////////////
 
     enum class NoteListEvent {
+        Review,
         DownloadAppUpdate;
     }
 }

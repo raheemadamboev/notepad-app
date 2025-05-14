@@ -10,6 +10,7 @@ import dagger.hilt.components.SingletonComponent
 import timber.log.Timber
 import xyz.teamgravity.coresdkandroid.crypto.CryptoManager
 import xyz.teamgravity.coresdkandroid.preferences.Preferences
+import xyz.teamgravity.coresdkandroid.review.ReviewManager
 import xyz.teamgravity.coresdkandroid.update.UpdateManager
 import xyz.teamgravity.notepad.core.constant.PagingConst
 import xyz.teamgravity.notepad.data.local.note.constant.NoteDatabaseConst
@@ -79,4 +80,14 @@ object ApplicationModule {
     @Provides
     @Singleton
     fun provideUpdateManager(application: Application): UpdateManager = UpdateManager(application)
+
+    @Provides
+    @Singleton
+    fun provideReviewManager(
+        preferences: Preferences,
+        application: Application
+    ): ReviewManager = ReviewManager(
+        preferences = preferences,
+        context = application
+    )
 }

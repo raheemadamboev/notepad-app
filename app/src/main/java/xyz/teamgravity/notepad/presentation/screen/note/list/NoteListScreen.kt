@@ -1,5 +1,6 @@
 package xyz.teamgravity.notepad.presentation.screen.note.list
 
+import androidx.activity.compose.LocalActivity
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Arrangement
@@ -33,6 +34,7 @@ import com.ramcosta.composedestinations.generated.destinations.SupportScreenDest
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import xyz.teamgravity.coresdkandroid.connect.ConnectUtil
 import xyz.teamgravity.coresdkcompose.observe.ObserveEvent
+import xyz.teamgravity.coresdkcompose.review.DialogReview
 import xyz.teamgravity.coresdkcompose.update.DialogUpdateAvailable
 import xyz.teamgravity.coresdkcompose.update.DialogUpdateDownloaded
 import xyz.teamgravity.notepad.R
@@ -52,6 +54,7 @@ fun NoteListScreen(
     viewmodel: NoteListViewModel = hiltViewModel()
 ) {
     val context = LocalContext.current
+    val activity = LocalActivity.current
     val notes = viewmodel.notes.collectAsLazyPagingItems()
     val autoSave by viewmodel.autoSave.collectAsStateWithLifecycle()
     val updateLauncher = rememberLauncherForActivityResult(
@@ -63,6 +66,10 @@ fun NoteListScreen(
         flow = viewmodel.event,
         onEvent = { event ->
             when (event) {
+                NoteListViewModel.NoteListEvent.Review -> {
+                    viewmodel.onReview(activity)
+                }
+
                 NoteListViewModel.NoteListEvent.DownloadAppUpdate -> {
                     viewmodel.onUpdateDownload(updateLauncher)
                 }
@@ -171,6 +178,13 @@ fun NoteListScreen(
                 onConfirm = viewmodel::onDeleteAll
             )
         }
+        DialogReview(
+            visible = viewmodel.reviewShown,
+            onDismiss = viewmodel::onReviewDismiss,
+            onDeny = viewmodel::onReviewDeny,
+            onRemindLater = viewmodel::onReviewLater,
+            onReview = viewmodel::onReviewConfirm
+        )
         DialogUpdateAvailable(
             type = viewmodel.updateAvailableType,
             onDismiss = viewmodel::onUpdateAvailableDismiss,
