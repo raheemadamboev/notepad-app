@@ -1,5 +1,7 @@
 package xyz.teamgravity.notepad.presentation.screen.note.list
 
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
@@ -16,6 +18,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.compose.LifecycleEventEffect
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.itemContentType
@@ -28,6 +32,9 @@ import com.ramcosta.composedestinations.generated.destinations.PinLockScreenDest
 import com.ramcosta.composedestinations.generated.destinations.SupportScreenDestination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import xyz.teamgravity.coresdkandroid.connect.ConnectUtil
+import xyz.teamgravity.coresdkcompose.observe.ObserveEvent
+import xyz.teamgravity.coresdkcompose.update.DialogUpdateAvailable
+import xyz.teamgravity.coresdkcompose.update.DialogUpdateDownloaded
 import xyz.teamgravity.notepad.R
 import xyz.teamgravity.notepad.core.util.Helper
 import xyz.teamgravity.notepad.presentation.component.button.NoteFloatingActionButton
@@ -47,6 +54,26 @@ fun NoteListScreen(
     val context = LocalContext.current
     val notes = viewmodel.notes.collectAsLazyPagingItems()
     val autoSave by viewmodel.autoSave.collectAsStateWithLifecycle()
+    val updateLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.StartIntentSenderForResult(),
+        onResult = {}
+    )
+
+    ObserveEvent(
+        flow = viewmodel.event,
+        onEvent = { event ->
+            when (event) {
+                NoteListViewModel.NoteListEvent.DownloadAppUpdate -> {
+                    viewmodel.onUpdateDownload(updateLauncher)
+                }
+            }
+        }
+    )
+
+    LifecycleEventEffect(
+        event = Lifecycle.Event.ON_RESUME,
+        onEvent = viewmodel::onUpdateCheck
+    )
 
     Scaffold(
         topBar = {
@@ -144,5 +171,15 @@ fun NoteListScreen(
                 onConfirm = viewmodel::onDeleteAll
             )
         }
+        DialogUpdateAvailable(
+            type = viewmodel.updateAvailableType,
+            onDismiss = viewmodel::onUpdateAvailableDismiss,
+            onConfirm = viewmodel::onUpdateAvailableConfirm
+        )
+        DialogUpdateDownloaded(
+            visible = viewmodel.updateDownloadedShown,
+            onDismiss = viewmodel::onUpdateDownloadedDismiss,
+            onConfirm = viewmodel::onUpdateInstall
+        )
     }
 }
