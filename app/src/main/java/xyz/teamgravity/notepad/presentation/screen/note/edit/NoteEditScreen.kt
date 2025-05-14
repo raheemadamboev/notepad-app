@@ -1,6 +1,8 @@
 package xyz.teamgravity.notepad.presentation.screen.note.edit
 
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBackIos
 import androidx.compose.material.icons.filled.Done
@@ -82,7 +84,8 @@ fun NoteEditScreen(
                     contentDescription = R.string.cd_done_button
                 )
             }
-        }
+        },
+        contentWindowInsets = WindowInsets.safeDrawing
     ) { padding ->
         NotepadTextField(
             title = viewmodel.title,
