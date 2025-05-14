@@ -22,8 +22,8 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="xyz.teamgravity.notepad.debug" />
-                  <option name="mobileSdkAppId" value="1:157402004940:android:19711edc69505c1f0f3169" />
+                  <option name="appId" value="xyz.teamgravity.notepad" />
+                  <option name="mobileSdkAppId" value="1:157402004940:android:28be2974a4e25eb60f3169" />
                   <option name="projectId" value="notepad-gravity" />
                   <option name="projectNumber" value="157402004940" />
                 </ConnectionSetting>
