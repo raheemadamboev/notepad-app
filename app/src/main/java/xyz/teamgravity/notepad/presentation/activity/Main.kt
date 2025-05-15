@@ -37,7 +37,9 @@ class Main : ComponentActivity() {
                     }
 
                     MainViewModel.Navigation.Content -> {
-                        Navigation(intent)
+                        Navigation(
+                            intent = intent
+                        )
                     }
                 }
             }
