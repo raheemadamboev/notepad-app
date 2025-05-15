@@ -54,4 +54,9 @@
     <string name="cd_user_support">Foydalanuvchilarga yordam berish</string>
     <string name="cd_via_telegram">Telegram orqali bog\'lanish</string>
     <string name="cd_via_email">Email orqali bog\'lanish</string>
+
+    <!-- Shortcut -->
+    <string name="shortcut_add_note_short_label">Eslatma qo\'shish</string>
+    <string name="shortcut_add_note_long_label">Tugmani bosish orqali darhol eslatma qo\'shing</string>
+    <string name="shortcut_add_note_disabled_message">Eslatmalarni darhol qo\'shish hozirda mavjud emas</string>
 </resources>

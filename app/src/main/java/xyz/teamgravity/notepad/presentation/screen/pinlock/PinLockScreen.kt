@@ -7,14 +7,14 @@ import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import xyz.teamgravity.notepad.presentation.navigation.MainNavGraph
 
-@MainNavGraph
-@Destination
+@Destination<MainNavGraph>
 @Composable
 fun PinLockScreen(
-    navigator: DestinationsNavigator,
+    navigator: DestinationsNavigator
 ) {
-    when (LocalConfiguration.current.orientation) {
-        Configuration.ORIENTATION_PORTRAIT -> PinLockPortraitScreen(onBackButtonClick = navigator::popBackStack)
-        else -> PinLockLandscapeScreen(onBackButtonClick = navigator::popBackStack)
+    val configuration = LocalConfiguration.current
+    when (configuration.orientation) {
+        Configuration.ORIENTATION_LANDSCAPE -> PinLockLandscapeScreen(onBackButtonClick = navigator::navigateUp)
+        else -> PinLockPortraitScreen(onBackButtonClick = navigator::navigateUp)
     }
 }

@@ -1,25 +1,33 @@
 package xyz.teamgravity.notepad.data.mapper
 
+import xyz.teamgravity.coresdkandroid.time.TimeUtil
 import xyz.teamgravity.notepad.data.local.note.entity.NoteEntity
 import xyz.teamgravity.notepad.data.model.NoteModel
-import java.util.*
+
+///////////////////////////////////////////////////////////////////////////
+// Model
+///////////////////////////////////////////////////////////////////////////
 
 fun NoteEntity.toModel(): NoteModel {
     return NoteModel(
-        id = _id,
+        id = id,
         title = title,
         body = body,
-        created = Date(createdTime),
-        edited = Date(editedTime)
+        created = TimeUtil.fromLongToLocalDateTime(createdTime),
+        edited = TimeUtil.fromLongToLocalDateTime(editedTime)
     )
 }
 
+///////////////////////////////////////////////////////////////////////////
+// Entity
+///////////////////////////////////////////////////////////////////////////
+
 fun NoteModel.toEntity(): NoteEntity {
     return NoteEntity(
-        _id = id,
+        id = id,
         title = title,
         body = body,
-        createdTime = created.time,
-        editedTime = edited.time
+        createdTime = TimeUtil.fromLocalDateTimeToLong(created),
+        editedTime = TimeUtil.fromLocalDateTimeToLong(edited)
     )
 }

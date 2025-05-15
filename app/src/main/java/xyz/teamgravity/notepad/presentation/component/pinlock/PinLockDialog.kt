@@ -9,19 +9,27 @@ import xyz.teamgravity.notepad.presentation.component.text.TextPlain
 @Composable
 fun PinLockDialog(
     onConfirm: () -> Unit,
-    onDismiss: () -> Unit,
+    onDismiss: () -> Unit
 ) {
     AlertDialog(
         onDismissRequest = onDismiss,
         title = {
-            TextPlain(id = R.string.warning)
+            TextPlain(
+                id = R.string.warning
+            )
         },
         text = {
-            TextPlain(id = R.string.pin_lock_warning)
+            TextPlain(
+                id = R.string.pin_lock_warning
+            )
         },
         confirmButton = {
-            TextButton(onClick = onConfirm) {
-                TextPlain(id = R.string.got_it)
+            TextButton(
+                onClick = onConfirm
+            ) {
+                TextPlain(
+                    id = R.string.got_it
+                )
             }
         }
     )

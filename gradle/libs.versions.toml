@@ -1,0 +1,75 @@
+[versions]
+
+compose = "2025.05.00"
+compose-activity = "1.10.1"
+compose-lifecycle = "2.9.0"
+compose-viewmodel = "2.9.0"
+compose-hilt = "1.2.0"
+compose-paging = "3.3.6"
+core = "1.16.0"
+splash = "1.0.1"
+firebase = "33.13.0"
+hilt = "2.56.2"
+coroutines = "1.10.2"
+room = "2.7.1"
+destinations = "2.2.0"
+timber = "5.0.1"
+gravity-core = "1.0.17"
+gravity-core-compose = "1.0.14"
+gravity-pinlock = "1.0.2"
+
+android = "8.10.0"
+kotlin = "2.1.21"
+ksp = "2.1.21-2.0.1"
+gms = "4.4.2"
+crashlytics = "3.0.3"
+
+sdk-min = "26"
+sdk-compile = "35"
+sdk-target = "35"
+java-target = "17"
+
+[libraries]
+
+compose = { group = "androidx.compose", name = "compose-bom", version.ref = "compose" }
+compose-ui = { group = "androidx.compose.ui", name = "ui" }
+compose-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
+compose-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+compose-material3 = { group = "androidx.compose.material3", name = "material3" }
+compose-icons = { group = "androidx.compose.material", name = "material-icons-extended" }
+compose-activity = { group = "androidx.activity", name = "activity-compose", version.ref = "compose-activity" }
+compose-lifecycle = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "compose-lifecycle" }
+compose-viewmodel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "compose-viewmodel" }
+compose-hilt = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "compose-hilt" }
+compose-paging = { group = "androidx.paging", name = "paging-compose", version.ref = "compose-paging" }
+core = { group = "androidx.core", name = "core-ktx", version.ref = "core" }
+splash = { group = "androidx.core", name = "core-splashscreen", version.ref = "splash" }
+firebase = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebase" }
+firebase-analytics = { group = "com.google.firebase", name = "firebase-analytics" }
+firebase-crashlytics = { group = "com.google.firebase", name = "firebase-crashlytics" }
+firebase-messaging = { group = "com.google.firebase", name = "firebase-messaging" }
+hilt = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
+hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt" }
+coroutines = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutines" }
+coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
+room = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
+room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
+room-paging = { group = "androidx.room", name = "room-paging", version.ref = "room" }
+room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
+destinations = { group = "io.github.raamcosta.compose-destinations", name = "core", version.ref = "destinations" }
+destinations-compiler = { group = "io.github.raamcosta.compose-destinations", name = "ksp", version.ref = "destinations" }
+timber = { group = "com.jakewharton.timber", name = "timber", version.ref = "timber" }
+gravity-core = { group = "com.github.raheemadamboev", name = "core-sdk-android", version.ref = "gravity-core" }
+gravity-core-compose = { group = "com.github.raheemadamboev", name = "core-sdk-compose", version.ref = "gravity-core-compose" }
+gravity-pinlock = { group = "com.github.raheemadamboev", name = "pin-lock-compose", version.ref = "gravity-pinlock" }
+
+[plugins]
+
+android = { id = "com.android.application", version.ref = "android" }
+kotlin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+gms = { id = "com.google.gms.google-services", version.ref = "gms" }
+crashlytics = { id = "com.google.firebase.crashlytics", version.ref = "crashlytics" }
+hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
+room = { id = "androidx.room", version.ref = "room" }

@@ -1,8 +1,8 @@
 package xyz.teamgravity.notepad.presentation.navigation
 
-import com.ramcosta.composedestinations.annotation.NavGraph
+import com.ramcosta.composedestinations.annotation.NavHostGraph
 
-@NavGraph(default = true)
+@NavHostGraph
 annotation class MainNavGraph(
     val start: Boolean = false
 )

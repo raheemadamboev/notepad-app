@@ -15,7 +15,7 @@ import xyz.teamgravity.notepad.presentation.component.text.TextPlain
 @Composable
 fun ChangePinLockCard(
     onClick: () -> Unit,
-    modifier: Modifier,
+    modifier: Modifier
 ) {
     ElevatedCard(
         onClick = onClick,
@@ -26,9 +26,14 @@ fun ChangePinLockCard(
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 16.dp, vertical = 22.dp)
+                .padding(
+                    horizontal = 16.dp,
+                    vertical = 22.dp
+                )
         ) {
-            TextPlain(id = R.string.change_pin_lock)
+            TextPlain(
+                id = R.string.change_pin_lock
+            )
         }
     }
 }

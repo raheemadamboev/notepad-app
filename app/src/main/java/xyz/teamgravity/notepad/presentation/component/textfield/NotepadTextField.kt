@@ -12,9 +12,10 @@ fun NotepadTextField(
     onTitleChange: (title: String) -> Unit,
     body: String,
     onBodyChange: (body: String) -> Unit,
+    modifier: Modifier
 ) {
     Column(
-        modifier = Modifier.fillMaxSize()
+        modifier = modifier.fillMaxSize()
     ) {
         NoteTextField(
             value = title,

@@ -1,5 +1,9 @@
 package xyz.teamgravity.notepad.data.repository
 
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import androidx.paging.map
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -10,11 +14,12 @@ import xyz.teamgravity.notepad.data.mapper.toModel
 import xyz.teamgravity.notepad.data.model.NoteModel
 
 class NoteRepository(
-    private val dao: NoteDao
+    private val dao: NoteDao,
+    private val config: PagingConfig
 ) {
 
     ///////////////////////////////////////////////////////////////////////////
-    // INSERT
+    // Insert
     ///////////////////////////////////////////////////////////////////////////
 
     suspend fun insertNote(note: NoteModel): Long {
@@ -24,7 +29,7 @@ class NoteRepository(
     }
 
     ///////////////////////////////////////////////////////////////////////////
-    // UPDATE
+    // Update
     ///////////////////////////////////////////////////////////////////////////
 
     suspend fun updateNote(note: NoteModel) {
@@ -34,7 +39,7 @@ class NoteRepository(
     }
 
     ///////////////////////////////////////////////////////////////////////////
-    // DELETE
+    // Delete
     ///////////////////////////////////////////////////////////////////////////
 
     suspend fun deleteNote(note: NoteModel) {
@@ -50,10 +55,23 @@ class NoteRepository(
     }
 
     ///////////////////////////////////////////////////////////////////////////
-    // GET
+    // Get
     ///////////////////////////////////////////////////////////////////////////
 
-    fun getAllNotes(): Flow<List<NoteModel>> {
-        return dao.getAllNotes().map { entities -> entities.map { entity -> entity.toModel() } }
+    fun getAllNotes(): Flow<PagingData<NoteModel>> {
+        return Pager(
+            config = config,
+            pagingSourceFactory = {
+                dao.getAllNotes()
+            }
+        ).flow.map { entities ->
+            entities.map { entity ->
+                entity.toModel()
+            }
+        }
+    }
+
+    fun getNote(id: Long): Flow<NoteModel?> {
+        return dao.getNote(id).map { entity -> entity?.toModel() }
     }
 }

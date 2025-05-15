@@ -36,7 +36,11 @@ fun TopBarMoreMenuNoteList(
         onDismissRequest = onDismiss
     ) {
         DropdownMenuItem(
-            text = { TextPlain(id = R.string.auto_save) },
+            text = {
+                TextPlain(
+                    id = R.string.auto_save
+                )
+            },
             onClick = onAutoSave,
             trailingIcon = {
                 if (autoSave) {
@@ -54,7 +58,11 @@ fun TopBarMoreMenuNoteList(
             }
         )
         DropdownMenuItem(
-            text = { TextPlain(id = R.string.pin_lock) },
+            text = {
+                TextPlain(
+                    id = R.string.pin_lock
+                )
+            },
             onClick = onPinLock,
             leadingIcon = {
                 IconPlain(
@@ -64,7 +72,11 @@ fun TopBarMoreMenuNoteList(
             }
         )
         DropdownMenuItem(
-            text = { TextPlain(id = R.string.delete_all_notes) },
+            text = {
+                TextPlain(
+                    id = R.string.delete_all_notes
+                )
+            },
             onClick = onDeleteAll,
             leadingIcon = {
                 IconPlain(
@@ -74,7 +86,11 @@ fun TopBarMoreMenuNoteList(
             }
         )
         DropdownMenuItem(
-            text = { TextPlain(id = R.string.support) },
+            text = {
+                TextPlain(
+                    id = R.string.support
+                )
+            },
             onClick = onSupport,
             leadingIcon = {
                 IconPlain(
@@ -84,7 +100,11 @@ fun TopBarMoreMenuNoteList(
             }
         )
         DropdownMenuItem(
-            text = { TextPlain(id = R.string.share) },
+            text = {
+                TextPlain(
+                    id = R.string.share
+                )
+            },
             onClick = onShare,
             leadingIcon = {
                 IconPlain(
@@ -94,7 +114,11 @@ fun TopBarMoreMenuNoteList(
             }
         )
         DropdownMenuItem(
-            text = { TextPlain(id = R.string.rate) },
+            text = {
+                TextPlain(
+                    id = R.string.rate
+                )
+            },
             onClick = onRate,
             leadingIcon = {
                 IconPlain(
@@ -104,7 +128,11 @@ fun TopBarMoreMenuNoteList(
             }
         )
         DropdownMenuItem(
-            text = { TextPlain(id = R.string.source_code) },
+            text = {
+                TextPlain(
+                    id = R.string.source_code
+                )
+            },
             onClick = onSourceCode,
             leadingIcon = {
                 IconPlain(
@@ -114,7 +142,11 @@ fun TopBarMoreMenuNoteList(
             }
         )
         DropdownMenuItem(
-            text = { TextPlain(id = R.string.about_me) },
+            text = {
+                TextPlain(
+                    id = R.string.about_me
+                )
+            },
             onClick = onAbout,
             leadingIcon = {
                 IconPlain(

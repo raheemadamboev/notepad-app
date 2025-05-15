@@ -1,16 +1,22 @@
 package xyz.teamgravity.notepad.injection.provide
 
 import android.app.Application
+import androidx.paging.PagingConfig
 import androidx.room.Room
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import timber.log.Timber
+import xyz.teamgravity.coresdkandroid.crypto.CryptoManager
+import xyz.teamgravity.coresdkandroid.preferences.Preferences
+import xyz.teamgravity.coresdkandroid.review.ReviewManager
+import xyz.teamgravity.coresdkandroid.update.UpdateManager
+import xyz.teamgravity.notepad.core.constant.PagingConst
 import xyz.teamgravity.notepad.data.local.note.constant.NoteDatabaseConst
 import xyz.teamgravity.notepad.data.local.note.dao.NoteDao
 import xyz.teamgravity.notepad.data.local.note.database.NoteDatabase
-import xyz.teamgravity.notepad.data.local.preferences.Preferences
+import xyz.teamgravity.notepad.data.local.preferences.AppPreferences
 import xyz.teamgravity.notepad.data.repository.NoteRepository
 import javax.inject.Singleton
 
@@ -20,10 +26,11 @@ object ApplicationModule {
 
     @Provides
     @Singleton
-    fun provideNoteDatabase(application: Application): NoteDatabase =
-        Room.databaseBuilder(application, NoteDatabase::class.java, NoteDatabaseConst.NAME)
-            .addMigrations()
-            .build()
+    fun provideNoteDatabase(application: Application): NoteDatabase = Room.databaseBuilder(
+        context = application,
+        klass = NoteDatabase::class.java,
+        name = NoteDatabaseConst.NAME
+    ).addMigrations().build()
 
     @Provides
     @Singleton
@@ -31,7 +38,22 @@ object ApplicationModule {
 
     @Provides
     @Singleton
-    fun provideNoteRepository(noteDao: NoteDao): NoteRepository = NoteRepository(noteDao)
+    fun providePagingConfig(): PagingConfig = PagingConfig(
+        pageSize = PagingConst.PAGE_SIZE,
+        prefetchDistance = PagingConst.PREFETCH_DISTANCE,
+        maxSize = PagingConst.MAX_SIZE,
+        enablePlaceholders = PagingConst.ENABLE_PLACEHOLDERS
+    )
+
+    @Provides
+    @Singleton
+    fun provideNoteRepository(
+        noteDao: NoteDao,
+        pagingConfig: PagingConfig
+    ): NoteRepository = NoteRepository(
+        dao = noteDao,
+        config = pagingConfig
+    )
 
     @Provides
     @Singleton
@@ -39,5 +61,33 @@ object ApplicationModule {
 
     @Provides
     @Singleton
-    fun providePreferences(application: Application): Preferences = Preferences(application)
+    fun provideCryptoManager(): CryptoManager = CryptoManager()
+
+    @Provides
+    @Singleton
+    fun providePreferences(
+        cryptoManager: CryptoManager,
+        application: Application
+    ): Preferences = Preferences(
+        crypto = cryptoManager,
+        context = application
+    )
+
+    @Provides
+    @Singleton
+    fun provideAppPreferences(preferences: Preferences): AppPreferences = AppPreferences(preferences)
+
+    @Provides
+    @Singleton
+    fun provideUpdateManager(application: Application): UpdateManager = UpdateManager(application)
+
+    @Provides
+    @Singleton
+    fun provideReviewManager(
+        preferences: Preferences,
+        application: Application
+    ): ReviewManager = ReviewManager(
+        preferences = preferences,
+        context = application
+    )
 }

@@ -25,4 +25,6 @@
 
 -keep class xyz.teamgravity.notepad.data.local.note.entity.** { *; }
 -keep class xyz.teamgravity.notepad.data.model.** { *; }
+-keep class xyz.teamgravity.coresdkandroid.** { *; }
+-keep class xyz.teamgravity.coresdkcompose.** { *; }
 -keep class xyz.teamgravity.pin_lock_compose.** { *; }
