@@ -107,9 +107,6 @@ dependencies {
     // splash
     implementation(libs.splash)
 
-    // collections
-    implementation(libs.collections)
-
     // firebase
     implementation(platform(libs.firebase))
     implementation(libs.firebase.analytics)
