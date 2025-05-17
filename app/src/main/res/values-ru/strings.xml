@@ -5,18 +5,18 @@
     <!-- NoteList -->
     <string name="delete_all_notes">Удалить все заметки</string>
     <string name="auto_save">Автосохранение</string>
-    <string name="pin_lock">PIN защита</string>
-    <string name="support">Подключите нас</string>
+    <string name="pin_lock">PIN-код</string>
+    <string name="support">Свяжитесь с нами</string>
     <string name="share">Поделиться</string>
-    <string name="rate">Оценивать</string>
+    <string name="rate">Оценить</string>
     <string name="source_code">Исходный код</string>
     <string name="about_me">Обо мне</string>
-    <string name="share_app">Простой и лёгкий? Попробуйте Notepad -> %1$s</string>
+    <string name="share_app">Просто и лёгко? Попробуйте Notepad -> %1$s</string>
     <string name="choose">Выберите</string>
     <string name="no">Нет</string>
     <string name="yes">Да</string>
     <string name="confirm_deletion">Подтвердить удаление</string>
-    <string name="wanna_delete_all">Хотите ли вы удалите все заметки?</string>
+    <string name="wanna_delete_all">Хотите ли вы удалить все заметки?</string>
 
     <!-- NoteAdd -->
     <string name="title">Заголовок</string>
@@ -28,35 +28,35 @@
 
     <!-- Support -->
     <string name="need_help">Нужна помощь?</string>
-    <string name="connect_us">Подключите нас</string>
-    <string name="connect_us_body">Сообщите нам, если вы столкнулись с проблемой или у вас есть предложение по улучшению приложения. Мы заботимся о наших пользователях!</string>
+    <string name="connect_us">Свяжитесь с нами</string>
+    <string name="connect_us_body">Сообщите нам, если у вас возникла проблема или есть предложение по улучшению приложения. Мы заботимся о наших пользователях!</string>
     <string name="via_telegram">через Telegram</string>
     <string name="via_email">через Email</string>
     <string name="improvement">Улучшение для Notepad</string>
 
     <!-- PinLock -->
-    <string name="protect_with_pin_lock">Защитить с PIN lock</string>
-    <string name="change_pin_lock">Поменять PIN lock</string>
-    <string name="enter_your_pin">Введите ваш PIN</string>
-    <string name="create_new_pin">Создайте новый PIN</string>
-    <string name="pin_lock_warning">Пожалуйста, запомните ваш PIN! Если вы забудете ваш PIN, вы не сможете получить доступ к своим заметкам.</string>
+    <string name="protect_with_pin_lock">Защитить с помощью PIN-кода</string>
+    <string name="change_pin_lock">Изменить PIN-код</string>
+    <string name="enter_your_pin">Введите ваш PIN-код</string>
+    <string name="create_new_pin">Создать новый PIN-код</string>
+    <string name="pin_lock_warning">Пожалуйста, запомните ваш PIN-код! Если вы его забудете, вы не сможете получить доступ к своим заметкам.</string>
     <string name="got_it">Понятно</string>
     <string name="warning">Предупреждение</string>
 
     <!-- Content Descriptions -->
     <string name="cd_more_vertical">Дополнительные действия</string>
     <string name="cd_add_note">Добавить заметку</string>
-    <string name="cd_back_button">Навигация назад</string>
+    <string name="cd_back_button">Назад</string>
     <string name="cd_done_button">Сохранить заметку</string>
     <string name="cd_delete_button">Удалить заметку</string>
-    <string name="cd_app_icon">Значок приложения</string>
+    <string name="cd_app_icon">Иконка приложения</string>
     <string name="cd_company_logo">Логотип компании</string>
     <string name="cd_user_support">Поддержка пользователей</string>
-    <string name="cd_via_telegram">Подключайтесь к нам через Telegram</string>
-    <string name="cd_via_email">Подключайтесь к нам через Email</string>
+    <string name="cd_via_telegram">Связаться с нами через Telegram</string>
+    <string name="cd_via_email">Связаться с нами через Emai</string>
 
     <!-- Shortcut -->
     <string name="shortcut_add_note_short_label">Добавить заметку</string>
-    <string name="shortcut_add_note_long_label">Быстро добавьте заметку, нажав на действия</string>
+    <string name="shortcut_add_note_long_label">Быстро добавьте заметку, нажав на действие</string>
     <string name="shortcut_add_note_disabled_message">Быстрое добавление заметок на данный момент отключено</string>
 </resources>
