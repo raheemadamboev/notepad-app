@@ -24,29 +24,29 @@
 
     <!-- NoteEdit -->
     <string name="delete">Delete</string>
-    <string name="wanna_delete_note">Do you want to delete the note?</string>
+    <string name="wanna_delete_note">Do you want to delete this note?</string>
 
     <!-- Support -->
     <string name="need_help">Need help?</string>
     <string name="connect_us">Connect us</string>
-    <string name="connect_us_body">Let us know if you face a problem or you have a suggestion to improve the application. We care about our users!</string>
+    <string name="connect_us_body">Let us know if you\'re facing a problem or have suggestions to improve the app. We care about our users!</string>
     <string name="via_telegram">via Telegram</string>
     <string name="via_email">via Email</string>
-    <string name="improvement">Improvement for Notepad</string>
+    <string name="improvement">Suggestions for Notepad</string>
 
     <!-- PinLock -->
     <string name="protect_with_pin_lock">Protect with PIN lock</string>
     <string name="change_pin_lock">Change PIN lock</string>
     <string name="enter_your_pin">Enter your PIN</string>
-    <string name="create_new_pin">Create new PIN</string>
-    <string name="pin_lock_warning">Please, remember your PIN carefully! If you forget your PIN, you won\'t be able to access your notes.</string>
+    <string name="create_new_pin">Create a new PIN</string>
+    <string name="pin_lock_warning">Please remember your PIN carefully! If you forget it, you won\'t be able to access your notes.</string>
     <string name="got_it">Got it</string>
     <string name="warning">Warning</string>
 
     <!-- Content Descriptions -->
     <string name="cd_more_vertical">More actions</string>
     <string name="cd_add_note">Add note</string>
-    <string name="cd_back_button">Navigate back</string>
+    <string name="cd_back_button">Go back</string>
     <string name="cd_done_button">Save note</string>
     <string name="cd_delete_button">Delete note</string>
     <string name="cd_app_icon">App icon</string>
@@ -57,6 +57,6 @@
 
     <!-- Shortcut -->
     <string name="shortcut_add_note_short_label">Add note</string>
-    <string name="shortcut_add_note_long_label">Add note quickly by pressing the action</string>
-    <string name="shortcut_add_note_disabled_message">Adding note quickly is disabled at the moment</string>
+    <string name="shortcut_add_note_long_label">Quickly add a note by pressing this action</string>
+    <string name="shortcut_add_note_disabled_message">Quick add is currently disabled</string>
 </resources>
