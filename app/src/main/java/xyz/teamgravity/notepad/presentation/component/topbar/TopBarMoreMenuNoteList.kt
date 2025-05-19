@@ -6,6 +6,7 @@ import androidx.compose.material.icons.rounded.MoreVert
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.runtime.Composable
+import xyz.teamgravity.coresdkandroid.android.BuildUtil
 import xyz.teamgravity.notepad.R
 import xyz.teamgravity.notepad.presentation.component.button.IconButtonPlain
 import xyz.teamgravity.notepad.presentation.component.image.IconPlain
@@ -18,13 +19,9 @@ fun TopBarMoreMenuNoteList(
     onDismiss: () -> Unit,
     autoSave: Boolean,
     onAutoSave: () -> Unit,
-    onPinLock: () -> Unit,
     onDeleteAll: () -> Unit,
-    onSupport: () -> Unit,
-    onShare: () -> Unit,
-    onRate: () -> Unit,
-    onSourceCode: () -> Unit,
-    onAbout: () -> Unit
+    onPinLock: () -> Unit,
+    onLanguage: () -> Unit
 ) {
     IconButtonPlain(
         onClick = onExpand,
@@ -60,20 +57,6 @@ fun TopBarMoreMenuNoteList(
         DropdownMenuItem(
             text = {
                 TextPlain(
-                    id = R.string.pin_lock
-                )
-            },
-            onClick = onPinLock,
-            leadingIcon = {
-                IconPlain(
-                    icon = R.drawable.ic_lock,
-                    contentDescription = R.string.pin_lock
-                )
-            }
-        )
-        DropdownMenuItem(
-            text = {
-                TextPlain(
                     id = R.string.delete_all_notes
                 )
             },
@@ -88,72 +71,32 @@ fun TopBarMoreMenuNoteList(
         DropdownMenuItem(
             text = {
                 TextPlain(
-                    id = R.string.support
+                    id = R.string.pin_lock
                 )
             },
-            onClick = onSupport,
+            onClick = onPinLock,
             leadingIcon = {
                 IconPlain(
-                    icon = R.drawable.ic_customer_service,
-                    contentDescription = R.string.support
+                    icon = R.drawable.ic_lock,
+                    contentDescription = R.string.pin_lock
                 )
             }
         )
-        DropdownMenuItem(
-            text = {
-                TextPlain(
-                    id = R.string.share
-                )
-            },
-            onClick = onShare,
-            leadingIcon = {
-                IconPlain(
-                    icon = R.drawable.ic_share,
-                    contentDescription = R.string.share
-                )
-            }
-        )
-        DropdownMenuItem(
-            text = {
-                TextPlain(
-                    id = R.string.rate
-                )
-            },
-            onClick = onRate,
-            leadingIcon = {
-                IconPlain(
-                    icon = R.drawable.ic_star,
-                    contentDescription = R.string.rate
-                )
-            }
-        )
-        DropdownMenuItem(
-            text = {
-                TextPlain(
-                    id = R.string.source_code
-                )
-            },
-            onClick = onSourceCode,
-            leadingIcon = {
-                IconPlain(
-                    icon = R.drawable.ic_github,
-                    contentDescription = R.string.source_code
-                )
-            }
-        )
-        DropdownMenuItem(
-            text = {
-                TextPlain(
-                    id = R.string.about_me
-                )
-            },
-            onClick = onAbout,
-            leadingIcon = {
-                IconPlain(
-                    icon = R.drawable.ic_info,
-                    contentDescription = R.string.about_me
-                )
-            }
-        )
+        if (BuildUtil.atLeastTiramisu()) {
+            DropdownMenuItem(
+                text = {
+                    TextPlain(
+                        id = R.string.change_language
+                    )
+                },
+                onClick = onLanguage,
+                leadingIcon = {
+                    IconPlain(
+                        icon = R.drawable.ic_language,
+                        contentDescription = R.string.change_language
+                    )
+                }
+            )
+        }
     }
 }

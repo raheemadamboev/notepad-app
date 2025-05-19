@@ -5,6 +5,7 @@
     <string name="delete_all_notes">Delete all notes</string>
     <string name="auto_save">Auto-save</string>
     <string name="pin_lock">PIN lock</string>
+    <string name="change_language">Change language</string>
     <string name="support">Connect us</string>
     <string name="share">Share</string>
     <string name="rate">Rate</string>
@@ -43,6 +44,7 @@
     <string name="warning">Warning</string>
 
     <!-- Content Descriptions -->
+    <string name="cd_open_drawer">Open drawer menu</string>
     <string name="cd_more_vertical">More actions</string>
     <string name="cd_add_note">Add note</string>
     <string name="cd_back_button">Go back</string>

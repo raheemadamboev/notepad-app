@@ -6,6 +6,7 @@
     <string name="delete_all_notes">Hammasini o\'chirish</string>
     <string name="auto_save">Avtomatik-saqlash</string>
     <string name="pin_lock">PIN himoya</string>
+    <string name="change_language">Tilni o\'zgartirish</string>
     <string name="support">Yordam</string>
     <string name="share">Ulashish</string>
     <string name="rate">Baholash</string>
@@ -44,6 +45,7 @@
     <string name="warning">Diqqat</string>
 
     <!-- Content Descriptions -->
+    <string name="cd_open_drawer">Ko\'proq amallarni ochish</string>
     <string name="cd_more_vertical">Ko\'proq amallar</string>
     <string name="cd_add_note">Eslatma qo\'shish</string>
     <string name="cd_back_button">Orqaga qaytish</string>

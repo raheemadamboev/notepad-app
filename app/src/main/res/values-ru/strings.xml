@@ -6,6 +6,7 @@
     <string name="delete_all_notes">Удалить все заметки</string>
     <string name="auto_save">Автосохранение</string>
     <string name="pin_lock">PIN-код</string>
+    <string name="change_language">Изменить язык</string>
     <string name="support">Связаться с нами</string>
     <string name="share">Поделиться</string>
     <string name="rate">Оценить</string>
@@ -44,6 +45,7 @@
     <string name="warning">Предупреждение</string>
 
     <!-- Content Descriptions -->
+    <string name="cd_open_drawer">Открыть меню</string>
     <string name="cd_more_vertical">Дополнительные действия</string>
     <string name="cd_add_note">Добавить заметку</string>
     <string name="cd_back_button">Назад</string>
