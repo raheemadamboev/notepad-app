@@ -11,7 +11,7 @@ import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
 import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.rounded.Add
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -131,7 +131,7 @@ fun NoteListScreen(
                 onClick = {
                     navigator.navigate(NoteAddScreenDestination)
                 },
-                icon = Icons.Default.Add,
+                icon = Icons.Rounded.Add,
                 contentDescription = R.string.cd_add_note
             )
         },

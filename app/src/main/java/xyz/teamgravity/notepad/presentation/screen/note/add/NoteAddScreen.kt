@@ -4,8 +4,8 @@ import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBackIos
-import androidx.compose.material.icons.filled.Done
+import androidx.compose.material.icons.automirrored.rounded.ArrowBackIos
+import androidx.compose.material.icons.rounded.Done
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -49,7 +49,7 @@ fun NoteAddScreen(
                 navigationIcon = {
                     IconButtonPlain(
                         onClick = navigator::navigateUp,
-                        icon = Icons.AutoMirrored.Filled.ArrowBackIos,
+                        icon = Icons.AutoMirrored.Rounded.ArrowBackIos,
                         contentDescription = R.string.cd_back_button
                     )
                 }
@@ -59,7 +59,7 @@ fun NoteAddScreen(
             if (!viewmodel.autoSave) {
                 NoteFloatingActionButton(
                     onClick = viewmodel::onSaveNote,
-                    icon = Icons.Default.Done,
+                    icon = Icons.Rounded.Done,
                     contentDescription = R.string.cd_add_note
                 )
             }

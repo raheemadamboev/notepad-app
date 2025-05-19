@@ -1,7 +1,7 @@
 package xyz.teamgravity.notepad.presentation.component.topbar
 
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.MoreVert
+import androidx.compose.material.icons.rounded.MoreVert
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.runtime.Composable
@@ -20,7 +20,7 @@ fun TopBarMoreMenuNoteEdit(
 ) {
     IconButtonPlain(
         onClick = onExpand,
-        icon = Icons.Default.MoreVert,
+        icon = Icons.Rounded.MoreVert,
         contentDescription = R.string.cd_more_vertical
     )
     DropdownMenu(
