@@ -40,7 +40,9 @@ import com.ramcosta.composedestinations.generated.destinations.SupportScreenDest
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
+import xyz.teamgravity.coresdkandroid.android.BuildUtil
 import xyz.teamgravity.coresdkandroid.connect.ConnectUtil
+import xyz.teamgravity.coresdkandroid.settings.navigateAppLocaleSettings
 import xyz.teamgravity.coresdkcompose.observe.ObserveEvent
 import xyz.teamgravity.coresdkcompose.review.DialogReview
 import xyz.teamgravity.coresdkcompose.update.DialogUpdateAvailable
@@ -106,7 +108,7 @@ fun NoteListScreen(
                     navigator.navigate(PinLockScreenDestination)
                 },
                 onLanguage = {
-                    // FIXME implement
+                    if (BuildUtil.atLeastTiramisu()) context.navigateAppLocaleSettings()
                 },
                 onSupport = {
                     navigator.navigate(SupportScreenDestination)
@@ -158,7 +160,7 @@ fun NoteListScreen(
                                 viewmodel.onMenuCollapse()
                             },
                             onLanguage = {
-                                // FIXME implement
+                                if (BuildUtil.atLeastTiramisu()) context.navigateAppLocaleSettings()
                                 viewmodel.onMenuCollapse()
                             }
                         )
