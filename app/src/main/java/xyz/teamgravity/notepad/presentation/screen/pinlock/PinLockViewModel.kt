@@ -4,7 +4,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import xyz.teamgravity.pin_lock_compose.PinManager
 import javax.inject.Inject
 
@@ -15,11 +17,21 @@ class PinLockViewModel @Inject constructor(
     var pinLockState: PinLockState by mutableStateOf(PinLockState.Content)
         private set
 
-    var pinLockEnabled: Boolean by mutableStateOf(PinManager.pinExists())
+    var pinLockEnabled: Boolean by mutableStateOf(false)
         private set
 
     var pinLockWarningShown: Boolean by mutableStateOf(false)
         private set
+
+    init {
+        getPinlockEnabled()
+    }
+
+    private fun getPinlockEnabled() {
+        viewModelScope.launch {
+            pinLockEnabled = PinManager.pinExists()
+        }
+    }
 
     private fun changePinLockState(state: PinLockState) {
         pinLockState = state
@@ -38,8 +50,10 @@ class PinLockViewModel @Inject constructor(
     ///////////////////////////////////////////////////////////////////////////
 
     fun onPinLockEnabledChange() {
-        pinLockEnabled = PinManager.pinExists()
-        if (pinLockEnabled) changePinLockState(PinLockState.Remove) else showPinLockWarning()
+        viewModelScope.launch {
+            pinLockEnabled = PinManager.pinExists()
+            if (pinLockEnabled) changePinLockState(PinLockState.Remove) else showPinLockWarning()
+        }
     }
 
     fun onPinLockChange() {
@@ -56,9 +70,11 @@ class PinLockViewModel @Inject constructor(
     }
 
     fun onPinLockCorrect() {
-        if (pinLockState == PinLockState.Remove) PinManager.clearPin()
-        pinLockEnabled = PinManager.pinExists()
-        changePinLockState(PinLockState.Content)
+        viewModelScope.launch {
+            if (pinLockState == PinLockState.Remove) PinManager.clearPin()
+            pinLockEnabled = PinManager.pinExists()
+            changePinLockState(PinLockState.Content)
+        }
     }
 
     ///////////////////////////////////////////////////////////////////////////
