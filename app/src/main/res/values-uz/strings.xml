@@ -8,8 +8,8 @@
     <string name="pin_lock">PIN himoya</string>
     <string name="support">Yordam</string>
     <string name="share">Ulashish</string>
-    <string name="rate">Baho berish</string>
-    <string name="source_code">Manba kodi</string>
+    <string name="rate">Baholash</string>
+    <string name="source_code">Dastur kodi</string>
     <string name="about_me">Dastur haqida</string>
     <string name="share_app">Oddiy va oson? Eslatmani sinab ko\'ring -> %1$s</string>
     <string name="choose">Tanlang</string>
@@ -24,7 +24,7 @@
 
     <!-- NoteEdit -->
     <string name="delete">O\'chirish</string>
-    <string name="wanna_delete_note">Eslatmani o\'chirishni xohlaysizmi?</string>
+    <string name="wanna_delete_note">Bu eslatmani o\'chirishni xohlaysizmi?</string>
 
     <!-- Support -->
     <string name="need_help">Yordam kerakmi?</string>
@@ -32,20 +32,20 @@
     <string name="connect_us_body">Taklifingizni yoki qanday muammoga duch kelayotganingizni bizga xabar bering. Biz foydalanuvchilarimiz haqida qayg\'uramiz!</string>
     <string name="via_telegram">Telegram orqali</string>
     <string name="via_email">Email orqali</string>
-    <string name="improvement">Eslatma uchun fikr</string>
+    <string name="improvement">Eslatma uchun takliflar</string>
 
     <!-- PinLock -->
     <string name="protect_with_pin_lock">PIN bilan himoyalash</string>
     <string name="change_pin_lock">PIN kodni o\'zgartirish</string>
     <string name="enter_your_pin">PIN kodingizni kiriting</string>
-    <string name="create_new_pin">Yangi PIN kod yaratish</string>
+    <string name="create_new_pin">Yangi PIN kod yarating</string>
     <string name="pin_lock_warning">Iltimos, PIN kodingizni ehtiyotkorlik bilan esingizda saqlang! Agarda PIN kodingizni unutsangiz, eslatmalaringizdan foydalana olmaysiz.</string>
     <string name="got_it">Tushundim</string>
     <string name="warning">Diqqat</string>
 
     <!-- Content Descriptions -->
     <string name="cd_more_vertical">Ko\'proq amallar</string>
-    <string name="cd_add_note">Eslatma yaratish</string>
+    <string name="cd_add_note">Eslatma qo\'shish</string>
     <string name="cd_back_button">Orqaga qaytish</string>
     <string name="cd_done_button">Eslatmani saqlash</string>
     <string name="cd_delete_button">Eslatmani o\'chirish</string>
@@ -58,5 +58,5 @@
     <!-- Shortcut -->
     <string name="shortcut_add_note_short_label">Eslatma qo\'shish</string>
     <string name="shortcut_add_note_long_label">Tugmani bosish orqali darhol eslatma qo\'shing</string>
-    <string name="shortcut_add_note_disabled_message">Eslatmalarni darhol qo\'shish hozirda mavjud emas</string>
+    <string name="shortcut_add_note_disabled_message">Tez qo‘shish hozirda o‘chirib qo‘yilgan</string>
 </resources>
