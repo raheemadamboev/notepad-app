@@ -13,7 +13,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBackIos
+import androidx.compose.material.icons.automirrored.rounded.ArrowBackIos
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -50,7 +50,7 @@ fun PinLockLandscapeScreen(
                         navigationIcon = {
                             IconButtonPlain(
                                 onClick = onBackButtonClick,
-                                icon = Icons.AutoMirrored.Filled.ArrowBackIos,
+                                icon = Icons.AutoMirrored.Rounded.ArrowBackIos,
                                 contentDescription = R.string.cd_back_button
                             )
                         }

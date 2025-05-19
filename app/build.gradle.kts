@@ -17,8 +17,8 @@ android {
         applicationId = "xyz.teamgravity.notepad"
         minSdk = libs.versions.sdk.min.get().toInt()
         targetSdk = libs.versions.sdk.target.get().toInt()
-        versionCode = 12
-        versionName = "1.2.0"
+        versionCode = 13
+        versionName = "1.2.1"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         vectorDrawables {
@@ -27,13 +27,19 @@ android {
 
         ndk {
             debugSymbolLevel = "FULL"
-            abiFilters.addAll(setOf("armeabi-v7a", "arm64-v8a", "x86_64", "x86"))
+            abiFilters += setOf("armeabi-v7a", "arm64-v8a", "x86_64", "x86")
         }
 
         bundle {
             language {
                 enableSplit = false
             }
+        }
+
+        androidResources {
+            generateLocaleConfig = true
+            localeFilters.clear()
+            localeFilters += setOf("en", "ru", "uz")
         }
     }
 
