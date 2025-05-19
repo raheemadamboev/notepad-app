@@ -4,7 +4,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import xyz.teamgravity.pin_lock_compose.PinManager
 import javax.inject.Inject
 
@@ -20,7 +22,9 @@ class MainViewModel @Inject constructor(
     }
 
     private fun getNavigation() {
-        navigation = if (PinManager.pinExists()) Navigation.PinLock else Navigation.Content
+        viewModelScope.launch {
+            navigation = if (PinManager.pinExists()) Navigation.PinLock else Navigation.Content
+        }
     }
 
     ///////////////////////////////////////////////////////////////////////////
