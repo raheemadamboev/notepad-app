@@ -13,6 +13,7 @@ import androidx.compose.material3.DrawerState
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalDrawerSheet
 import androidx.compose.material3.NavigationDrawerItem
+import androidx.compose.material3.NavigationDrawerItemDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -38,7 +39,9 @@ fun DrawerNoteList(
     onSourceCode: () -> Unit,
     onAbout: () -> Unit
 ) {
-    ModalDrawerSheet {
+    ModalDrawerSheet(
+        drawerContentColor = MaterialTheme.colorScheme.onBackground
+    ) {
         Column(
             modifier = Modifier
                 .padding(horizontal = 8.dp)
@@ -117,6 +120,10 @@ private fun DrawerItem(
 ) {
     NavigationDrawerItem(
         selected = false,
+        colors = NavigationDrawerItemDefaults.colors(
+            unselectedIconColor = MaterialTheme.colorScheme.onBackground,
+            unselectedTextColor = MaterialTheme.colorScheme.onBackground
+        ),
         icon = {
             IconPlain(
                 icon = icon,
