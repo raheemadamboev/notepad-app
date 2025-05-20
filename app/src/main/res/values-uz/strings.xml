@@ -18,6 +18,7 @@
     <string name="yes">Ha</string>
     <string name="confirm_deletion">O\'chirishni tasdiqlang</string>
     <string name="wanna_delete_all">Hamma eslatmalarni o\'chirishni xohlaysizmi?</string>
+    <string name="empty_notes_message">Siz qo\'shgan eslatmalar bu yerda ko\'rinadi</string>
 
     <!-- NoteAdd -->
     <string name="title">Sarlavha</string>

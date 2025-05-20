@@ -54,6 +54,7 @@ import xyz.teamgravity.notepad.presentation.component.button.NoteFloatingActionB
 import xyz.teamgravity.notepad.presentation.component.card.CardNote
 import xyz.teamgravity.notepad.presentation.component.dialog.NoteAlertDialog
 import xyz.teamgravity.notepad.presentation.component.drawer.DrawerNoteList
+import xyz.teamgravity.notepad.presentation.component.text.TextInfo
 import xyz.teamgravity.notepad.presentation.component.text.TextPlain
 import xyz.teamgravity.notepad.presentation.component.topbar.TopBar
 import xyz.teamgravity.notepad.presentation.component.topbar.TopBarMoreMenuNoteList
@@ -178,38 +179,45 @@ fun NoteListScreen(
             },
             contentWindowInsets = WindowInsets.safeDrawing
         ) { padding ->
-            LazyVerticalStaggeredGrid(
-                columns = StaggeredGridCells.Adaptive(150.dp),
-                contentPadding = padding,
-                horizontalArrangement = Arrangement.spacedBy(10.dp),
-                verticalItemSpacing = 10.dp,
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(
-                        start = 10.dp,
-                        top = 10.dp,
-                        end = 10.dp
-                    )
-            ) {
-                items(
-                    count = notes.itemCount,
-                    key = notes.itemKey(
-                        key = { note ->
-                            note.id!!
-                        }
-                    ),
-                    contentType = notes.itemContentType()
-                ) { index ->
-                    val note = notes[index]
-                    if (note != null) {
-                        CardNote(
-                            note = note,
-                            onClick = {
-                                navigator.navigate(NoteEditScreenDestination(id = it.id!!))
-                            }
+            if (notes.itemCount > 0) {
+                LazyVerticalStaggeredGrid(
+                    columns = StaggeredGridCells.Adaptive(150.dp),
+                    contentPadding = padding,
+                    horizontalArrangement = Arrangement.spacedBy(10.dp),
+                    verticalItemSpacing = 10.dp,
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(
+                            start = 10.dp,
+                            top = 10.dp,
+                            end = 10.dp
                         )
+                ) {
+                    items(
+                        count = notes.itemCount,
+                        key = notes.itemKey(
+                            key = { note ->
+                                note.id!!
+                            }
+                        ),
+                        contentType = notes.itemContentType()
+                    ) { index ->
+                        val note = notes[index]
+                        if (note != null) {
+                            CardNote(
+                                note = note,
+                                onClick = {
+                                    navigator.navigate(NoteEditScreenDestination(id = it.id!!))
+                                }
+                            )
+                        }
                     }
                 }
+            } else {
+                TextInfo(
+                    icon = R.drawable.ic_bulb,
+                    message = R.string.empty_notes_message
+                )
             }
             if (viewmodel.deleteAllShown) {
                 NoteAlertDialog(
