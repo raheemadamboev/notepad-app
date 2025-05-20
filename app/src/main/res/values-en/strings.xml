@@ -17,6 +17,7 @@
     <string name="yes">Yes</string>
     <string name="confirm_deletion">Confirm deletion</string>
     <string name="wanna_delete_all">Do you want to delete all notes?</string>
+    <string name="empty_notes_message">Notes you add appear here</string>
 
     <!-- NoteAdd -->
     <string name="title">Title</string>

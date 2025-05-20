@@ -18,6 +18,7 @@
     <string name="yes">Да</string>
     <string name="confirm_deletion">Подтвердить удаление</string>
     <string name="wanna_delete_all">Хотите ли вы удалить все заметки?</string>
+    <string name="empty_notes_message">Заметки, которые вы добавите, появятся здесь</string>
 
     <!-- NoteAdd -->
     <string name="title">Заголовок</string>

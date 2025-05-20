@@ -44,6 +44,7 @@ import xyz.teamgravity.coresdkandroid.android.BuildUtil
 import xyz.teamgravity.coresdkandroid.connect.ConnectUtil
 import xyz.teamgravity.coresdkandroid.settings.navigateAppLocaleSettings
 import xyz.teamgravity.coresdkcompose.observe.ObserveEvent
+import xyz.teamgravity.coresdkcompose.paging.shouldShowEmptyState
 import xyz.teamgravity.coresdkcompose.review.DialogReview
 import xyz.teamgravity.coresdkcompose.update.DialogUpdateAvailable
 import xyz.teamgravity.coresdkcompose.update.DialogUpdateDownloaded
@@ -54,6 +55,7 @@ import xyz.teamgravity.notepad.presentation.component.button.NoteFloatingActionB
 import xyz.teamgravity.notepad.presentation.component.card.CardNote
 import xyz.teamgravity.notepad.presentation.component.dialog.NoteAlertDialog
 import xyz.teamgravity.notepad.presentation.component.drawer.DrawerNoteList
+import xyz.teamgravity.notepad.presentation.component.text.TextInfo
 import xyz.teamgravity.notepad.presentation.component.text.TextPlain
 import xyz.teamgravity.notepad.presentation.component.topbar.TopBar
 import xyz.teamgravity.notepad.presentation.component.topbar.TopBarMoreMenuNoteList
@@ -72,6 +74,7 @@ fun NoteListScreen(
     val context = LocalContext.current
     val activity = LocalActivity.current
     val notes = viewmodel.notes.collectAsLazyPagingItems()
+    val shouldShowEmptyState by notes.shouldShowEmptyState()
     val autoSave by viewmodel.autoSave.collectAsStateWithLifecycle()
     val updateLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.StartIntentSenderForResult(),
@@ -210,6 +213,12 @@ fun NoteListScreen(
                         )
                     }
                 }
+            }
+            if (shouldShowEmptyState) {
+                TextInfo(
+                    icon = R.drawable.ic_bulb,
+                    message = R.string.empty_notes_message
+                )
             }
             if (viewmodel.deleteAllShown) {
                 NoteAlertDialog(
