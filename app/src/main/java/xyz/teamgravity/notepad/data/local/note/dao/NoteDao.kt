@@ -35,10 +35,10 @@ interface NoteDao {
     @Delete
     suspend fun deleteNote(note: NoteEntity)
 
-    @Query("DELETE FROM $TABLE_NOTE")
-    suspend fun deleteAllNotes()
+    @Query("DELETE FROM $TABLE_NOTE WHERE `deletedTime` IS NOT NULL")
+    suspend fun deleteAllDeletedNotes()
 
-    @Query("DELETE FROM $TABLE_NOTE WHERE :expiredTime >= deletedTime")
+    @Query("DELETE FROM $TABLE_NOTE WHERE :expiredTime >= `deletedTime`")
     suspend fun deleteExpiredNotes(expiredTime: Long)
 
     ///////////////////////////////////////////////////////////////////////////

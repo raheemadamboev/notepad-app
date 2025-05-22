@@ -48,9 +48,9 @@ class NoteRepository(
         }
     }
 
-    suspend fun deleteAllNotes() {
+    suspend fun deleteAllDeletedNotes() {
         withContext(Dispatchers.IO) {
-            dao.deleteAllNotes()
+            dao.deleteAllDeletedNotes()
         }
     }
 

@@ -83,7 +83,7 @@ class NoteTrashViewModel @Inject constructor(
         onDeleteAllDismiss()
         viewModelScope.launch {
             withContext(NonCancellable) {
-                repository.deleteAllNotes()
+                repository.deleteAllDeletedNotes()
             }
             _event.send(NoteTrashEvent.ShowMessage(R.string.all_notes_deleted_trash))
         }
