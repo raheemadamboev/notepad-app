@@ -10,12 +10,8 @@ import com.ramcosta.composedestinations.generated.destinations.NoteEditScreenDes
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.receiveAsFlow
-import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import xyz.teamgravity.notepad.core.util.AutoSaver
 import xyz.teamgravity.notepad.data.local.preferences.AppPreferences
@@ -35,11 +31,7 @@ class NoteEditViewModel @Inject constructor(
 
     private val args: NoteEditScreenArgs = NoteEditScreenDestination.argsFrom(handle)
 
-    private val note: StateFlow<NoteModel?> = repository.getNote(args.id).stateIn(
-        scope = viewModelScope,
-        started = SharingStarted.Eagerly,
-        initialValue = null
-    )
+    private var note: NoteModel? = null
 
     var title: String by mutableStateOf("")
         private set
@@ -63,18 +55,17 @@ class NoteEditViewModel @Inject constructor(
         get() = "$title\n\n$body"
 
     init {
-        observe()
+        getNote()
     }
 
-    private fun observe() {
-        observeNote()
-    }
-
-    private fun handleNote(note: NoteModel?) {
-        if (note == null) return
-        title = note.title
-        body = note.body
-        initializeAutoSaver(note)
+    private fun getNote() {
+        viewModelScope.launch {
+            val note = repository.getNote(args.id).first() ?: return@launch
+            title = note.title
+            body = note.body
+            this@NoteEditViewModel.note = note
+            initializeAutoSaver(note)
+        }
     }
 
     private fun initializeAutoSaver(note: NoteModel) {
@@ -90,12 +81,15 @@ class NoteEditViewModel @Inject constructor(
         }
     }
 
-    private fun observeNote() {
-        viewModelScope.launch {
-            note.collectLatest { note ->
-                handleNote(note)
-            }
-        }
+    private suspend fun saveNote() {
+        val note = note ?: return
+        repository.updateNote(
+            note.copy(
+                title = title,
+                body = body,
+                edited = LocalDateTime.now()
+            )
+        )
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -126,23 +120,22 @@ class NoteEditViewModel @Inject constructor(
         deleteShown = false
     }
 
-    fun onUpdateNote() {
-        val note = note.value ?: return
+    fun onAutoSave() {
+        if (!autoSave) return
         viewModelScope.launch {
-            repository.updateNote(
-                note.copy(
-                    title = title,
-                    body = body,
-                    edited = LocalDateTime.now()
-                )
-            )
+            saveNote()
+        }
+    }
 
+    fun onUpdateNote() {
+        viewModelScope.launch {
+            saveNote()
             _event.send(NoteEditEvent.NoteUpdated)
         }
     }
 
     fun onDeleteNote() {
-        val note = note.value ?: return
+        val note = note ?: return
         viewModelScope.launch {
             onDeleteDismiss()
 
