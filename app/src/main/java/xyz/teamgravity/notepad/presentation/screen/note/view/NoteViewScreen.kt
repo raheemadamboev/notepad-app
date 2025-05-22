@@ -14,11 +14,13 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.ArrowBackIos
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.ramcosta.composedestinations.annotation.Destination
@@ -97,14 +99,21 @@ fun NoteViewScreen(
                 Text(
                     text = stringResource(R.string.x_deleted, viewmodel.deletedTime)
                 )
-                HorizontalDivider()
-                Text(
-                    text = viewmodel.title
-                )
-                HorizontalDivider()
-                Text(
-                    text = viewmodel.body
-                )
+                if (viewmodel.title.isNotBlank()) {
+                    HorizontalDivider()
+                    Text(
+                        text = viewmodel.title,
+                        style = MaterialTheme.typography.titleMedium,
+                        fontWeight = FontWeight.Bold
+                    )
+                }
+                if (viewmodel.body.isNotBlank()) {
+                    HorizontalDivider()
+                    Text(
+                        text = viewmodel.body,
+                        style = MaterialTheme.typography.bodyMedium
+                    )
+                }
             }
         }
         if (viewmodel.deleteShown) {
