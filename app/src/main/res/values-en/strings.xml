@@ -18,6 +18,7 @@
     <string name="confirm_deletion">Confirm deletion</string>
     <string name="wanna_delete_all">Do you want to delete all notes?</string>
     <string name="empty_notes_message">Notes you add appear here</string>
+    <string name="recently_deleted_notes">Recently deleted notes</string>
 
     <!-- NoteAdd -->
     <string name="title">Title</string>
@@ -26,6 +27,27 @@
     <!-- NoteEdit -->
     <string name="delete">Delete</string>
     <string name="wanna_delete_note">Do you want to delete this note?</string>
+
+    <!-- NoteTrash -->
+    <string name="all_deleted_notes_restored">All deleted notes have been restored</string>
+    <string name="all_notes_deleted_trash">All notes in the trash have been permanently deleted</string>
+    <string name="trash">Trash</string>
+    <string name="no_notes_in_trash">No notes in Trash</string>
+    <string name="trash_info">ⓘ Recently deleted notes will appear here. They\'ll stay in the trash for 30 days before being permanently deleted.</string>
+    <string name="delete_all">Delete all</string>
+    <string name="restore_all">Restore all</string>
+    <string name="wanna_delete_all_permanently">Do you want to permanently delete all notes in the trash?</string>
+    <string name="confirm_restoration">Confirm restoration</string>
+    <string name="wanna_restore_all_notes">Do you want to restore all notes in the trash?</string>
+    <string name="note_deleted_permanently">The note has been permanently deleted</string>
+    <string name="note_restored">The note has been restored</string>
+
+    <!-- NoteView -->
+    <string name="wanna_delete_note_permanently">Do you want to permanently delete this note?</string>
+    <string name="restore">Restore</string>
+    <string name="wanna_restore_note">Do you want to restore this note?</string>
+    <string name="x_last_modified">Last modified: %1$s</string>
+    <string name="x_deleted">Deleted: %1$s</string>
 
     <!-- Support -->
     <string name="need_help">Need help?</string>
@@ -61,4 +83,9 @@
     <string name="shortcut_add_note_short_label">Add note</string>
     <string name="shortcut_add_note_long_label">Quickly add a note by pressing this action</string>
     <string name="shortcut_add_note_disabled_message">Quick add is currently disabled</string>
+
+    <!-- TrashNotification -->
+    <string name="trash_notification_channel_name">Trash (Recently deleted notes)</string>
+    <string name="trash_notification_channel_description">This channel is used to notify when trash is being emptied</string>
+    <string name="trash_notification_message">Notes that have been in the trash for over 30 days are now being permanently deleted</string>
 </resources>

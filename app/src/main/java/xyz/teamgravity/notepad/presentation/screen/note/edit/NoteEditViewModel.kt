@@ -41,9 +41,6 @@ class NoteEditViewModel @Inject constructor(
         initialValue = null
     )
 
-    private val _event = Channel<NoteEditEvent>()
-    val event: Flow<NoteEditEvent> = _event.receiveAsFlow()
-
     var title: String by mutableStateOf("")
         private set
 
@@ -58,6 +55,9 @@ class NoteEditViewModel @Inject constructor(
 
     var autoSave: Boolean by mutableStateOf(AppPreferencesKey.AutoSave.default as Boolean)
         private set
+
+    private val _event = Channel<NoteEditEvent>()
+    val event: Flow<NoteEditEvent> = _event.receiveAsFlow()
 
     val sharedNote: String
         get() = "$title\n\n$body"
@@ -120,7 +120,6 @@ class NoteEditViewModel @Inject constructor(
 
     fun onDeleteShow() {
         deleteShown = true
-        onMenuCollapse()
     }
 
     fun onDeleteDismiss() {
@@ -148,7 +147,7 @@ class NoteEditViewModel @Inject constructor(
             onDeleteDismiss()
 
             if (autoSave) saver.close()
-            repository.deleteNote(note)
+            repository.updateNote(note.copy(deleted = LocalDateTime.now()))
 
             _event.send(NoteEditEvent.NoteUpdated)
         }

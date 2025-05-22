@@ -10,7 +10,7 @@ object NoteDatabaseConst {
     /**
      * Database version.
      */
-    const val VERSION = 1
+    const val VERSION = 2
 
     /**
      * Table note.

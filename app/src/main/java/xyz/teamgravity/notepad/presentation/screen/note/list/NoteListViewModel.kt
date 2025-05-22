@@ -38,7 +38,7 @@ class NoteListViewModel @Inject constructor(
     private val update: UpdateManager
 ) : ViewModel() {
 
-    val notes: Flow<PagingData<NoteModel>> = repository.getAllNotes().cachedIn(viewModelScope)
+    val notes: Flow<PagingData<NoteModel>> = repository.getValidNotes().cachedIn(viewModelScope)
 
     val autoSave: StateFlow<Boolean> = preferences.getAutoSave().stateIn(
         scope = viewModelScope,
@@ -177,7 +177,6 @@ class NoteListViewModel @Inject constructor(
     }
 
     fun onAutoSaveChange() {
-        onMenuCollapse()
         viewModelScope.launch(NonCancellable) {
             preferences.upsertAutoSave(!autoSave.value)
         }
@@ -193,7 +192,6 @@ class NoteListViewModel @Inject constructor(
 
     fun onDeleteAllShow() {
         deleteAllShown = true
-        onMenuCollapse()
     }
 
     fun onDeleteAllDismiss() {
@@ -203,7 +201,7 @@ class NoteListViewModel @Inject constructor(
     fun onDeleteAll() {
         onDeleteAllDismiss()
         viewModelScope.launch(NonCancellable) {
-            repository.deleteAllNotes()
+            repository.moveValidNotesToTrash(System.currentTimeMillis())
         }
     }
 

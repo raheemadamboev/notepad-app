@@ -70,7 +70,6 @@ fun NoteEditScreen(
                                 context = context,
                                 note = viewmodel.sharedNote
                             )
-                            viewmodel.onMenuCollapse()
                         }
                     )
                 }

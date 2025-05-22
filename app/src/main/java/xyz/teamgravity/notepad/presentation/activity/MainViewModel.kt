@@ -7,24 +7,35 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import xyz.teamgravity.notepad.core.util.manager.TrashManager
 import xyz.teamgravity.pin_lock_compose.PinManager
 import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
+    private val trash: TrashManager
 ) : ViewModel() {
+
+    var loading: Boolean = true
+        private set
 
     var navigation: Navigation by mutableStateOf(Navigation.None)
         private set
 
     init {
-        getNavigation()
+        viewModelScope.launch {
+            deleteExpiredNotes()
+            getNavigation()
+            loading = false
+        }
     }
 
-    private fun getNavigation() {
-        viewModelScope.launch {
-            navigation = if (PinManager.pinExists()) Navigation.PinLock else Navigation.Content
-        }
+    private suspend fun deleteExpiredNotes() {
+        trash.deleteExpiredNotes()
+    }
+
+    private suspend fun getNavigation() {
+        navigation = if (PinManager.pinExists()) Navigation.PinLock else Navigation.Content
     }
 
     ///////////////////////////////////////////////////////////////////////////

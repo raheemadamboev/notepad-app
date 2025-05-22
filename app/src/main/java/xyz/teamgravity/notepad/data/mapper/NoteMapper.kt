@@ -14,7 +14,8 @@ fun NoteEntity.toModel(): NoteModel {
         title = title,
         body = body,
         created = TimeUtil.fromLongToLocalDateTime(createdTime),
-        edited = TimeUtil.fromLongToLocalDateTime(editedTime)
+        edited = TimeUtil.fromLongToLocalDateTime(editedTime),
+        deleted = deletedTime?.let(TimeUtil::fromLongToLocalDateTime)
     )
 }
 
@@ -28,6 +29,7 @@ fun NoteModel.toEntity(): NoteEntity {
         title = title,
         body = body,
         createdTime = TimeUtil.fromLocalDateTimeToLong(created),
-        editedTime = TimeUtil.fromLocalDateTimeToLong(edited)
+        editedTime = TimeUtil.fromLocalDateTimeToLong(edited),
+        deletedTime = deleted?.let(TimeUtil::fromLocalDateTimeToLong)
     )
 }

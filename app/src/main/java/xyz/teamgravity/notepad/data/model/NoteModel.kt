@@ -8,4 +8,5 @@ data class NoteModel(
     val body: String,
     val created: LocalDateTime = LocalDateTime.now(),
     val edited: LocalDateTime = LocalDateTime.now(),
+    val deleted: LocalDateTime? = null
 )

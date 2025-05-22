@@ -19,6 +19,7 @@
     <string name="confirm_deletion">O\'chirishni tasdiqlang</string>
     <string name="wanna_delete_all">Hamma eslatmalarni o\'chirishni xohlaysizmi?</string>
     <string name="empty_notes_message">Siz qo\'shgan eslatmalar bu yerda ko\'rinadi</string>
+    <string name="recently_deleted_notes">Yaqinda o\'chirilgan eslatmalar</string>
 
     <!-- NoteAdd -->
     <string name="title">Sarlavha</string>
@@ -27,6 +28,27 @@
     <!-- NoteEdit -->
     <string name="delete">O\'chirish</string>
     <string name="wanna_delete_note">Bu eslatmani o\'chirishni xohlaysizmi?</string>
+
+    <!-- NoteTrash -->
+    <string name="all_deleted_notes_restored">Hamma o\'chirilgan eslatmalar qayta tiklandi</string>
+    <string name="all_notes_deleted_trash">Chiqindidagi barcha eslatmalar butunlay o\'chirildi</string>
+    <string name="trash">Chiqindi</string>
+    <string name="no_notes_in_trash">Chiqindida eslatmalar yo\'q</string>
+    <string name="trash_info">ⓘ Yaqinda o\'chirilgan eslatmalar bu yerda ko\'rsatiladi. Ular chiqindida 30 kun saqlanadi. O\'chirilganiga 30 kundan oshgan eslatmalar dasturdan butunlay o\'chiriladi.</string>
+    <string name="delete_all">Hammasini o\'chirish</string>
+    <string name="restore_all">Hammasini qayta tiklash</string>
+    <string name="wanna_delete_all_permanently">Chiqindidagi hamma eslatmalarni o\'chirishni xohlaysizmi?</string>
+    <string name="confirm_restoration">Qayta tiklashni tasdiqlang</string>
+    <string name="wanna_restore_all_notes">Chiqindidagi hamma eslatmalarni qayta tiklashni xohlaysizmi?</string>
+    <string name="note_deleted_permanently">Eslatma butunlay o\'chirildi</string>
+    <string name="note_restored">Eslatma qayta tiklandi</string>
+
+    <!-- NoteView -->
+    <string name="wanna_delete_note_permanently">Bu eslatmani butunlay o\'chirishni xohlaysizmi?</string>
+    <string name="restore">Qayta tiklash</string>
+    <string name="wanna_restore_note">Bu eslatmani qayta tiklashni xohlaysizmi?</string>
+    <string name="x_last_modified">Oxirgi marta o\'zgartirilgan: %1$s</string>
+    <string name="x_deleted">O\'chirilgan: %1$s</string>
 
     <!-- Support -->
     <string name="need_help">Yordam kerakmi?</string>
@@ -62,4 +84,9 @@
     <string name="shortcut_add_note_short_label">Eslatma qo\'shish</string>
     <string name="shortcut_add_note_long_label">Tugmani bosish orqali darhol eslatma qo\'shing</string>
     <string name="shortcut_add_note_disabled_message">Tez qo‘shish hozirda o‘chirib qo‘yilgan</string>
+
+    <!-- TrashNotification -->
+    <string name="trash_notification_channel_name">Chiqindi (Yaqinda o\'chirilgan eslatmalar)</string>
+    <string name="trash_notification_channel_description">Chiqindi bo\'shatilganda xabar yuborish uchun ushbu kanal ishlatiladi</string>
+    <string name="trash_notification_message">Chiqindida 30 kundan ortiq saqlangan eslatmalar endi butunlay o\'chirilmoqda</string>
 </resources>

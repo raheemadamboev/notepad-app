@@ -8,12 +8,13 @@ import xyz.teamgravity.notepad.R
 import xyz.teamgravity.notepad.presentation.component.button.IconButtonPlain
 
 @Composable
-fun TopBarMoreMenuNoteEdit(
+fun TopBarMoreMenuNoteView(
     expanded: Boolean,
+    enabled: Boolean,
     onExpand: () -> Unit,
     onDismiss: () -> Unit,
     onDelete: () -> Unit,
-    onShare: () -> Unit
+    onRestore: () -> Unit
 ) {
     IconButtonPlain(
         onClick = onExpand,
@@ -28,13 +29,15 @@ fun TopBarMoreMenuNoteEdit(
             onDismiss = onDismiss,
             onClick = onDelete,
             icon = R.drawable.ic_delete,
-            label = R.string.delete
+            label = R.string.delete,
+            enabled = enabled
         )
         TopBarMenuItem(
             onDismiss = onDismiss,
-            onClick = onShare,
-            icon = R.drawable.ic_share,
-            label = R.string.share
+            onClick = onRestore,
+            icon = R.drawable.ic_reset,
+            label = R.string.restore,
+            enabled = enabled
         )
     }
 }

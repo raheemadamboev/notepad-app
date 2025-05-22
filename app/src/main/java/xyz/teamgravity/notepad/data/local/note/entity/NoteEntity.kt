@@ -11,5 +11,6 @@ data class NoteEntity(
     @ColumnInfo("title") val title: String,
     @ColumnInfo("body") val body: String,
     @ColumnInfo("createdTime") val createdTime: Long,
-    @ColumnInfo("editedTime") val editedTime: Long
+    @ColumnInfo("editedTime") val editedTime: Long,
+    @ColumnInfo("deletedTime") val deletedTime: Long?
 )

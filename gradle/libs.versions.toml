@@ -10,12 +10,15 @@ core = "1.16.0"
 splash = "1.0.1"
 firebase = "33.14.0"
 hilt = "2.56.2"
+hilt-workmanager = "1.2.0"
+hilt-compiler = "1.2.0"
+workmanager = "2.10.1"
 coroutines = "1.10.2"
 room = "2.7.1"
 destinations = "2.2.0"
 timber = "5.0.1"
-gravity-core = "1.0.18"
-gravity-core-compose = "1.0.16"
+gravity-core = "1.0.19"
+gravity-core-compose = "1.0.17"
 gravity-pinlock = "1.0.3"
 
 android = "8.10.0"
@@ -27,7 +30,7 @@ crashlytics = "3.0.3"
 sdk-min = "26"
 sdk-compile = "35"
 sdk-target = "35"
-java-target = "17"
+jvm-target = "17"
 
 [libraries]
 
@@ -49,7 +52,10 @@ firebase-analytics = { group = "com.google.firebase", name = "firebase-analytics
 firebase-crashlytics = { group = "com.google.firebase", name = "firebase-crashlytics" }
 firebase-messaging = { group = "com.google.firebase", name = "firebase-messaging" }
 hilt = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
-hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt" }
+hilt-workmanager = { group = "androidx.hilt", name = "hilt-work", version.ref = "hilt-workmanager" }
+hilt-compiler = { group = "androidx.hilt", name = "hilt-compiler", version.ref = "hilt-compiler" }
+dagger-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt" }
+workmanager = { group = "androidx.work", name = "work-runtime-ktx", version.ref = "workmanager" }
 coroutines = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutines" }
 coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
 room = { group = "androidx.room", name = "room-runtime", version.ref = "room" }

@@ -32,6 +32,7 @@ fun DrawerNoteList(
     scope: CoroutineScope,
     scroll: ScrollState = rememberScrollState(),
     onPinLock: () -> Unit,
+    onTrash: () -> Unit,
     onLanguage: () -> Unit,
     onSupport: () -> Unit,
     onShare: () -> Unit,
@@ -44,8 +45,8 @@ fun DrawerNoteList(
     ) {
         Column(
             modifier = Modifier
-                .padding(horizontal = 8.dp)
                 .verticalScroll(scroll)
+                .padding(horizontal = 8.dp)
         ) {
             Spacer(
                 modifier = Modifier.height(6.dp)
@@ -59,6 +60,13 @@ fun DrawerNoteList(
                 icon = R.drawable.ic_lock,
                 label = R.string.pin_lock,
                 onClick = onPinLock,
+                drawer = drawer,
+                scope = scope
+            )
+            DrawerItem(
+                icon = R.drawable.ic_delete,
+                label = R.string.recently_deleted_notes,
+                onClick = onTrash,
                 drawer = drawer,
                 scope = scope
             )

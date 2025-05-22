@@ -60,7 +60,7 @@ android {
     }
 
     kotlinOptions {
-        jvmTarget = libs.versions.java.target.get()
+        jvmTarget = libs.versions.jvm.target.get()
         freeCompilerArgs += listOf(
             "-opt-in=androidx.compose.material3.ExperimentalMaterial3Api"
         )
@@ -121,7 +121,12 @@ dependencies {
 
     // hilt
     implementation(libs.hilt)
+    implementation(libs.hilt.workmanager)
     ksp(libs.hilt.compiler)
+    ksp(libs.dagger.compiler)
+
+    // workmanager
+    implementation(libs.workmanager)
 
     // coroutines
     implementation(libs.coroutines)
