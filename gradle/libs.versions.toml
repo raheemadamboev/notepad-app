@@ -18,7 +18,7 @@ room = "2.7.1"
 destinations = "2.2.0"
 timber = "5.0.1"
 gravity-core = "1.0.19"
-gravity-core-compose = "1.0.17"
+gravity-core-compose = "1.0.18"
 gravity-pinlock = "1.0.3"
 
 android = "8.10.0"

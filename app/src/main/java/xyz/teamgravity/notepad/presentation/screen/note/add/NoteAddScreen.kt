@@ -10,6 +10,8 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.compose.LifecycleEventEffect
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import xyz.teamgravity.coresdkcompose.observe.ObserveEvent
@@ -36,6 +38,11 @@ fun NoteAddScreen(
                 }
             }
         }
+    )
+
+    LifecycleEventEffect(
+        event = Lifecycle.Event.ON_PAUSE,
+        onEvent = viewmodel::onAutoSave
     )
 
     Scaffold(

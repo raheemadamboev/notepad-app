@@ -25,7 +25,7 @@ import javax.inject.Inject
 class NoteEditViewModel @Inject constructor(
     private val repository: NoteRepository,
     private val preferences: AppPreferences,
-    private val saver: AutoSaver,
+    private val autoSaver: AutoSaver,
     handle: SavedStateHandle
 ) : ViewModel() {
 
@@ -72,24 +72,14 @@ class NoteEditViewModel @Inject constructor(
         viewModelScope.launch {
             autoSave = preferences.getAutoSave().first()
             if (autoSave) {
-                saver.start(
+                autoSaver.start(
+                    resolution = AutoSaver.EmptyResolution.MoveToTrash,
                     note = note,
                     title = { title },
                     body = { body }
                 )
             }
         }
-    }
-
-    private suspend fun saveNote() {
-        val note = note ?: return
-        repository.updateNote(
-            note.copy(
-                title = title,
-                body = body,
-                edited = LocalDateTime.now()
-            )
-        )
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -121,26 +111,47 @@ class NoteEditViewModel @Inject constructor(
     }
 
     fun onAutoSave() {
-        if (!autoSave) return
-        viewModelScope.launch {
-            saveNote()
+        if (autoSave) {
+            autoSaver.save(
+                title = title,
+                body = body
+            )
         }
     }
 
     fun onUpdateNote() {
+        val note = note ?: return
         viewModelScope.launch {
-            saveNote()
+            if (title.isBlank() && body.isBlank()) {
+                repository.updateNote(
+                    note.copy(
+                        deleted = LocalDateTime.now()
+                    )
+                )
+            } else {
+                repository.updateNote(
+                    note.copy(
+                        title = title,
+                        body = body,
+                        edited = LocalDateTime.now()
+                    )
+                )
+            }
             _event.send(NoteEditEvent.NoteUpdated)
         }
     }
 
     fun onDeleteNote() {
-        val note = note ?: return
+        val note = autoSaver.getNote() ?: note ?: return
         viewModelScope.launch {
             onDeleteDismiss()
 
-            if (autoSave) saver.close()
-            repository.updateNote(note.copy(deleted = LocalDateTime.now()))
+            if (autoSave) autoSaver.close()
+            repository.updateNote(
+                note.copy(
+                    deleted = LocalDateTime.now()
+                )
+            )
 
             _event.send(NoteEditEvent.NoteUpdated)
         }
@@ -149,7 +160,7 @@ class NoteEditViewModel @Inject constructor(
     override fun onCleared() {
         super.onCleared()
         if (autoSave) {
-            saver.saveAndClose(
+            autoSaver.saveAndClose(
                 title = title,
                 body = body
             )
