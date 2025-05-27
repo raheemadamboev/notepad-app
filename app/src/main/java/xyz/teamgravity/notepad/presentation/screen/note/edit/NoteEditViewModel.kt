@@ -142,7 +142,7 @@ class NoteEditViewModel @Inject constructor(
     }
 
     fun onDeleteNote() {
-        val note = autoSaver.getNote() ?: note ?: return
+        val note = autoSaver.getCurrentNote() ?: note ?: return
         viewModelScope.launch {
             onDeleteDismiss()
 

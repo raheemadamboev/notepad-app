@@ -104,7 +104,7 @@ fun NoteTrashScreen(
                 actions = {
                     TopBarMoreMenuNoteTrash(
                         expanded = viewmodel.menuExpanded,
-                        enabled = !notes.itemSnapshotList.isEmpty(),
+                        enabled = notes.itemSnapshotList.isNotEmpty(),
                         onExpand = viewmodel::onMenuExpand,
                         onDismiss = viewmodel::onMenuCollapse,
                         onDeleteAll = viewmodel::onDeleteAllShow,

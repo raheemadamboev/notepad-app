@@ -3,6 +3,7 @@ package xyz.teamgravity.notepad.presentation.screen.note.list
 import android.app.Activity
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.IntentSenderRequest
+import androidx.annotation.StringRes
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -20,9 +21,11 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import timber.log.Timber
 import xyz.teamgravity.coresdkandroid.review.ReviewManager
 import xyz.teamgravity.coresdkandroid.update.UpdateManager
+import xyz.teamgravity.notepad.R
 import xyz.teamgravity.notepad.data.local.preferences.AppPreferences
 import xyz.teamgravity.notepad.data.local.preferences.AppPreferencesKey
 import xyz.teamgravity.notepad.data.model.NoteModel
@@ -200,8 +203,11 @@ class NoteListViewModel @Inject constructor(
 
     fun onDeleteAll() {
         onDeleteAllDismiss()
-        viewModelScope.launch(NonCancellable) {
-            repository.moveValidNotesToTrash(System.currentTimeMillis())
+        viewModelScope.launch {
+            withContext(NonCancellable) {
+                repository.moveValidNotesToTrash(System.currentTimeMillis())
+            }
+            _event.send(NoteListEvent.ShowMessage(R.string.all_notes_deleted))
         }
     }
 
@@ -209,8 +215,9 @@ class NoteListViewModel @Inject constructor(
     // Misc
     ///////////////////////////////////////////////////////////////////////////
 
-    enum class NoteListEvent {
-        Review,
-        DownloadAppUpdate;
+    sealed interface NoteListEvent {
+        data object Review : NoteListEvent
+        data object DownloadAppUpdate : NoteListEvent
+        data class ShowMessage(@StringRes val message: Int) : NoteListEvent
     }
 }

@@ -119,7 +119,7 @@ class AutoSaver(
         }
     }
 
-    fun getNote(): NoteModel? {
+    fun getCurrentNote(): NoteModel? {
         return _note
     }
 

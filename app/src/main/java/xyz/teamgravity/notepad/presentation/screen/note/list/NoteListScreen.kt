@@ -12,9 +12,14 @@ import androidx.compose.material3.DrawerState
 import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Snackbar
+import androidx.compose.material3.SnackbarDuration
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -61,6 +66,7 @@ fun NoteListScreen(
         initialValue = DrawerValue.Closed
     ),
     scope: CoroutineScope = rememberCoroutineScope(),
+    snackbar: SnackbarHostState = remember { SnackbarHostState() },
     navigator: DestinationsNavigator,
     viewmodel: NoteListViewModel = hiltViewModel()
 ) {
@@ -84,6 +90,13 @@ fun NoteListScreen(
 
                 NoteListViewModel.NoteListEvent.DownloadAppUpdate -> {
                     viewmodel.onUpdateDownload(updateLauncher)
+                }
+
+                is NoteListViewModel.NoteListEvent.ShowMessage -> {
+                    snackbar.showSnackbar(
+                        message = context.getString(event.message),
+                        duration = SnackbarDuration.Short
+                    )
                 }
             }
         }
@@ -153,6 +166,7 @@ fun NoteListScreen(
                             onDismiss = viewmodel::onMenuCollapse,
                             autoSave = autoSave,
                             onAutoSave = viewmodel::onAutoSaveChange,
+                            deleteAllEnabled = notes.itemSnapshotList.isNotEmpty(),
                             onDeleteAll = viewmodel::onDeleteAllShow,
                             onPinLock = {
                                 navigator.navigate(PinLockScreenDestination)
@@ -172,6 +186,15 @@ fun NoteListScreen(
                     icon = Icons.Rounded.Add,
                     contentDescription = R.string.cd_add_note
                 )
+            },
+            snackbarHost = {
+                SnackbarHost(
+                    hostState = snackbar
+                ) { data ->
+                    Snackbar(
+                        snackbarData = data
+                    )
+                }
             },
             contentWindowInsets = WindowInsets.safeDrawing
         ) { padding ->

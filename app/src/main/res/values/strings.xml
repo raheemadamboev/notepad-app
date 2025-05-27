@@ -20,6 +20,7 @@
     <string name="wanna_delete_all">Do you want to delete all notes?</string>
     <string name="empty_notes_message">Notes you add appear here</string>
     <string name="recently_deleted_notes">Recently deleted notes</string>
+    <string name="all_notes_deleted">All notes have been moved to the trash</string>
 
     <!-- NoteAdd -->
     <string name="title">Title</string>

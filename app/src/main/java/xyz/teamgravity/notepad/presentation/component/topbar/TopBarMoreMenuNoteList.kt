@@ -17,6 +17,7 @@ fun TopBarMoreMenuNoteList(
     onDismiss: () -> Unit,
     autoSave: Boolean,
     onAutoSave: () -> Unit,
+    deleteAllEnabled: Boolean,
     onDeleteAll: () -> Unit,
     onPinLock: () -> Unit,
     onLanguage: () -> Unit
@@ -48,7 +49,8 @@ fun TopBarMoreMenuNoteList(
             onDismiss = onDismiss,
             onClick = onDeleteAll,
             icon = R.drawable.ic_delete,
-            label = R.string.delete_all_notes
+            label = R.string.delete_all_notes,
+            enabled = deleteAllEnabled
         )
         TopBarMenuItem(
             onDismiss = onDismiss,
