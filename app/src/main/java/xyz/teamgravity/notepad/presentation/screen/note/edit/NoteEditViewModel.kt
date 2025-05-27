@@ -119,6 +119,24 @@ class NoteEditViewModel @Inject constructor(
         }
     }
 
+    fun onHandleBack() {
+        if (!autoSave) return
+        viewModelScope.launch {
+            val note = note
+            if (note == null) {
+                _event.send(NoteEditEvent.NavigateBack)
+                return@launch
+            }
+
+            if (title.isBlank() && body.isBlank()) {
+                _event.send(NoteEditEvent.NoteDeleted(note.id!!))
+                return@launch
+            }
+
+            _event.send(NoteEditEvent.NavigateBack)
+        }
+    }
+
     fun onUpdateNote() {
         val note = note ?: return
         viewModelScope.launch {
@@ -128,6 +146,7 @@ class NoteEditViewModel @Inject constructor(
                         deleted = LocalDateTime.now()
                     )
                 )
+                _event.send(NoteEditEvent.NoteDeleted(note.id!!))
             } else {
                 repository.updateNote(
                     note.copy(
@@ -136,8 +155,8 @@ class NoteEditViewModel @Inject constructor(
                         edited = LocalDateTime.now()
                     )
                 )
+                _event.send(NoteEditEvent.NavigateBack)
             }
-            _event.send(NoteEditEvent.NoteUpdated)
         }
     }
 
@@ -153,7 +172,7 @@ class NoteEditViewModel @Inject constructor(
                 )
             )
 
-            _event.send(NoteEditEvent.NoteUpdated)
+            _event.send(NoteEditEvent.NoteDeleted(note.id!!))
         }
     }
 
@@ -171,7 +190,8 @@ class NoteEditViewModel @Inject constructor(
     // Misc
     ///////////////////////////////////////////////////////////////////////////
 
-    enum class NoteEditEvent {
-        NoteUpdated;
+    sealed interface NoteEditEvent {
+        data object NavigateBack : NoteEditEvent
+        data class NoteDeleted(val id: Long) : NoteEditEvent
     }
 }

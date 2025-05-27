@@ -1,5 +1,8 @@
 package xyz.teamgravity.notepad.presentation.screen.note.edit
 
+import android.os.Parcelable
+import androidx.activity.compose.BackHandler
+import androidx.activity.compose.LocalOnBackPressedDispatcherOwner
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawing
@@ -14,7 +17,8 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.LifecycleEventEffect
 import com.ramcosta.composedestinations.annotation.Destination
-import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+import com.ramcosta.composedestinations.result.ResultBackNavigator
+import kotlinx.parcelize.Parcelize
 import xyz.teamgravity.coresdkcompose.observe.ObserveEvent
 import xyz.teamgravity.notepad.R
 import xyz.teamgravity.notepad.core.util.Helper
@@ -30,17 +34,22 @@ import xyz.teamgravity.notepad.presentation.navigation.MainNavGraph
 @Destination<MainNavGraph>(navArgs = NoteEditScreenArgs::class)
 @Composable
 fun NoteEditScreen(
-    navigator: DestinationsNavigator,
+    navigator: ResultBackNavigator<NoteEditResult>,
     viewmodel: NoteEditViewModel = hiltViewModel()
 ) {
     val context = LocalContext.current
+    val dispatcher = LocalOnBackPressedDispatcherOwner.current?.onBackPressedDispatcher
 
     ObserveEvent(
         flow = viewmodel.event,
         onEvent = { event ->
             when (event) {
-                NoteEditViewModel.NoteEditEvent.NoteUpdated -> {
-                    navigator.popBackStack()
+                NoteEditViewModel.NoteEditEvent.NavigateBack -> {
+                    navigator.navigateBack()
+                }
+
+                is NoteEditViewModel.NoteEditEvent.NoteDeleted -> {
+                    navigator.navigateBack(NoteEditResult.NoteDeleted(event.id))
                 }
             }
         }
@@ -49,6 +58,11 @@ fun NoteEditScreen(
     LifecycleEventEffect(
         event = Lifecycle.Event.ON_PAUSE,
         onEvent = viewmodel::onAutoSave
+    )
+
+    BackHandler(
+        enabled = viewmodel.autoSave,
+        onBack = viewmodel::onHandleBack
     )
 
     Scaffold(
@@ -61,7 +75,9 @@ fun NoteEditScreen(
                 },
                 navigationIcon = {
                     IconButtonPlain(
-                        onClick = navigator::navigateUp,
+                        onClick = {
+                            dispatcher?.onBackPressed() ?: navigator.navigateBack()
+                        },
                         icon = Icons.AutoMirrored.Rounded.ArrowBackIos,
                         contentDescription = R.string.cd_back_button
                     )
@@ -114,3 +130,10 @@ fun NoteEditScreen(
 data class NoteEditScreenArgs(
     val id: Long
 )
+
+@Parcelize
+sealed interface NoteEditResult : Parcelable {
+
+    @Parcelize
+    data class NoteDeleted(val id: Long) : NoteEditResult
+}

@@ -49,7 +49,7 @@ import xyz.teamgravity.notepad.presentation.screen.note.view.NoteViewResult
 fun NoteTrashScreen(
     scope: CoroutineScope = rememberCoroutineScope(),
     snackbar: SnackbarHostState = remember { SnackbarHostState() },
-    recipient: ResultRecipient<NoteViewScreenDestination, NoteViewResult>,
+    noteViewRecipient: ResultRecipient<NoteViewScreenDestination, NoteViewResult>,
     navigator: DestinationsNavigator,
     viewmodel: NoteTrashViewModel = hiltViewModel()
 ) {
@@ -57,7 +57,7 @@ fun NoteTrashScreen(
     val notes = viewmodel.notes.collectAsLazyPagingItems()
     val shouldShowEmptyState by notes.shouldShowEmptyState()
 
-    recipient.onResult(
+    noteViewRecipient.onResult(
         onValue = { result ->
             val id = when (result) {
                 NoteViewResult.Deleted -> R.string.note_deleted_permanently

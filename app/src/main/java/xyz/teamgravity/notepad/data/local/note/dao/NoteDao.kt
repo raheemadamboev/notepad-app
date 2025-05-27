@@ -63,4 +63,7 @@ interface NoteDao {
 
     @Query("UPDATE $TABLE_NOTE SET `deletedTime` = NULL WHERE deletedTime IS NOT NULL")
     suspend fun restoreDeletedNotes()
+
+    @Query("UPDATE $TABLE_NOTE SET `deletedTime` = NULL WHERE :id = `_id`")
+    suspend fun restoreDeletedNote(id: Long)
 }

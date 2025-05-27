@@ -211,6 +211,12 @@ class NoteListViewModel @Inject constructor(
         }
     }
 
+    fun onUndoDeletedNote(id: Long) {
+        viewModelScope.launch(NonCancellable) {
+            repository.restoreDeletedNote(id)
+        }
+    }
+
     ///////////////////////////////////////////////////////////////////////////
     // Misc
     ///////////////////////////////////////////////////////////////////////////

@@ -16,6 +16,7 @@ import androidx.compose.material3.Snackbar
 import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
+import androidx.compose.material3.SnackbarResult
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -35,6 +36,8 @@ import com.ramcosta.composedestinations.generated.destinations.NoteTrashScreenDe
 import com.ramcosta.composedestinations.generated.destinations.PinLockScreenDestination
 import com.ramcosta.composedestinations.generated.destinations.SupportScreenDestination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+import com.ramcosta.composedestinations.result.ResultRecipient
+import com.ramcosta.composedestinations.result.onResult
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import xyz.teamgravity.coresdkandroid.android.BuildUtil
@@ -58,6 +61,7 @@ import xyz.teamgravity.notepad.presentation.component.text.TextPlain
 import xyz.teamgravity.notepad.presentation.component.topbar.TopBar
 import xyz.teamgravity.notepad.presentation.component.topbar.TopBarMoreMenuNoteList
 import xyz.teamgravity.notepad.presentation.navigation.MainNavGraph
+import xyz.teamgravity.notepad.presentation.screen.note.edit.NoteEditResult
 
 @Destination<MainNavGraph>(start = true)
 @Composable
@@ -67,6 +71,7 @@ fun NoteListScreen(
     ),
     scope: CoroutineScope = rememberCoroutineScope(),
     snackbar: SnackbarHostState = remember { SnackbarHostState() },
+    noteEditRecipient: ResultRecipient<NoteEditScreenDestination, NoteEditResult>,
     navigator: DestinationsNavigator,
     viewmodel: NoteListViewModel = hiltViewModel()
 ) {
@@ -78,6 +83,23 @@ fun NoteListScreen(
     val updateLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.StartIntentSenderForResult(),
         onResult = {}
+    )
+
+    noteEditRecipient.onResult(
+        onValue = { result ->
+            when (result) {
+                is NoteEditResult.NoteDeleted -> {
+                    scope.launch {
+                        val snackbarResult = snackbar.showSnackbar(
+                            message = context.getString(R.string.note_deleted),
+                            actionLabel = context.getString(R.string.undo),
+                            duration = SnackbarDuration.Short
+                        )
+                        if (snackbarResult == SnackbarResult.ActionPerformed) viewmodel.onUndoDeletedNote(result.id)
+                    }
+                }
+            }
+        }
     )
 
     ObserveEvent(

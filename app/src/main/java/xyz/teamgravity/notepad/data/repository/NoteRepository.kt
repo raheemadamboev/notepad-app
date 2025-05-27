@@ -109,4 +109,10 @@ class NoteRepository(
             dao.restoreDeletedNotes()
         }
     }
+
+    suspend fun restoreDeletedNote(id: Long) {
+        withContext(Dispatchers.IO) {
+            dao.restoreDeletedNote(id)
+        }
+    }
 }
