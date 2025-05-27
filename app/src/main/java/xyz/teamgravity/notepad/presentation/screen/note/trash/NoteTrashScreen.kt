@@ -1,5 +1,6 @@
 package xyz.teamgravity.notepad.presentation.screen.note.trash
 
+import androidx.activity.compose.LocalOnBackPressedDispatcherOwner
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawing
@@ -54,6 +55,7 @@ fun NoteTrashScreen(
     viewmodel: NoteTrashViewModel = hiltViewModel()
 ) {
     val context = LocalContext.current
+    val dispatcher = LocalOnBackPressedDispatcherOwner.current?.onBackPressedDispatcher
     val notes = viewmodel.notes.collectAsLazyPagingItems()
     val shouldShowEmptyState by notes.shouldShowEmptyState()
 
@@ -96,7 +98,9 @@ fun NoteTrashScreen(
                 },
                 navigationIcon = {
                     IconButtonPlain(
-                        onClick = navigator::navigateUp,
+                        onClick = {
+                            dispatcher?.onBackPressed() ?: navigator.navigateUp()
+                        },
                         icon = Icons.AutoMirrored.Rounded.ArrowBackIos,
                         contentDescription = R.string.cd_back_button
                     )

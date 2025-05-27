@@ -1,5 +1,6 @@
 package xyz.teamgravity.notepad.presentation.screen.note.add
 
+import androidx.activity.compose.LocalOnBackPressedDispatcherOwner
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawing
@@ -29,6 +30,8 @@ fun NoteAddScreen(
     navigator: DestinationsNavigator,
     viewmodel: NoteAddViewModel = hiltViewModel()
 ) {
+    val dispatcher = LocalOnBackPressedDispatcherOwner.current?.onBackPressedDispatcher
+
     ObserveEvent(
         flow = viewmodel.event,
         onEvent = { event ->
@@ -55,7 +58,9 @@ fun NoteAddScreen(
                 },
                 navigationIcon = {
                     IconButtonPlain(
-                        onClick = navigator::navigateUp,
+                        onClick = {
+                            dispatcher?.onBackPressed() ?: navigator.navigateUp()
+                        },
                         icon = Icons.AutoMirrored.Rounded.ArrowBackIos,
                         contentDescription = R.string.cd_back_button
                     )

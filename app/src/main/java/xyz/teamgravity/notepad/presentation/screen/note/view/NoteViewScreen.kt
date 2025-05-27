@@ -1,5 +1,6 @@
 package xyz.teamgravity.notepad.presentation.screen.note.view
 
+import androidx.activity.compose.LocalOnBackPressedDispatcherOwner
 import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -41,6 +42,8 @@ fun NoteViewScreen(
     navigator: ResultBackNavigator<NoteViewResult>,
     viewmodel: NoteViewViewModel = hiltViewModel()
 ) {
+    val dispatcher = LocalOnBackPressedDispatcherOwner.current?.onBackPressedDispatcher
+
     ObserveEvent(
         flow = viewmodel.event,
         onEvent = { event ->
@@ -62,7 +65,9 @@ fun NoteViewScreen(
                 },
                 navigationIcon = {
                     IconButtonPlain(
-                        onClick = navigator::navigateBack,
+                        onClick = {
+                            dispatcher?.onBackPressed() ?: navigator.navigateBack()
+                        },
                         icon = Icons.AutoMirrored.Rounded.ArrowBackIos,
                         contentDescription = R.string.cd_back_button
                     )
