@@ -21,7 +21,7 @@ gravity-core = "1.0.19"
 gravity-core-compose = "1.0.18"
 gravity-pinlock = "1.0.3"
 
-android = "8.10.0"
+android = "8.10.1"
 kotlin = "2.1.21"
 ksp = "2.1.21-2.0.1"
 gms = "4.4.2"

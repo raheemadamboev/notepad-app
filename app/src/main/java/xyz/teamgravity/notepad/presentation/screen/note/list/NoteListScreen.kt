@@ -46,6 +46,7 @@ import xyz.teamgravity.coresdkandroid.settings.navigateAppLocaleSettings
 import xyz.teamgravity.coresdkcompose.observe.ObserveEvent
 import xyz.teamgravity.coresdkcompose.paging.shouldShowEmptyState
 import xyz.teamgravity.coresdkcompose.review.DialogReview
+import xyz.teamgravity.coresdkcompose.text.TextImageInfo
 import xyz.teamgravity.coresdkcompose.update.DialogUpdateAvailable
 import xyz.teamgravity.coresdkcompose.update.DialogUpdateDownloaded
 import xyz.teamgravity.notepad.R
@@ -56,7 +57,6 @@ import xyz.teamgravity.notepad.presentation.component.dialog.NoteAlertDialog
 import xyz.teamgravity.notepad.presentation.component.drawer.DrawerNoteList
 import xyz.teamgravity.notepad.presentation.component.grid.NoteGrid
 import xyz.teamgravity.notepad.presentation.component.grid.noteItems
-import xyz.teamgravity.notepad.presentation.component.text.TextInfo
 import xyz.teamgravity.notepad.presentation.component.text.TextPlain
 import xyz.teamgravity.notepad.presentation.component.topbar.TopBar
 import xyz.teamgravity.notepad.presentation.component.topbar.TopBarMoreMenuNoteList
@@ -231,7 +231,7 @@ fun NoteListScreen(
                 )
             }
             if (shouldShowEmptyState) {
-                TextInfo(
+                TextImageInfo(
                     icon = R.drawable.ic_bulb,
                     message = R.string.empty_notes_message
                 )

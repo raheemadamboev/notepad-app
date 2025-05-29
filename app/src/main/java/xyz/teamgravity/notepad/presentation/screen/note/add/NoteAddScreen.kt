@@ -36,7 +36,7 @@ fun NoteAddScreen(
         flow = viewmodel.event,
         onEvent = { event ->
             when (event) {
-                NoteAddViewModel.NoteAddEvent.NoteAdded -> {
+                NoteAddViewModel.NoteAddEvent.NavigateBack -> {
                     navigator.popBackStack()
                 }
             }

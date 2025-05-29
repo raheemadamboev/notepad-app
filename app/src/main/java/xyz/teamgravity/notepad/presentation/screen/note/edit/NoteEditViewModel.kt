@@ -120,8 +120,12 @@ class NoteEditViewModel @Inject constructor(
     }
 
     fun onHandleBack() {
-        if (!autoSave) return
         viewModelScope.launch {
+            if (!autoSave) {
+                _event.send(NoteEditEvent.NavigateBack)
+                return@launch
+            }
+
             val note = note
             if (note == null) {
                 _event.send(NoteEditEvent.NavigateBack)

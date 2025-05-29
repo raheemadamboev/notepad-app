@@ -33,12 +33,12 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import xyz.teamgravity.coresdkcompose.observe.ObserveEvent
 import xyz.teamgravity.coresdkcompose.paging.shouldShowEmptyState
+import xyz.teamgravity.coresdkcompose.text.TextImageInfo
 import xyz.teamgravity.notepad.R
 import xyz.teamgravity.notepad.presentation.component.button.IconButtonPlain
 import xyz.teamgravity.notepad.presentation.component.dialog.NoteAlertDialog
 import xyz.teamgravity.notepad.presentation.component.grid.NoteGrid
 import xyz.teamgravity.notepad.presentation.component.grid.noteItems
-import xyz.teamgravity.notepad.presentation.component.text.TextInfo
 import xyz.teamgravity.notepad.presentation.component.text.TextPlain
 import xyz.teamgravity.notepad.presentation.component.topbar.TopBar
 import xyz.teamgravity.notepad.presentation.component.topbar.TopBarMoreMenuNoteTrash
@@ -148,7 +148,7 @@ fun NoteTrashScreen(
             )
         }
         if (shouldShowEmptyState) {
-            TextInfo(
+            TextImageInfo(
                 icon = R.drawable.ic_delete,
                 message = R.string.no_notes_in_trash
             )

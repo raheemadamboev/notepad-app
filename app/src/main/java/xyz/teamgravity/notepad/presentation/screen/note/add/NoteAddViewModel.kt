@@ -87,7 +87,7 @@ class NoteAddViewModel @Inject constructor(
                 )
             }
 
-            _event.send(NoteAddEvent.NoteAdded)
+            _event.send(NoteAddEvent.NavigateBack)
         }
     }
 
@@ -106,6 +106,6 @@ class NoteAddViewModel @Inject constructor(
     ///////////////////////////////////////////////////////////////////////////
 
     enum class NoteAddEvent {
-        NoteAdded;
+        NavigateBack;
     }
 }

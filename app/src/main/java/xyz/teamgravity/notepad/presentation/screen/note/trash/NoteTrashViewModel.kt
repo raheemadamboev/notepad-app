@@ -46,7 +46,7 @@ class NoteTrashViewModel @Inject constructor(
     }
 
     private fun deleteExpiredNotes() {
-        viewModelScope.launch {
+        viewModelScope.launch(NonCancellable) {
             trash.deleteExpiredNotes()
         }
     }

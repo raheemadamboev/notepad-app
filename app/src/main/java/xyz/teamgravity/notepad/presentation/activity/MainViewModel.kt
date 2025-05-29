@@ -6,7 +6,9 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import xyz.teamgravity.notepad.core.util.manager.TrashManager
 import xyz.teamgravity.pin_lock_compose.PinManager
 import javax.inject.Inject
@@ -31,7 +33,9 @@ class MainViewModel @Inject constructor(
     }
 
     private suspend fun deleteExpiredNotes() {
-        trash.deleteExpiredNotes()
+        withContext(NonCancellable) {
+            trash.deleteExpiredNotes()
+        }
     }
 
     private suspend fun getNavigation() {
