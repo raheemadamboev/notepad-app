@@ -16,10 +16,10 @@ import androidx.lifecycle.compose.LifecycleEventEffect
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import xyz.teamgravity.coresdkcompose.observe.ObserveEvent
+import xyz.teamgravity.coresdkcompose.text.TextPlain
 import xyz.teamgravity.notepad.R
 import xyz.teamgravity.notepad.presentation.component.button.IconButtonPlain
 import xyz.teamgravity.notepad.presentation.component.button.NoteFloatingActionButton
-import xyz.teamgravity.notepad.presentation.component.text.TextPlain
 import xyz.teamgravity.notepad.presentation.component.textfield.NotepadTextField
 import xyz.teamgravity.notepad.presentation.component.topbar.TopBar
 import xyz.teamgravity.notepad.presentation.navigation.MainNavGraph

@@ -22,9 +22,9 @@ import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import xyz.teamgravity.coresdkandroid.android.BuildUtil
+import xyz.teamgravity.coresdkcompose.image.IconPlain
+import xyz.teamgravity.coresdkcompose.text.TextPlain
 import xyz.teamgravity.notepad.R
-import xyz.teamgravity.notepad.presentation.component.image.IconPlain
-import xyz.teamgravity.notepad.presentation.component.text.TextPlain
 
 @Composable
 fun DrawerNoteList(

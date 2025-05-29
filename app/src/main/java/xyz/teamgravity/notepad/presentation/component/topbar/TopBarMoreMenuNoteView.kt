@@ -4,6 +4,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.MoreVert
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.runtime.Composable
+import xyz.teamgravity.coresdkcompose.menu.GDropdownMenuItem
 import xyz.teamgravity.notepad.R
 import xyz.teamgravity.notepad.presentation.component.button.IconButtonPlain
 
@@ -25,14 +26,14 @@ fun TopBarMoreMenuNoteView(
         expanded = expanded,
         onDismissRequest = onDismiss
     ) {
-        TopBarMenuItem(
+        GDropdownMenuItem(
             onDismiss = onDismiss,
             onClick = onDelete,
             icon = R.drawable.ic_delete,
             label = R.string.delete,
             enabled = enabled
         )
-        TopBarMenuItem(
+        GDropdownMenuItem(
             onDismiss = onDismiss,
             onClick = onRestore,
             icon = R.drawable.ic_reset,

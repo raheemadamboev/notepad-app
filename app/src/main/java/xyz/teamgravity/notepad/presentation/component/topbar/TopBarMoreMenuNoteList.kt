@@ -6,9 +6,10 @@ import androidx.compose.material.icons.rounded.MoreVert
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.runtime.Composable
 import xyz.teamgravity.coresdkandroid.android.BuildUtil
+import xyz.teamgravity.coresdkcompose.image.IconPlain
+import xyz.teamgravity.coresdkcompose.menu.GDropdownMenuItem
 import xyz.teamgravity.notepad.R
 import xyz.teamgravity.notepad.presentation.component.button.IconButtonPlain
-import xyz.teamgravity.notepad.presentation.component.image.IconPlain
 
 @Composable
 fun TopBarMoreMenuNoteList(
@@ -31,7 +32,7 @@ fun TopBarMoreMenuNoteList(
         expanded = expanded,
         onDismissRequest = onDismiss
     ) {
-        TopBarMenuItem(
+        GDropdownMenuItem(
             onDismiss = onDismiss,
             onClick = onAutoSave,
             icon = R.drawable.ic_save,
@@ -45,21 +46,21 @@ fun TopBarMoreMenuNoteList(
                 }
             }
         )
-        TopBarMenuItem(
+        GDropdownMenuItem(
             onDismiss = onDismiss,
             onClick = onDeleteAll,
             icon = R.drawable.ic_delete,
             label = R.string.delete_all_notes,
             enabled = deleteAllEnabled
         )
-        TopBarMenuItem(
+        GDropdownMenuItem(
             onDismiss = onDismiss,
             onClick = onPinLock,
             icon = R.drawable.ic_lock,
             label = R.string.pin_lock
         )
         if (BuildUtil.atLeastTiramisu()) {
-            TopBarMenuItem(
+            GDropdownMenuItem(
                 onDismiss = onDismiss,
                 onClick = onLanguage,
                 icon = R.drawable.ic_language,
