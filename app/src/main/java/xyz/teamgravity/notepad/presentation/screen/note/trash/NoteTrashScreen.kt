@@ -31,12 +31,12 @@ import com.ramcosta.composedestinations.result.ResultRecipient
 import com.ramcosta.composedestinations.result.onResult
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
+import xyz.teamgravity.coresdkcompose.button.IconButtonPlain
 import xyz.teamgravity.coresdkcompose.observe.ObserveEvent
 import xyz.teamgravity.coresdkcompose.paging.shouldShowEmptyState
 import xyz.teamgravity.coresdkcompose.text.TextImageInfo
 import xyz.teamgravity.coresdkcompose.text.TextPlain
 import xyz.teamgravity.notepad.R
-import xyz.teamgravity.notepad.presentation.component.button.IconButtonPlain
 import xyz.teamgravity.notepad.presentation.component.dialog.NoteAlertDialog
 import xyz.teamgravity.notepad.presentation.component.grid.NoteGrid
 import xyz.teamgravity.notepad.presentation.component.grid.noteItems
