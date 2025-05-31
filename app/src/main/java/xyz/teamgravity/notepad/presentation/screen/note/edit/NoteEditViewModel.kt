@@ -10,12 +10,8 @@ import com.ramcosta.composedestinations.generated.destinations.NoteEditScreenDes
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.receiveAsFlow
-import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import xyz.teamgravity.notepad.core.util.AutoSaver
 import xyz.teamgravity.notepad.data.local.preferences.AppPreferences
@@ -29,20 +25,13 @@ import javax.inject.Inject
 class NoteEditViewModel @Inject constructor(
     private val repository: NoteRepository,
     private val preferences: AppPreferences,
-    private val saver: AutoSaver,
+    private val autoSaver: AutoSaver,
     handle: SavedStateHandle
 ) : ViewModel() {
 
     private val args: NoteEditScreenArgs = NoteEditScreenDestination.argsFrom(handle)
 
-    private val note: StateFlow<NoteModel?> = repository.getNote(args.id).stateIn(
-        scope = viewModelScope,
-        started = SharingStarted.Eagerly,
-        initialValue = null
-    )
-
-    private val _event = Channel<NoteEditEvent>()
-    val event: Flow<NoteEditEvent> = _event.receiveAsFlow()
+    private var note: NoteModel? = null
 
     var title: String by mutableStateOf("")
         private set
@@ -59,41 +48,36 @@ class NoteEditViewModel @Inject constructor(
     var autoSave: Boolean by mutableStateOf(AppPreferencesKey.AutoSave.default as Boolean)
         private set
 
+    private val _event = Channel<NoteEditEvent>()
+    val event: Flow<NoteEditEvent> = _event.receiveAsFlow()
+
     val sharedNote: String
         get() = "$title\n\n$body"
 
     init {
-        observe()
+        getNote()
     }
 
-    private fun observe() {
-        observeNote()
-    }
-
-    private fun handleNote(note: NoteModel?) {
-        if (note == null) return
-        title = note.title
-        body = note.body
-        initializeAutoSaver(note)
+    private fun getNote() {
+        viewModelScope.launch {
+            val note = repository.getNote(args.id).first() ?: return@launch
+            title = note.title
+            body = note.body
+            this@NoteEditViewModel.note = note
+            initializeAutoSaver(note)
+        }
     }
 
     private fun initializeAutoSaver(note: NoteModel) {
         viewModelScope.launch {
             autoSave = preferences.getAutoSave().first()
             if (autoSave) {
-                saver.start(
+                autoSaver.start(
+                    resolution = AutoSaver.EmptyResolution.MoveToTrash,
                     note = note,
                     title = { title },
                     body = { body }
                 )
-            }
-        }
-    }
-
-    private fun observeNote() {
-        viewModelScope.launch {
-            note.collectLatest { note ->
-                handleNote(note)
             }
         }
     }
@@ -120,44 +104,86 @@ class NoteEditViewModel @Inject constructor(
 
     fun onDeleteShow() {
         deleteShown = true
-        onMenuCollapse()
     }
 
     fun onDeleteDismiss() {
         deleteShown = false
     }
 
-    fun onUpdateNote() {
-        val note = note.value ?: return
-        viewModelScope.launch {
-            repository.updateNote(
-                note.copy(
-                    title = title,
-                    body = body,
-                    edited = LocalDateTime.now()
-                )
+    fun onAutoSave() {
+        if (autoSave) {
+            autoSaver.save(
+                title = title,
+                body = body
             )
+        }
+    }
 
-            _event.send(NoteEditEvent.NoteUpdated)
+    fun onHandleBack() {
+        viewModelScope.launch {
+            if (!autoSave) {
+                _event.send(NoteEditEvent.NavigateBack)
+                return@launch
+            }
+
+            val note = note
+            if (note == null) {
+                _event.send(NoteEditEvent.NavigateBack)
+                return@launch
+            }
+
+            if (title.isBlank() && body.isBlank()) {
+                _event.send(NoteEditEvent.NoteDeleted(note.id!!))
+                return@launch
+            }
+
+            _event.send(NoteEditEvent.NavigateBack)
+        }
+    }
+
+    fun onUpdateNote() {
+        val note = note ?: return
+        viewModelScope.launch {
+            if (title.isBlank() && body.isBlank()) {
+                repository.updateNote(
+                    note.copy(
+                        deleted = LocalDateTime.now()
+                    )
+                )
+                _event.send(NoteEditEvent.NoteDeleted(note.id!!))
+            } else {
+                repository.updateNote(
+                    note.copy(
+                        title = title,
+                        body = body,
+                        edited = LocalDateTime.now()
+                    )
+                )
+                _event.send(NoteEditEvent.NavigateBack)
+            }
         }
     }
 
     fun onDeleteNote() {
-        val note = note.value ?: return
+        val note = autoSaver.getCurrentNote() ?: note ?: return
         viewModelScope.launch {
             onDeleteDismiss()
 
-            if (autoSave) saver.close()
-            repository.deleteNote(note)
+            if (autoSave) autoSaver.close()
+            repository.updateNote(
+                note.copy(
+                    deleted = LocalDateTime.now()
+                )
+            )
 
-            _event.send(NoteEditEvent.NoteUpdated)
+            _event.send(NoteEditEvent.NoteDeleted(note.id!!))
         }
     }
 
     override fun onCleared() {
         super.onCleared()
         if (autoSave) {
-            saver.saveAndClose(
+            autoSaver.saveAndClose(
                 title = title,
                 body = body
             )
@@ -168,7 +194,8 @@ class NoteEditViewModel @Inject constructor(
     // Misc
     ///////////////////////////////////////////////////////////////////////////
 
-    enum class NoteEditEvent {
-        NoteUpdated;
+    sealed interface NoteEditEvent {
+        data object NavigateBack : NoteEditEvent
+        data class NoteDeleted(val id: Long) : NoteEditEvent
     }
 }

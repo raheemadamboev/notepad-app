@@ -9,8 +9,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import xyz.teamgravity.coresdkcompose.text.TextPlain
 import xyz.teamgravity.notepad.R
-import xyz.teamgravity.notepad.presentation.component.text.TextPlain
 
 @Composable
 fun ChangePinLockCard(

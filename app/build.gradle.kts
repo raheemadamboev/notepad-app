@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android)
     alias(libs.plugins.kotlin)
     alias(libs.plugins.compose)
+    alias(libs.plugins.parcelize)
     alias(libs.plugins.ksp)
     alias(libs.plugins.gms)
     alias(libs.plugins.crashlytics)
@@ -17,8 +18,8 @@ android {
         applicationId = "xyz.teamgravity.notepad"
         minSdk = libs.versions.sdk.min.get().toInt()
         targetSdk = libs.versions.sdk.target.get().toInt()
-        versionCode = 13
-        versionName = "1.2.1"
+        versionCode = 14
+        versionName = "1.2.2"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         vectorDrawables {
@@ -60,7 +61,7 @@ android {
     }
 
     kotlinOptions {
-        jvmTarget = libs.versions.java.target.get()
+        jvmTarget = libs.versions.jvm.target.get()
         freeCompilerArgs += listOf(
             "-opt-in=androidx.compose.material3.ExperimentalMaterial3Api"
         )
@@ -121,7 +122,12 @@ dependencies {
 
     // hilt
     implementation(libs.hilt)
+    implementation(libs.hilt.workmanager)
     ksp(libs.hilt.compiler)
+    ksp(libs.dagger.compiler)
+
+    // workmanager
+    implementation(libs.workmanager)
 
     // coroutines
     implementation(libs.coroutines)

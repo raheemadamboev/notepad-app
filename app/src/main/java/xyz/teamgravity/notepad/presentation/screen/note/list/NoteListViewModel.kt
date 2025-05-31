@@ -3,6 +3,7 @@ package xyz.teamgravity.notepad.presentation.screen.note.list
 import android.app.Activity
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.IntentSenderRequest
+import androidx.annotation.StringRes
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -20,9 +21,11 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import timber.log.Timber
 import xyz.teamgravity.coresdkandroid.review.ReviewManager
 import xyz.teamgravity.coresdkandroid.update.UpdateManager
+import xyz.teamgravity.notepad.R
 import xyz.teamgravity.notepad.data.local.preferences.AppPreferences
 import xyz.teamgravity.notepad.data.local.preferences.AppPreferencesKey
 import xyz.teamgravity.notepad.data.model.NoteModel
@@ -38,7 +41,7 @@ class NoteListViewModel @Inject constructor(
     private val update: UpdateManager
 ) : ViewModel() {
 
-    val notes: Flow<PagingData<NoteModel>> = repository.getAllNotes().cachedIn(viewModelScope)
+    val notes: Flow<PagingData<NoteModel>> = repository.getValidNotes().cachedIn(viewModelScope)
 
     val autoSave: StateFlow<Boolean> = preferences.getAutoSave().stateIn(
         scope = viewModelScope,
@@ -177,7 +180,6 @@ class NoteListViewModel @Inject constructor(
     }
 
     fun onAutoSaveChange() {
-        onMenuCollapse()
         viewModelScope.launch(NonCancellable) {
             preferences.upsertAutoSave(!autoSave.value)
         }
@@ -193,7 +195,6 @@ class NoteListViewModel @Inject constructor(
 
     fun onDeleteAllShow() {
         deleteAllShown = true
-        onMenuCollapse()
     }
 
     fun onDeleteAllDismiss() {
@@ -202,8 +203,17 @@ class NoteListViewModel @Inject constructor(
 
     fun onDeleteAll() {
         onDeleteAllDismiss()
+        viewModelScope.launch {
+            withContext(NonCancellable) {
+                repository.moveValidNotesToTrash(System.currentTimeMillis())
+            }
+            _event.send(NoteListEvent.ShowMessage(R.string.all_notes_deleted))
+        }
+    }
+
+    fun onUndoDeletedNote(id: Long) {
         viewModelScope.launch(NonCancellable) {
-            repository.deleteAllNotes()
+            repository.restoreDeletedNote(id)
         }
     }
 
@@ -211,8 +221,9 @@ class NoteListViewModel @Inject constructor(
     // Misc
     ///////////////////////////////////////////////////////////////////////////
 
-    enum class NoteListEvent {
-        Review,
-        DownloadAppUpdate;
+    sealed interface NoteListEvent {
+        data object Review : NoteListEvent
+        data object DownloadAppUpdate : NoteListEvent
+        data class ShowMessage(@StringRes val message: Int) : NoteListEvent
     }
 }

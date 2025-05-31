@@ -48,9 +48,15 @@ class NoteRepository(
         }
     }
 
-    suspend fun deleteAllNotes() {
+    suspend fun deleteAllDeletedNotes() {
         withContext(Dispatchers.IO) {
-            dao.deleteAllNotes()
+            dao.deleteAllDeletedNotes()
+        }
+    }
+
+    suspend fun deleteExpiredNotes(expiredTime: Long) {
+        withContext(Dispatchers.IO) {
+            dao.deleteExpiredNotes(expiredTime)
         }
     }
 
@@ -58,11 +64,24 @@ class NoteRepository(
     // Get
     ///////////////////////////////////////////////////////////////////////////
 
-    fun getAllNotes(): Flow<PagingData<NoteModel>> {
+    fun getValidNotes(): Flow<PagingData<NoteModel>> {
         return Pager(
             config = config,
             pagingSourceFactory = {
-                dao.getAllNotes()
+                dao.getValidNotes()
+            }
+        ).flow.map { entities ->
+            entities.map { entity ->
+                entity.toModel()
+            }
+        }
+    }
+
+    fun getDeletedNotes(): Flow<PagingData<NoteModel>> {
+        return Pager(
+            config = config,
+            pagingSourceFactory = {
+                dao.getDeletedNotes()
             }
         ).flow.map { entities ->
             entities.map { entity ->
@@ -73,5 +92,27 @@ class NoteRepository(
 
     fun getNote(id: Long): Flow<NoteModel?> {
         return dao.getNote(id).map { entity -> entity?.toModel() }
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
+    // Misc
+    ///////////////////////////////////////////////////////////////////////////
+
+    suspend fun moveValidNotesToTrash(deletedTime: Long) {
+        withContext(Dispatchers.IO) {
+            dao.moveValidNotesToTrash(deletedTime)
+        }
+    }
+
+    suspend fun restoreDeletedNotes() {
+        withContext(Dispatchers.IO) {
+            dao.restoreDeletedNotes()
+        }
+    }
+
+    suspend fun restoreDeletedNote(id: Long) {
+        withContext(Dispatchers.IO) {
+            dao.restoreDeletedNote(id)
+        }
     }
 }

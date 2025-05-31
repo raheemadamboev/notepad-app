@@ -22,11 +22,8 @@ import javax.inject.Inject
 class NoteAddViewModel @Inject constructor(
     private val repository: NoteRepository,
     private val preferences: AppPreferences,
-    private val saver: AutoSaver
+    private val autoSaver: AutoSaver
 ) : ViewModel() {
-
-    private val _event = Channel<NoteAddEvent>()
-    val event: Flow<NoteAddEvent> = _event.receiveAsFlow()
 
     var title: String by mutableStateOf("")
         private set
@@ -37,6 +34,9 @@ class NoteAddViewModel @Inject constructor(
     var autoSave: Boolean by mutableStateOf(AppPreferencesKey.AutoSave.default as Boolean)
         private set
 
+    private val _event = Channel<NoteAddEvent>()
+    val event: Flow<NoteAddEvent> = _event.receiveAsFlow()
+
     init {
         initializeAutoSaver()
     }
@@ -45,7 +45,8 @@ class NoteAddViewModel @Inject constructor(
         viewModelScope.launch {
             autoSave = preferences.getAutoSave().first()
             if (autoSave) {
-                saver.start(
+                autoSaver.start(
+                    resolution = AutoSaver.EmptyResolution.Delete,
                     note = null,
                     title = { title },
                     body = { body }
@@ -66,23 +67,34 @@ class NoteAddViewModel @Inject constructor(
         body = value
     }
 
+    fun onAutoSave() {
+        if (autoSave) {
+            autoSaver.save(
+                title = title,
+                body = body
+            )
+        }
+    }
+
     fun onSaveNote() {
         viewModelScope.launch {
-            repository.insertNote(
-                NoteModel(
-                    title = title,
-                    body = body,
+            if (title.isNotBlank() || body.isNotBlank()) {
+                repository.insertNote(
+                    NoteModel(
+                        title = title,
+                        body = body
+                    )
                 )
-            )
+            }
 
-            _event.send(NoteAddEvent.NoteAdded)
+            _event.send(NoteAddEvent.NavigateBack)
         }
     }
 
     override fun onCleared() {
         super.onCleared()
         if (autoSave) {
-            saver.saveAndClose(
+            autoSaver.saveAndClose(
                 title = title,
                 body = body
             )
@@ -94,6 +106,6 @@ class NoteAddViewModel @Inject constructor(
     ///////////////////////////////////////////////////////////////////////////
 
     enum class NoteAddEvent {
-        NoteAdded;
+        NavigateBack;
     }
 }

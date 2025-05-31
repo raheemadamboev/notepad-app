@@ -26,9 +26,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import xyz.teamgravity.coresdkcompose.button.IconButtonPlain
 import xyz.teamgravity.notepad.R
 import xyz.teamgravity.notepad.core.util.Helper
-import xyz.teamgravity.notepad.presentation.component.button.IconButtonPlain
 import xyz.teamgravity.notepad.presentation.component.card.CardConnection
 import xyz.teamgravity.notepad.presentation.theme.White
 

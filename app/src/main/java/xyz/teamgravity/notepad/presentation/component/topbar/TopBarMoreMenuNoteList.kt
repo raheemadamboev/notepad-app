@@ -4,13 +4,12 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Done
 import androidx.compose.material.icons.rounded.MoreVert
 import androidx.compose.material3.DropdownMenu
-import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.runtime.Composable
 import xyz.teamgravity.coresdkandroid.android.BuildUtil
+import xyz.teamgravity.coresdkcompose.button.IconButtonPlain
+import xyz.teamgravity.coresdkcompose.image.IconPlain
+import xyz.teamgravity.coresdkcompose.menu.GDropdownMenuItem
 import xyz.teamgravity.notepad.R
-import xyz.teamgravity.notepad.presentation.component.button.IconButtonPlain
-import xyz.teamgravity.notepad.presentation.component.image.IconPlain
-import xyz.teamgravity.notepad.presentation.component.text.TextPlain
 
 @Composable
 fun TopBarMoreMenuNoteList(
@@ -19,6 +18,7 @@ fun TopBarMoreMenuNoteList(
     onDismiss: () -> Unit,
     autoSave: Boolean,
     onAutoSave: () -> Unit,
+    deleteAllEnabled: Boolean,
     onDeleteAll: () -> Unit,
     onPinLock: () -> Unit,
     onLanguage: () -> Unit
@@ -32,13 +32,11 @@ fun TopBarMoreMenuNoteList(
         expanded = expanded,
         onDismissRequest = onDismiss
     ) {
-        DropdownMenuItem(
-            text = {
-                TextPlain(
-                    id = R.string.auto_save
-                )
-            },
+        GDropdownMenuItem(
+            onDismiss = onDismiss,
             onClick = onAutoSave,
+            icon = R.drawable.ic_save,
+            label = R.string.auto_save,
             trailingIcon = {
                 if (autoSave) {
                     IconPlain(
@@ -46,56 +44,27 @@ fun TopBarMoreMenuNoteList(
                         contentDescription = R.string.auto_save
                     )
                 }
-            },
-            leadingIcon = {
-                IconPlain(
-                    icon = R.drawable.ic_save,
-                    contentDescription = R.string.auto_save
-                )
             }
         )
-        DropdownMenuItem(
-            text = {
-                TextPlain(
-                    id = R.string.delete_all_notes
-                )
-            },
+        GDropdownMenuItem(
+            onDismiss = onDismiss,
             onClick = onDeleteAll,
-            leadingIcon = {
-                IconPlain(
-                    icon = R.drawable.ic_delete,
-                    contentDescription = R.string.delete_all_notes
-                )
-            }
+            icon = R.drawable.ic_delete,
+            label = R.string.delete_all_notes,
+            enabled = deleteAllEnabled
         )
-        DropdownMenuItem(
-            text = {
-                TextPlain(
-                    id = R.string.pin_lock
-                )
-            },
+        GDropdownMenuItem(
+            onDismiss = onDismiss,
             onClick = onPinLock,
-            leadingIcon = {
-                IconPlain(
-                    icon = R.drawable.ic_lock,
-                    contentDescription = R.string.pin_lock
-                )
-            }
+            icon = R.drawable.ic_lock,
+            label = R.string.pin_lock
         )
         if (BuildUtil.atLeastTiramisu()) {
-            DropdownMenuItem(
-                text = {
-                    TextPlain(
-                        id = R.string.change_language
-                    )
-                },
+            GDropdownMenuItem(
+                onDismiss = onDismiss,
                 onClick = onLanguage,
-                leadingIcon = {
-                    IconPlain(
-                        icon = R.drawable.ic_language,
-                        contentDescription = R.string.change_language
-                    )
-                }
+                icon = R.drawable.ic_language,
+                label = R.string.change_language
             )
         }
     }

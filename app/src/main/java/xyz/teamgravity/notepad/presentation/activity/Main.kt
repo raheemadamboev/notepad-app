@@ -5,6 +5,11 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.ui.Modifier
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import dagger.hilt.android.AndroidEntryPoint
 import xyz.teamgravity.notepad.presentation.component.pinlock.NotePinLock
@@ -21,14 +26,20 @@ class Main : ComponentActivity() {
     private val viewmodel by viewModels<MainViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        installSplashScreen()
+        splash()
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         val intent = if (savedInstanceState == null) intent else null
         setContent {
             NotepadTheme {
                 when (viewmodel.navigation) {
-                    MainViewModel.Navigation.None -> Unit
+                    MainViewModel.Navigation.None -> {
+                        Box(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .background(MaterialTheme.colorScheme.background)
+                        )
+                    }
 
                     MainViewModel.Navigation.PinLock -> {
                         NotePinLock(
@@ -44,5 +55,10 @@ class Main : ComponentActivity() {
                 }
             }
         }
+    }
+
+    private fun splash() {
+        val splash = installSplashScreen()
+        splash.setKeepOnScreenCondition { viewmodel.loading }
     }
 }

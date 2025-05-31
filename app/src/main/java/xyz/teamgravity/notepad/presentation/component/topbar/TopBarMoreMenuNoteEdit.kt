@@ -3,12 +3,10 @@ package xyz.teamgravity.notepad.presentation.component.topbar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.MoreVert
 import androidx.compose.material3.DropdownMenu
-import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.runtime.Composable
+import xyz.teamgravity.coresdkcompose.button.IconButtonPlain
+import xyz.teamgravity.coresdkcompose.menu.GDropdownMenuItem
 import xyz.teamgravity.notepad.R
-import xyz.teamgravity.notepad.presentation.component.button.IconButtonPlain
-import xyz.teamgravity.notepad.presentation.component.image.IconPlain
-import xyz.teamgravity.notepad.presentation.component.text.TextPlain
 
 @Composable
 fun TopBarMoreMenuNoteEdit(
@@ -27,33 +25,17 @@ fun TopBarMoreMenuNoteEdit(
         expanded = expanded,
         onDismissRequest = onDismiss
     ) {
-        DropdownMenuItem(
-            text = {
-                TextPlain(
-                    id = R.string.delete
-                )
-            },
+        GDropdownMenuItem(
+            onDismiss = onDismiss,
             onClick = onDelete,
-            leadingIcon = {
-                IconPlain(
-                    icon = R.drawable.ic_delete,
-                    contentDescription = R.string.cd_delete_button
-                )
-            }
+            icon = R.drawable.ic_delete,
+            label = R.string.delete
         )
-        DropdownMenuItem(
-            text = {
-                TextPlain(
-                    id = R.string.share
-                )
-            },
+        GDropdownMenuItem(
+            onDismiss = onDismiss,
             onClick = onShare,
-            leadingIcon = {
-                IconPlain(
-                    icon = R.drawable.ic_share,
-                    contentDescription = R.string.share
-                )
-            }
+            icon = R.drawable.ic_share,
+            label = R.string.share
         )
     }
 }

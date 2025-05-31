@@ -22,14 +22,14 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import xyz.teamgravity.coresdkcompose.button.IconButtonPlain
+import xyz.teamgravity.coresdkcompose.text.TextPlain
 import xyz.teamgravity.notepad.R
-import xyz.teamgravity.notepad.presentation.component.button.IconButtonPlain
 import xyz.teamgravity.notepad.presentation.component.pinlock.ChangePinLockCard
 import xyz.teamgravity.notepad.presentation.component.pinlock.EnablePinLockCard
 import xyz.teamgravity.notepad.presentation.component.pinlock.NoteChangePinLock
 import xyz.teamgravity.notepad.presentation.component.pinlock.NotePinLock
 import xyz.teamgravity.notepad.presentation.component.pinlock.PinLockDialog
-import xyz.teamgravity.notepad.presentation.component.text.TextPlain
 import xyz.teamgravity.notepad.presentation.component.topbar.TopBar
 
 @Composable

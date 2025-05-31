@@ -18,6 +18,11 @@
     <string name="yes">Да</string>
     <string name="confirm_deletion">Подтвердить удаление</string>
     <string name="wanna_delete_all">Хотите ли вы удалить все заметки?</string>
+    <string name="empty_notes_message">Заметки, которые вы добавите, появятся здесь</string>
+    <string name="recently_deleted_notes">Недавно удалённые заметки</string>
+    <string name="all_notes_deleted">Все заметки были перемещены в корзину</string>
+    <string name="note_deleted">Заметка была перемещена в корзину</string>
+    <string name="undo">Отменить</string>
 
     <!-- NoteAdd -->
     <string name="title">Заголовок</string>
@@ -26,6 +31,27 @@
     <!-- NoteEdit -->
     <string name="delete">Удалить</string>
     <string name="wanna_delete_note">Хотите ли вы удалить заметку?</string>
+
+    <!-- NoteTrash -->
+    <string name="all_deleted_notes_restored">Все удалённые заметки были восстановлены</string>
+    <string name="all_notes_deleted_trash">Все заметки в корзине были безвозвратно удалены</string>
+    <string name="trash">Корзина</string>
+    <string name="no_notes_in_trash">В корзине нет заметок</string>
+    <string name="trash_info">ⓘ Недавно удалённые заметки будут отображаться здесь. Они будут храниться в корзине 30 дней, после чего будут удалены безвозвратно.</string>
+    <string name="delete_all">Удалить всё</string>
+    <string name="restore_all">Восстановить всё</string>
+    <string name="wanna_delete_all_permanently">Вы действительно хотите безвозвратно удалить все заметки из корзины?</string>
+    <string name="confirm_restoration">Подтвердите восстановление</string>
+    <string name="wanna_restore_all_notes">Хотите ли вы восстановить все заметки из корзины?</string>
+    <string name="note_deleted_permanently">Заметка была безвозвратно удалена</string>
+    <string name="note_restored">Заметка была восстановлена</string>
+
+    <!-- NoteView -->
+    <string name="wanna_delete_note_permanently">Вы действительно хотите безвозвратно удалить эту заметку?</string>
+    <string name="restore">Восстановить</string>
+    <string name="wanna_restore_note">Хотите ли вы восстановить эту заметку?</string>
+    <string name="x_last_modified">Последнее изменение: %1$s</string>
+    <string name="x_deleted">Удалено: %1$s</string>
 
     <!-- Support -->
     <string name="need_help">Нужна помощь?</string>
@@ -61,4 +87,9 @@
     <string name="shortcut_add_note_short_label">Добавить заметку</string>
     <string name="shortcut_add_note_long_label">Быстро добавить заметку, нажав на действие</string>
     <string name="shortcut_add_note_disabled_message">Быстрое добавление сейчас недоступно</string>
+
+    <!-- TrashNotification -->
+    <string name="trash_notification_channel_name">Корзина (Недавно удалённые заметки)</string>
+    <string name="trash_notification_channel_description">Этот канал используется для уведомлений об очистке корзины</string>
+    <string name="trash_notification_message">Заметки, находящиеся в корзине более 30 дней, начали удаляться безвозвратно</string>
 </resources>

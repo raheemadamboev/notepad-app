@@ -12,7 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.unit.dp
-import xyz.teamgravity.notepad.presentation.component.text.TextPlain
+import xyz.teamgravity.coresdkcompose.text.TextPlain
 
 @Composable
 fun NoteTextField(

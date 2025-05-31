@@ -35,16 +35,35 @@ interface NoteDao {
     @Delete
     suspend fun deleteNote(note: NoteEntity)
 
-    @Query("DELETE FROM $TABLE_NOTE")
-    suspend fun deleteAllNotes()
+    @Query("DELETE FROM $TABLE_NOTE WHERE `deletedTime` IS NOT NULL")
+    suspend fun deleteAllDeletedNotes()
+
+    @Query("DELETE FROM $TABLE_NOTE WHERE :expiredTime >= `deletedTime`")
+    suspend fun deleteExpiredNotes(expiredTime: Long)
 
     ///////////////////////////////////////////////////////////////////////////
     // Get
     ///////////////////////////////////////////////////////////////////////////
 
-    @Query("SELECT * FROM $TABLE_NOTE ORDER BY editedTime DESC")
-    fun getAllNotes(): PagingSource<Int, NoteEntity>
+    @Query("SELECT * FROM $TABLE_NOTE WHERE `deletedTime` IS NULL ORDER BY `editedTime` DESC")
+    fun getValidNotes(): PagingSource<Int, NoteEntity>
 
-    @Query("SELECT * FROM $TABLE_NOTE WHERE :id = _id LIMIT 1")
+    @Query("SELECT * FROM $TABLE_NOTE WHERE `deletedTime` IS NOT NULL ORDER BY `deletedTime` DESC")
+    fun getDeletedNotes(): PagingSource<Int, NoteEntity>
+
+    @Query("SELECT * FROM $TABLE_NOTE WHERE :id = `_id` LIMIT 1")
     fun getNote(id: Long): Flow<NoteEntity?>
+
+    ///////////////////////////////////////////////////////////////////////////
+    // Misc
+    ///////////////////////////////////////////////////////////////////////////
+
+    @Query("UPDATE $TABLE_NOTE SET `deletedTime` = :deletedTime WHERE deletedTime IS NULL")
+    suspend fun moveValidNotesToTrash(deletedTime: Long)
+
+    @Query("UPDATE $TABLE_NOTE SET `deletedTime` = NULL WHERE deletedTime IS NOT NULL")
+    suspend fun restoreDeletedNotes()
+
+    @Query("UPDATE $TABLE_NOTE SET `deletedTime` = NULL WHERE :id = `_id`")
+    suspend fun restoreDeletedNote(id: Long)
 }

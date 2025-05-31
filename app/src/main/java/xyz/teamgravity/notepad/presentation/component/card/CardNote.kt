@@ -68,7 +68,7 @@ fun CardNote(
                 modifier = Modifier.height(10.dp)
             )
             Text(
-                text = note.edited.format(),
+                text = if (note.deleted == null) note.edited.format() else note.deleted.format(),
                 style = MaterialTheme.typography.labelMedium
             )
         }

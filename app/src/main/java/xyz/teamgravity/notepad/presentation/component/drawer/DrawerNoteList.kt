@@ -13,6 +13,7 @@ import androidx.compose.material3.DrawerState
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalDrawerSheet
 import androidx.compose.material3.NavigationDrawerItem
+import androidx.compose.material3.NavigationDrawerItemDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -21,9 +22,9 @@ import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import xyz.teamgravity.coresdkandroid.android.BuildUtil
+import xyz.teamgravity.coresdkcompose.image.IconPlain
+import xyz.teamgravity.coresdkcompose.text.TextPlain
 import xyz.teamgravity.notepad.R
-import xyz.teamgravity.notepad.presentation.component.image.IconPlain
-import xyz.teamgravity.notepad.presentation.component.text.TextPlain
 
 @Composable
 fun DrawerNoteList(
@@ -31,6 +32,7 @@ fun DrawerNoteList(
     scope: CoroutineScope,
     scroll: ScrollState = rememberScrollState(),
     onPinLock: () -> Unit,
+    onTrash: () -> Unit,
     onLanguage: () -> Unit,
     onSupport: () -> Unit,
     onShare: () -> Unit,
@@ -38,11 +40,13 @@ fun DrawerNoteList(
     onSourceCode: () -> Unit,
     onAbout: () -> Unit
 ) {
-    ModalDrawerSheet {
+    ModalDrawerSheet(
+        drawerContentColor = MaterialTheme.colorScheme.onBackground
+    ) {
         Column(
             modifier = Modifier
-                .padding(horizontal = 8.dp)
                 .verticalScroll(scroll)
+                .padding(horizontal = 8.dp)
         ) {
             Spacer(
                 modifier = Modifier.height(6.dp)
@@ -56,6 +60,13 @@ fun DrawerNoteList(
                 icon = R.drawable.ic_lock,
                 label = R.string.pin_lock,
                 onClick = onPinLock,
+                drawer = drawer,
+                scope = scope
+            )
+            DrawerItem(
+                icon = R.drawable.ic_delete,
+                label = R.string.recently_deleted_notes,
+                onClick = onTrash,
                 drawer = drawer,
                 scope = scope
             )
@@ -117,6 +128,10 @@ private fun DrawerItem(
 ) {
     NavigationDrawerItem(
         selected = false,
+        colors = NavigationDrawerItemDefaults.colors(
+            unselectedIconColor = MaterialTheme.colorScheme.onBackground,
+            unselectedTextColor = MaterialTheme.colorScheme.onBackground
+        ),
         icon = {
             IconPlain(
                 icon = icon,
