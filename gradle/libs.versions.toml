@@ -19,7 +19,7 @@ destinations = "2.2.0"
 timber = "5.0.1"
 gravity-core = "1.0.20"
 gravity-core-compose = "1.0.21"
-gravity-pinlock = "1.0.4"
+gravity-pinlock = "1.0.5"
 
 android = "8.10.1"
 kotlin = "2.1.21"
