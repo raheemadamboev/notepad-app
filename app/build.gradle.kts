@@ -18,8 +18,8 @@ android {
         applicationId = "xyz.teamgravity.notepad"
         minSdk = libs.versions.sdk.min.get().toInt()
         targetSdk = libs.versions.sdk.target.get().toInt()
-        versionCode = 14
-        versionName = "1.2.2"
+        versionCode = 15
+        versionName = "1.2.3"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         vectorDrawables {
