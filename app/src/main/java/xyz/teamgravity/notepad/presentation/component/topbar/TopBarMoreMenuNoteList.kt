@@ -59,7 +59,7 @@ fun TopBarMoreMenuNoteList(
             icon = R.drawable.ic_lock,
             label = R.string.pin_lock
         )
-        if (BuildUtil.atLeastTiramisu()) {
+        if (BuildUtil.atLeast33()) {
             GDropdownMenuItem(
                 onDismiss = onDismiss,
                 onClick = onLanguage,

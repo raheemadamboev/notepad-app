@@ -70,7 +70,7 @@ fun DrawerNoteList(
                 drawer = drawer,
                 scope = scope
             )
-            if (BuildUtil.atLeastTiramisu()) {
+            if (BuildUtil.atLeast33()) {
                 DrawerItem(
                     icon = R.drawable.ic_language,
                     label = R.string.change_language,
