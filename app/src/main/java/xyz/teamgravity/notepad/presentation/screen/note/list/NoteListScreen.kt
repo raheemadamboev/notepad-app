@@ -142,7 +142,7 @@ fun NoteListScreen(
                     navigator.navigate(NoteTrashScreenDestination)
                 },
                 onLanguage = {
-                    if (BuildUtil.atLeastTiramisu()) context.navigateAppLocaleSettings()
+                    if (BuildUtil.atLeast33()) context.navigateAppLocaleSettings()
                 },
                 onSupport = {
                     navigator.navigate(SupportScreenDestination)
@@ -194,7 +194,7 @@ fun NoteListScreen(
                                 navigator.navigate(PinLockScreenDestination)
                             },
                             onLanguage = {
-                                if (BuildUtil.atLeastTiramisu()) context.navigateAppLocaleSettings()
+                                if (BuildUtil.atLeast33()) context.navigateAppLocaleSettings()
                             }
                         )
                     }
