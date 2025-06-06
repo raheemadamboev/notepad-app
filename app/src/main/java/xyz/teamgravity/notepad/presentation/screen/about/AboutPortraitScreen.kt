@@ -1,7 +1,6 @@
 package xyz.teamgravity.notepad.presentation.screen.about
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -31,7 +30,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import xyz.teamgravity.coresdkandroid.connect.ConnectUtil
 import xyz.teamgravity.coresdkcompose.button.IconButtonPlain
 import xyz.teamgravity.coresdkcompose.text.TextPlain
 import xyz.teamgravity.notepad.BuildConfig
@@ -106,10 +104,7 @@ fun AboutPortraitScreen(
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.spacedBy(5.dp),
-                modifier = Modifier
-                    .clip(MaterialTheme.shapes.extraLarge)
-                    .clickable { ConnectUtil.viewGravityPlayStorePage(context) }
-                    .padding(horizontal = 10.dp, vertical = 5.dp)
+                modifier = Modifier.padding(horizontal = 10.dp, vertical = 5.dp)
             ) {
                 Image(
                     painter = painterResource(id = R.drawable.gravity),
