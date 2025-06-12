@@ -21,7 +21,7 @@ class App : Application(), Configuration.Provider {
     lateinit var configuration: Configuration
 
     @Inject
-    lateinit var tree: Timber.DebugTree
+    lateinit var tree: Timber.Tree
 
     @Inject
     lateinit var preferences: Preferences

@@ -18,8 +18,8 @@ android {
         applicationId = "xyz.teamgravity.notepad"
         minSdk = libs.versions.sdk.min.get().toInt()
         targetSdk = libs.versions.sdk.target.get().toInt()
-        versionCode = 15
-        versionName = "1.2.3"
+        versionCode = 16
+        versionName = "1.2.4"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         vectorDrawables {
@@ -149,7 +149,5 @@ dependencies {
     // gravity core
     implementation(libs.gravity.core)
     implementation(libs.gravity.core.compose)
-
-    // gravity pinlock
     implementation(libs.gravity.pinlock)
 }
